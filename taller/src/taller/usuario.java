@@ -127,4 +127,31 @@ public class usuario {
     public void setPerfil(String perfil) {
         this.perfil = perfil;
     }   
+    
+    public JSONObject getJson() {
+        
+        //Retorna una Representacion en formato Json
+        
+            JSONObject obj = new JSONObject();
+           
+           obj.put("ID", this.getId());
+           
+           obj.put("Name", this.getNombre());
+           
+           obj.put("LastName", this.getApellidop());
+           
+           obj.put("FirstName", this.getApellidom());
+           
+           obj.put("PhoneNumber", this.getTelefono());
+           
+           obj.put("UserName", this.getUsermane());
+           
+           obj.put("Address", this.getAddress());
+           
+           obj.put("PassWord", this.getPasword());
+           
+           obj.put("Perfil", this.getPerfil());
+           
+        return obj;
+    }
 }

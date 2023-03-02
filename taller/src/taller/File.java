@@ -30,11 +30,13 @@ public class File {
     private FileWriter write;
     
     private ArrayList<usuario> myList;
+    
+    private JSONArray jsonArray;
+    private JSONArray clienteJsonArray;
 
-    JSONArray jsonArray;
 
     public File() {
-       
+       /*si falla cambia esta direccion*/
         url = "C:\\Users\\jairm\\Desktop\\taller\\src\\_AUX.json";
         write = null;
         jsonArray = new JSONArray();
@@ -42,18 +44,18 @@ public class File {
     public File(String n) {
 
         this.url = "";
-
+        /*si falla cambia esta direccion*/
         url = "C:\\Users\\jairm\\Desktop\\taller\\src\\" + n +".json";
 
         //read = null;
 
         write = null;
 
-      
-        myList = new ArrayList<usuario>();
+        jsonArray = new JSONArray();
+        clienteJsonArray = new JSONArray();
     }
 
-    public usuario searchInFile(usuario u) throws FileNotFoundException, IOException {
+    public JSONObject searchInFile(JSONObject u) throws FileNotFoundException, IOException {
         
             if(jsonArray.isEmpty()) {
             readToList();
@@ -62,41 +64,40 @@ public class File {
                 
                 JSONObject jsonObj = jsonArray.getJSONObject(i);
                 
-                if(u.getId() == jsonObj.getInt("ID")) {
+                if(u.getInt("ID") == jsonObj.getInt("ID"))  {
                     
-                    u.setUser(jsonObj);
+                    u.put("ID", jsonObj.getInt("ID"));
+           
+                    u.put("Name", jsonObj.getString("Name"));
+
+                    u.put("LastName", jsonObj.getString("LastName"));
+
+                    u.put("FirstName", jsonObj.getString("FirstName"));
+
+                    u.put("PhoneNumber", jsonObj.getString("PhoneNumber"));
+
+                    u.put("UserName", jsonObj.getString("UserName"));
+
+                    u.put("Address", jsonObj.getString("Address"));
+
+                    u.put("PassWord", jsonObj.getString("PassWord"));
+
+                    u.put("Perfil", jsonObj.getString("Perfil"));
                     
                     return u;
                 }
             }
         return null;
     }
-    public void saveData(usuario u){
+    public void saveData(JSONObject u){
         
-         
-           JSONObject obj = new JSONObject();
+           jsonArray.put(u);
            
-           obj.put("ID", u.getId());
-           
-           obj.put("Name", u.getNombre());
-           
-           obj.put("LastName", u.getApellidop());
-           
-           obj.put("FirstName", u.getApellidom());
-           
-           obj.put("PhoneNumber", u.getTelefono());
-           
-           obj.put("UserName", u.getUsermane());
-           
-           obj.put("Address", u.getAddress());
-           
-           obj.put("PassWord", u.getPasword());
-           
-           obj.put("Perfil", u.getPerfil());
-           
-           
-           jsonArray.put(obj);
-           
+    }
+    
+    public void saveCliente(JSONObject c){
+        
+        clienteJsonArray.put(c);
     }
     
     public void writeToDisk(){
@@ -115,6 +116,25 @@ public class File {
         }
        
     }
+    
+    public void writeToDiskClientes(){
+        /*si falla cambia esta direccion*/
+        String falseUrl = "D:\\MASTER\\INNI_SEM3\\SEMINARIO_ESTRUCTURAS2\\taller\\src\\AUX_CLIENTES.json";
+         
+        try {
+            
+            write = new FileWriter(falseUrl, false); 
+        
+            write.write(clienteJsonArray.toString(2));
+            
+            write.close();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       
+    }
+    
     private void readToList() throws FileNotFoundException, IOException{
         
         try{
@@ -136,6 +156,36 @@ public class File {
             fileReader.close();
 
             jsonArray = new JSONArray(stringBuilder.toString());
+            
+        }catch (IOException | JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+    
+    private void readToListForClientes() throws FileNotFoundException, IOException{
+        /*si falla cambia esta direccion*/
+        String falseUrl = "D:\\MASTER\\INNI_SEM3\\SEMINARIO_ESTRUCTURAS2\\taller\\src\\AUX_CLIENTES.json";
+        
+        try{
+            FileReader fileReader = new FileReader(falseUrl);
+
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            StringBuilder stringBuilder = new StringBuilder(); 
+
+            String line;
+            
+            while ((line = bufferedReader.readLine()) != null) {
+
+                stringBuilder.append(line);
+
+            }
+            bufferedReader.close();
+
+            fileReader.close();
+
+            clienteJsonArray = new JSONArray(stringBuilder.toString());
             
         }catch (IOException | JSONException e) {
             e.printStackTrace();
@@ -164,7 +214,31 @@ public class File {
         }
         writeToDisk();
     }
-    public void editData(usuario u) throws IOException {
+    
+    public void deletCliente(JSONObject u) throws IOException{
+           
+        if(clienteJsonArray.isEmpty()) {
+            
+            readToListForClientes();
+        }
+        
+        JSONObject jsonAux;
+        
+        for(int i = 0; i < clienteJsonArray.length(); i++) {
+            
+            jsonAux = clienteJsonArray.getJSONObject(i);
+            
+            if(u.getInt("ID") == jsonAux.getInt("ID")) {
+                
+                clienteJsonArray.remove(i);
+                
+                break;
+            }
+        }
+        
+        writeToDiskClientes();
+    }
+    public void editData(JSONObject u) throws IOException {
         
         if(jsonArray.isEmpty()) {
             
@@ -174,24 +248,32 @@ public class File {
                 
                 JSONObject obj = jsonArray.getJSONObject(i);
                 
-                if(u.getId() == obj.getInt("ID")) {
+                if(u.getInt("ID") == obj.getInt("ID")) {
                     
-                    obj.put("ID", u.getId());
-                    obj.put("Name", u.getNombre());
-                    obj.put("LastName", u.getApellidop());
-                    obj.put("FirstName", u.getApellidom());
-                    obj.put("PhoneNumber", u.getTelefono());
-                    obj.put("UserName", u.getUsermane());
-                    obj.put("Address", u.getAddress());
-                    obj.put("PassWord", u.getPasword());
-                    obj.put("Perfil", u.getPerfil()); 
+                    obj.put("ID", u.getInt("ID"));
+           
+                    obj.put("Name", u.getString("Name"));
+
+                    obj.put("LastName", u.getString("LastName"));
+
+                    obj.put("FirstName", u.getString("FirstName"));
+
+                    obj.put("PhoneNumber", u.getString("PhoneNumber"));
+
+                    obj.put("UserName", u.getString("UserName"));
+
+                    obj.put("Address", u.getString("Address"));
+
+                    obj.put("PassWord", u.getString("PassWord"));
+
+                    obj.put("Perfil", u.getString("Perfil"));
                     
                     break;
                 }
             }
         writeToDisk();
     }
-    public boolean isValid(usuario u) throws IOException{
+    public boolean isValid(JSONObject u) throws IOException{
         
         if(jsonArray.isEmpty()) {
             
@@ -201,7 +283,7 @@ public class File {
                 
                 JSONObject obj = jsonArray.getJSONObject(i);
                 
-                if((u.getUsermane().equals(obj.getString("UserName"))) && (u.getPasword().equals(obj.getString("PassWord")))) {
+                if((u.getString("UserName").equals(obj.getString("UserName"))) && (u.getString("PassWord").equals(obj.getString("PassWord")))) {
                   
                     return true;
                 }

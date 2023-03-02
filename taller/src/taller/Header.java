@@ -4,13 +4,21 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import org.json.JSONArray;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Header {
     
+    private int cont;
     private int users;
+    
+    private JSONArray clientesId;
+    private JSONArray usersId;
+    private JSONObject obj;
+    
+    /*si falla cambia esta direccion*/
     private String url = "C:\\Users\\jairm\\Desktop\\taller\\src\\HEADER.json";
 
 
@@ -18,6 +26,9 @@ public class Header {
     public Header() {
 
         this.users = 0;
+        this.cont = 0;
+        
+        this.usersId = new JSONArray();
     }
     public Header(Header h) {
 
@@ -37,15 +48,34 @@ public class Header {
 
         this.users ++;
     }
+    public void setId(int i) {
+        
+        obj = new JSONObject();
+        
+        obj.put("UsuarioId " + String.valueOf(i), i);
+        
+        this.usersId.put(obj);
+        
+    }
+    
     public void toDisk(){
         try {
             
+            if (usersId.isEmpty() || clientesId.isEmpty()) {
+            
+            fromDisk();
+        }
+            
             FileWriter file = new FileWriter(url, false);
             
-            JSONObject obj = new JSONObject();
+            obj = new JSONObject();
                 
             obj.put("LastId", this.users);
-                
+            
+            obj.put("Usuarios", usersId);
+            
+            obj.put("Clientes", clientesId);
+         
             file.write(obj.toString(2));
                 
             file.close();
@@ -55,6 +85,65 @@ public class Header {
         }
 
     }
+    
+    public void deleatId(int id) throws IOException {
+        
+        if (usersId.isEmpty()) {
+            
+            fromDisk();
+        }
+        
+        int i = 0;
+        
+        for (Object objeto : usersId)  {
+            
+            JSONObject jsonObject = (JSONObject) objeto;
+            
+            if(id == jsonObject.getInt("UsuarioId " + String.valueOf(i + 1))) {
+                
+                usersId.remove(i);
+                
+                break;
+            }
+            
+            i ++;
+        }
+        
+        toDisk();
+        
+    }
+    
+    public void deleatIdClientes(int id) throws IOException {
+        
+        if (clientesId.isEmpty()) {
+            
+            fromDisk();
+        }
+        
+        int i = 0;
+        
+        for (Object objeto : clientesId)  {
+            
+            JSONObject jsonObject = (JSONObject) objeto;
+            
+            if(id == jsonObject.getInt("UsuarioId " + String.valueOf(i + 1))) {
+                
+                clientesId.remove(i);
+                
+                break;
+            }
+            
+            i ++;
+        }
+        
+        toDisk();
+        
+    }
+    public JSONArray getUsersId() {
+    
+        return this.usersId;
+    }
+    
     public void fromDisk() throws IOException {
 
         String myJson = new String(Files.readAllBytes(Paths.get(url)), StandardCharsets.UTF_8);
@@ -63,11 +152,16 @@ public class Header {
 
         this.users = jsonObject.getInt("LastId");
     }
-
-
     
+    
+    public void setClienteId(int c) {
 
+           obj = new JSONObject();
 
+           obj.put("ClienteId " + String.valueOf(c), c);
 
+           this.clientesId.put(obj);
+
+       }
 
 }
