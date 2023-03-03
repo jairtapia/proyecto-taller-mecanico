@@ -215,6 +215,36 @@ public class File {
             return;
         }
     }
+    private void readToListForVehiculos()throws FileNotFoundException, IOException{
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
+        
+        try{
+            FileReader fileReader = new FileReader(falseUrl);
+
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            StringBuilder stringBuilder = new StringBuilder(); 
+
+            String line;
+            
+            while ((line = bufferedReader.readLine()) != null) {
+
+                stringBuilder.append(line);
+
+            }
+            bufferedReader.close();
+
+            fileReader.close();
+
+            vehiculoJsonArray = new JSONArray(stringBuilder.toString());
+            
+        }catch (IOException | JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+        
+    }
+    
     public void deletData(JSONObject u) throws IOException{
            
         if(jsonArray.isEmpty()) {
@@ -261,6 +291,27 @@ public class File {
         
         writeToDiskClientes();
     }
+    
+    public void deletevehiculo(JSONObject u)throws IOException{
+        if(vehiculoJsonArray.isEmpty()){
+            readToListForVehiculos();
+        }
+        JSONObject jsonAux;
+        
+        for(int i = 0; i < vehiculoJsonArray.length(); i++) {
+            
+            jsonAux = vehiculoJsonArray.getJSONObject(i);
+            
+            if(u.getInt("ID") == jsonAux.getInt("ID")) {
+                
+                vehiculoJsonArray.remove(i);
+                
+                break;
+            }
+        }
+    }
+    
+    
     public void editData(JSONObject u) throws IOException {
         
         if(jsonArray.isEmpty()) {
@@ -314,7 +365,4 @@ public class File {
         
         return false;
     }
-
-
-
 }

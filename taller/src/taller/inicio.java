@@ -27,6 +27,7 @@ public class inicio extends javax.swing.JFrame {
     private int auxId;
     private usuario newUser;
     private Cliente newCliente;
+    private vehiculo newvehiculo;
     private boolean ban = false ;
     private final File myFile = new File("AUX_USUARIO");
     private final File myFileClientes = new File("AUX_CLIENTES");
@@ -498,10 +499,10 @@ public class inicio extends javax.swing.JFrame {
                 CancelarVehiculoBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(CancelarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 80, -1));
+        jPanel4.add(CancelarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 100, -1));
 
         EditarVehiculoBtn.setText("Edit");
-        jPanel4.add(EditarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 60, -1));
+        jPanel4.add(EditarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 60, -1));
 
         RemoverVehiculoBtn.setText("Remover");
         jPanel4.add(RemoverVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, -1, -1));
