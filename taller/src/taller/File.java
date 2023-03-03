@@ -93,6 +93,25 @@ public class File {
             }
         return null;
     }
+    
+    public JSONObject SearchVehiculo(JSONObject v)throws FileNotFoundException, IOException{
+        if(vehiculoJsonArray.isEmpty()) {
+            readToListForVehiculos();
+        }
+        for(int i = 0; i < vehiculoJsonArray.length();i++){
+            JSONObject jsonObj = vehiculoJsonArray.getJSONObject(i);
+            if(v.getInt("ID") == jsonObj.getInt("ID")){
+                v.put("ID",jsonObj.getInt("ID"));
+                v.put("MATRICULA", jsonObj.getString("MATRICULA"));
+                v.put("MODELO", jsonObj.getString("MODELO"));
+                v.put("MARCA", jsonObj.getString("MARCA"));
+                v.put("FECHA", jsonObj.getString("FECHA"));
+                return v;
+            }
+        }
+        return null;
+    }
+    
     public void saveData(JSONObject u){
         
            jsonArray.put(u);
@@ -102,6 +121,10 @@ public class File {
     public void saveCliente(JSONObject c){
         
         clienteJsonArray.put(c);
+    }
+    
+    public void saveVehiculo(JSONObject v){
+        vehiculoJsonArray.put(v);
     }
     
     public void writeToDisk(){
@@ -310,7 +333,23 @@ public class File {
             }
         }
     }
-    
+    public void editDataV(JSONObject v)throws IOException{
+        if(vehiculoJsonArray.isEmpty()) {
+            readToListForVehiculos();
+        }
+        for (int i = 0; i < vehiculoJsonArray.length(); i++){
+            JSONObject jsonObj = jsonArray.getJSONObject(i);
+            if(v.getInt("ID") == jsonObj.getInt("ID")){
+                v.put("ID",jsonObj.getInt("ID"));
+                v.put("MATRICULA", jsonObj.getString("MATRICULA"));
+                v.put("MODELO", jsonObj.getString("MODELO"));
+                v.put("MARCA", jsonObj.getString("MARCA"));
+                v.put("FECHA", jsonObj.getString("FECHA"));
+                break;
+            }
+        }
+        writeToDiskVheiculos();
+    }
     
     public void editData(JSONObject u) throws IOException {
         
@@ -347,6 +386,7 @@ public class File {
             }
         writeToDisk();
     }
+    
     public boolean isValid(JSONObject u) throws IOException{
         
         if(jsonArray.isEmpty()) {
