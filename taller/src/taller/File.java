@@ -38,7 +38,7 @@ public class File {
 
     public File() {
        /*si falla cambia esta direccion*/
-        url  = "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\AUX_CLIENTES.json";
+        url  = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
         write = null;
         jsonArray = new JSONArray();
         clienteJsonArray = new JSONArray();
@@ -48,7 +48,7 @@ public class File {
 
         this.url = "";
         /*si falla cambia esta direccion*/
-        url = "C:\\Users\\jairm\\Desktop\\taller\\src\\" + n +".json";
+        url = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\" + n +".json";
 
         //read = null;
 
@@ -123,7 +123,7 @@ public class File {
     
     public void writeToDiskClientes(){
         /*si falla cambia esta direccion*/
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\AUX_CLIENTES.json";
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
         
         try {
             
@@ -141,7 +141,7 @@ public class File {
     
     public void writeToDiskVheiculos(){
         /*si falla cambia esta direccion*/
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\AUX_VEHICULOS.json";
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
         
         try {
             
@@ -187,7 +187,7 @@ public class File {
     
     private void readToListForClientes() throws FileNotFoundException, IOException{
         /*si falla cambia esta direccion*/
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\AUX_CLIENTES.json";
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
         
         
         try{

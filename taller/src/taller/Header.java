@@ -20,7 +20,7 @@ public class Header {
     private JSONObject obj;
     
     /*si falla cambia esta direccion*/
-     private String url =  "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\HEADER.json";
+     private String url =  "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\HEADER.json";
 
 
     public Header() {
