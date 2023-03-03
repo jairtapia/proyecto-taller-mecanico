@@ -98,7 +98,7 @@ public class inicio extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         ClienteIDBox = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BtnSearchVehiculos = new javax.swing.JButton();
         searchVehiculoField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -440,8 +440,13 @@ public class inicio extends javax.swing.JFrame {
         jLabel17.setText("Ingrese ID a Buscar");
         jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
 
-        jButton1.setText("Buscar");
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+        BtnSearchVehiculos.setText("Buscar");
+        BtnSearchVehiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSearchVehiculosActionPerformed(evt);
+            }
+        });
+        jPanel4.add(BtnSearchVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
 
         searchVehiculoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -782,6 +787,7 @@ public class inicio extends javax.swing.JFrame {
             if(myFile.isValid(newUser.getJson())) {
                 
                     JOptionPane.showMessageDialog(this, "Usuario Valido");
+                    jTabbedPane1.setSelectedIndex(1);
             }else{
                 
                 JOptionPane.showMessageDialog(this, "Usuario Invalido");
@@ -886,22 +892,27 @@ public class inicio extends javax.swing.JFrame {
 
                 int temp = 0;
 
-                /*newUser = new usuario();
+                newvehiculo = new vehiculo();
 
                 JSONObject tempObj = new JSONObject();
 
-                temp = Integer.parseInt(usuarioIDBox.getSelectedItem().toString());
+                temp = Integer.parseInt(ClienteIDBox.getSelectedItem().toString());
 
-                newUser.setId(temp);
+                newvehiculo.setIDvehiculo(temp);
 
-                tempObj = myFile.searchInFile(newUser.getJson());
+                tempObj = myFileVehiculos.SearchVehiculo(newvehiculo.getvJson());
+                
+                if(tempObj != null){
+                    IDvehiculoField.setText(String.valueOf(tempObj.getInt("ID")));
 
-                nameClienteField.setText(tempObj.getString("Name"));
+                    MatriculaVField.setText(tempObj.getString("MATRICULA"));
 
-                lastNameClienteField.setText(tempObj.getString("LastName"));
+                    MarcaVFIeld.setText(tempObj.getString("MARCA"));
 
-                lastMotherNameClienteField.setText(tempObj.getString("FirstName"));*/
+                    ModeloVField.setText(tempObj.getString("MODELO"));
 
+                    FechaVField.setText(tempObj.getString("FECHA")); 
+                }
             }else {
 
                 JOptionPane.showMessageDialog(this, "No ha seleccionado un Id Valido");
@@ -1066,6 +1077,42 @@ public class inicio extends javax.swing.JFrame {
     private void FechaVFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaVFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FechaVFieldActionPerformed
+
+    private void BtnSearchVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSearchVehiculosActionPerformed
+        // TODO add your handling code 
+        try{
+                int temp = 0;
+
+                if(!searchVehiculoField.getText().equals("")){
+                    newvehiculo = new vehiculo();
+
+                    JSONObject tempObj = new JSONObject();
+
+                    temp = Integer.parseInt(ClienteIDBox.getSelectedItem().toString());
+
+                    newvehiculo.setIDvehiculo(temp);
+
+                    tempObj = myFileVehiculos.SearchVehiculo(newvehiculo.getvJson());
+
+                    if(tempObj != null){
+                        IDvehiculoField.setText(String.valueOf(tempObj.getInt("ID")));
+
+                        MatriculaVField.setText(tempObj.getString("MATRICULA"));
+
+                        MarcaVFIeld.setText(tempObj.getString("MARCA"));
+
+                        ModeloVField.setText(tempObj.getString("MODELO"));
+
+                        FechaVField.setText(tempObj.getString("FECHA")); 
+                    }
+                }
+            
+        }catch (Exception ex) {
+
+            JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        }
+                
+    }//GEN-LAST:event_BtnSearchVehiculosActionPerformed
     
     private void setDefaultVehiculo(){
         searchVehiculoField.setText("");
@@ -1120,6 +1167,7 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton BtnRemove1;
     private javax.swing.JButton BtnSave;
     private javax.swing.JButton BtnSearch;
+    private javax.swing.JButton BtnSearchVehiculos;
     private javax.swing.JButton CancelarVehiculoBtn;
     private javax.swing.JComboBox<String> ClienteIDBox;
     private javax.swing.JButton EditarVehiculoBtn;
@@ -1136,7 +1184,6 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton deleatClienteBton;
     private javax.swing.JButton editClienteBton;
     private javax.swing.JTextField idField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
