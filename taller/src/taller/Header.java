@@ -16,11 +16,11 @@ public class Header {
     
     private JSONArray clientesId;
     private JSONArray usersId;
+    private JSONArray vehiculosid;
     private JSONObject obj;
     
     /*si falla cambia esta direccion*/
-    private String url = "C:\\Users\\jairm\\Desktop\\taller\\src\\HEADER.json";
-
+     private String url =  "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\HEADER.json";
 
 
     public Header() {
@@ -75,6 +75,8 @@ public class Header {
             obj.put("Usuarios", usersId);
             
             obj.put("Clientes", clientesId);
+            
+            obj.put("vehiculos", vehiculosid);
          
             file.write(obj.toString(2));
                 
@@ -139,6 +141,23 @@ public class Header {
         toDisk();
         
     }
+    
+    public void deleatIdVehiculos(int id) throws IOException{
+        if(vehiculosid.isEmpty()){
+            fromDisk();
+        }
+        int i = 0;
+        for (Object objeto : vehiculosid)  {
+            JSONObject jsonObject = (JSONObject) objeto;
+            if(id == jsonObject.getInt("vehiculoid" + String.valueOf(i + 1))) {
+                vehiculosid.remove(i);
+                break;
+            }   
+            i ++;
+        }
+        toDisk();
+    }
+    
     public JSONArray getUsersId() {
     
         return this.usersId;
@@ -151,6 +170,14 @@ public class Header {
         JSONObject jsonObject = new JSONObject(myJson);
 
         this.users = jsonObject.getInt("LastId");
+        
+        this.usersId = jsonObject.getJSONArray("Usuarios");
+        
+        this.clientesId = jsonObject.getJSONArray("Clientes");
+        
+        this.vehiculosid = jsonObject.getJSONArray("vehiculos");
+        
+        this.cont ++;
     }
     
     
@@ -163,5 +190,12 @@ public class Header {
            this.clientesId.put(obj);
 
        }
+    public void setVehiculoid(int v){
+        obj = new JSONObject();
+        
+        obj.put("vehiculoid" + String.valueOf(v), v);
+        
+        this.vehiculosid.put(obj);
+    }
 
 }

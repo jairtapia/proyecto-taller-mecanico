@@ -1,0 +1,35 @@
+[
+  {
+    "UserName": "sacd",
+    "Address": "cds",
+    "Perfil": "ADMIN",
+    "FirstName": "sdc",
+    "PhoneNumber": "asdc",
+    "ID": 2,
+    "LastName": "sadvc",
+    "PassWord": "acsd",
+    "Name": "PEDRO"
+  },
+  {
+    "UserName": "sacd",
+    "Address": "cds",
+    "Perfil": "ADMIN",
+    "FirstName": "sdc",
+    "PhoneNumber": "asdc",
+    "ID": 8,
+    "LastName": "sadvc",
+    "PassWord": "acsd",
+    "Name": "JOSEJUAN"
+  },
+  {
+    "UserName": "sacd",
+    "Address": "cds",
+    "Perfil": "ADMIN",
+    "FirstName": "sdc",
+    "PhoneNumber": "asdc",
+    "ID": 4,
+    "LastName": "sadvc",
+    "PassWord": "acsd",
+    "Name": "TONIO"
+  }
+]

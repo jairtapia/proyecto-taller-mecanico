@@ -30,6 +30,7 @@ public class inicio extends javax.swing.JFrame {
     private boolean ban = false ;
     private final File myFile = new File("AUX_USUARIO");
     private final File myFileClientes = new File("AUX_CLIENTES");
+    private final File myFileVehiculos = new File("AUX_VEHICULOS");
     private Header myHeader;// = new Header();
      
     @SuppressWarnings("unchecked")
@@ -398,6 +399,11 @@ public class inicio extends javax.swing.JFrame {
         jPanel3.add(suarchClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
 
         nameClienteField.setEditable(false);
+        nameClienteField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameClienteFieldActionPerformed(evt);
+            }
+        });
         jPanel3.add(nameClienteField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 140, -1));
 
         lastNameClienteField.setEditable(false);
@@ -422,7 +428,7 @@ public class inicio extends javax.swing.JFrame {
         jLabel16.setText("Seleccione cliente");
         jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        ClienteIDBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ClienteIDBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
         ClienteIDBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClienteIDBoxActionPerformed(evt);
@@ -435,6 +441,12 @@ public class inicio extends javax.swing.JFrame {
 
         jButton1.setText("Buscar");
         jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+
+        searchVehiculoField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchVehiculoFieldActionPerformed(evt);
+            }
+        });
         jPanel4.add(searchVehiculoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 130, -1));
 
         jLabel18.setText("Vehiculo ID");
@@ -451,19 +463,41 @@ public class inicio extends javax.swing.JFrame {
 
         jLabel22.setText("Fecha");
         jPanel4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, -1, -1));
+
+        FechaVField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FechaVFieldActionPerformed(evt);
+            }
+        });
         jPanel4.add(FechaVField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 140, -1));
+
+        IDvehiculoField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IDvehiculoFieldActionPerformed(evt);
+            }
+        });
         jPanel4.add(IDvehiculoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 100, -1));
         jPanel4.add(MatriculaVField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 140, -1));
         jPanel4.add(MarcaVFIeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 140, -1));
         jPanel4.add(ModeloVField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 140, -1));
 
         NuevoVehiculoBtn.setText("Nuevo");
+        NuevoVehiculoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevoVehiculoBtnActionPerformed(evt);
+            }
+        });
         jPanel4.add(NuevoVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, -1, -1));
 
         GuardarVehiculoBtn.setText("Salvar");
         jPanel4.add(GuardarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
 
         CancelarVehiculoBtn.setText("Cancelar");
+        CancelarVehiculoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarVehiculoBtnActionPerformed(evt);
+            }
+        });
         jPanel4.add(CancelarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 80, -1));
 
         EditarVehiculoBtn.setText("Edit");
@@ -523,6 +557,7 @@ public class inicio extends javax.swing.JFrame {
               int aux = objeto.getInt("UsuarioId " + String.valueOf(i + 1));
               
               usuarioIDBox.addItem(String.valueOf(aux));
+              ClienteIDBox.addItem(String.valueOf(aux));
         }
     }
     private void writeBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_writeBtonActionPerformed
@@ -626,10 +661,10 @@ public class inicio extends javax.swing.JFrame {
                 myHeader.setUsers(auxId);
 
                 newUser.setId(auxId);
+
+                myFile.deletData(newUser.getJson());
                 
                 auxId--;
-
-                myFile.deletData(newUser);
 
                 myHeader.toDisk();
 
@@ -844,6 +879,39 @@ public class inicio extends javax.swing.JFrame {
     }
     private void ClienteIDBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteIDBoxActionPerformed
         // TODO add your handling code here:
+        try {
+
+            if(!ClienteIDBox.getSelectedItem().toString().equals("0")){
+
+                int temp = 0;
+
+                /*newUser = new usuario();
+
+                JSONObject tempObj = new JSONObject();
+
+                temp = Integer.parseInt(usuarioIDBox.getSelectedItem().toString());
+
+                newUser.setId(temp);
+
+                tempObj = myFile.searchInFile(newUser.getJson());
+
+                nameClienteField.setText(tempObj.getString("Name"));
+
+                lastNameClienteField.setText(tempObj.getString("LastName"));
+
+                lastMotherNameClienteField.setText(tempObj.getString("FirstName"));*/
+
+            }else {
+
+                JOptionPane.showMessageDialog(this, "No ha seleccionado un Id Valido");
+
+            }
+
+        }catch (Exception ex) {
+
+            JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        }
+        
     }//GEN-LAST:event_ClienteIDBoxActionPerformed
 
     private void saveClienteBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveClienteBtonActionPerformed
@@ -971,6 +1039,41 @@ public class inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
         }
     }//GEN-LAST:event_deleatClienteBtonActionPerformed
+
+    private void nameClienteFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameClienteFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameClienteFieldActionPerformed
+
+    private void NuevoVehiculoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoVehiculoBtnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_NuevoVehiculoBtnActionPerformed
+
+    private void CancelarVehiculoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarVehiculoBtnActionPerformed
+        // TODO add your handling code here:
+        setDefaultVehiculo();
+    }//GEN-LAST:event_CancelarVehiculoBtnActionPerformed
+
+    private void searchVehiculoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchVehiculoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchVehiculoFieldActionPerformed
+
+    private void IDvehiculoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDvehiculoFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IDvehiculoFieldActionPerformed
+
+    private void FechaVFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaVFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FechaVFieldActionPerformed
+    
+    private void setDefaultVehiculo(){
+        searchVehiculoField.setText("");
+        IDvehiculoField.setText("");
+        MatriculaVField.setText("");
+        MarcaVFIeld.setText("");
+        ModeloVField.setText("");
+        FechaVField.setText("");
+    }
     
     private void setDefaults() {
         

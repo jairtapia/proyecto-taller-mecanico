@@ -132,7 +132,7 @@ public class usuario {
         
         //Retorna una Representacion en formato Json
         
-            JSONObject obj = new JSONObject();
+           JSONObject obj = new JSONObject();
            
            obj.put("ID", this.getId());
            

@@ -33,13 +33,16 @@ public class File {
     
     private JSONArray jsonArray;
     private JSONArray clienteJsonArray;
+    private JSONArray vehiculoJsonArray;
 
 
     public File() {
        /*si falla cambia esta direccion*/
-        url = "C:\\Users\\jairm\\Desktop\\taller\\src\\_AUX.json";
+        url  = "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\AUX_CLIENTES.json";
         write = null;
         jsonArray = new JSONArray();
+        clienteJsonArray = new JSONArray();
+        vehiculoJsonArray = new JSONArray();
     }
     public File(String n) {
 
@@ -53,6 +56,7 @@ public class File {
 
         jsonArray = new JSONArray();
         clienteJsonArray = new JSONArray();
+        vehiculoJsonArray = new JSONArray();
     }
 
     public JSONObject searchInFile(JSONObject u) throws FileNotFoundException, IOException {
@@ -119,13 +123,31 @@ public class File {
     
     public void writeToDiskClientes(){
         /*si falla cambia esta direccion*/
-        String falseUrl = "D:\\MASTER\\INNI_SEM3\\SEMINARIO_ESTRUCTURAS2\\taller\\src\\AUX_CLIENTES.json";
-         
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\AUX_CLIENTES.json";
+        
         try {
             
             write = new FileWriter(falseUrl, false); 
         
             write.write(clienteJsonArray.toString(2));
+            
+            write.close();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       
+    }
+    
+    public void writeToDiskVheiculos(){
+        /*si falla cambia esta direccion*/
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\AUX_VEHICULOS.json";
+        
+        try {
+            
+            write = new FileWriter(falseUrl, false); 
+        
+            write.write(vehiculoJsonArray.toString(2));
             
             write.close();
             
@@ -165,7 +187,8 @@ public class File {
     
     private void readToListForClientes() throws FileNotFoundException, IOException{
         /*si falla cambia esta direccion*/
-        String falseUrl = "D:\\MASTER\\INNI_SEM3\\SEMINARIO_ESTRUCTURAS2\\taller\\src\\AUX_CLIENTES.json";
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto_universidad\\taller\\src\\AUX_CLIENTES.json";
+        
         
         try{
             FileReader fileReader = new FileReader(falseUrl);
@@ -192,7 +215,7 @@ public class File {
             return;
         }
     }
-    public void deletData(usuario u) throws IOException{
+    public void deletData(JSONObject u) throws IOException{
            
         if(jsonArray.isEmpty()) {
             
@@ -205,7 +228,7 @@ public class File {
             
             jsonAux = jsonArray.getJSONObject(i);
             
-            if(u.getId() == jsonAux.getInt("ID")) {
+            if(u.getInt("ID") == jsonAux.getInt("ID")) {
                 
                 jsonArray.remove(i);
                 
