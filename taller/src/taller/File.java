@@ -338,13 +338,13 @@ public class File {
             readToListForVehiculos();
         }
         for (int i = 0; i < vehiculoJsonArray.length(); i++){
-            JSONObject jsonObj = jsonArray.getJSONObject(i);
-            if(v.getInt("ID") == jsonObj.getInt("ID")){
-                v.put("ID",jsonObj.getInt("ID"));
-                v.put("MATRICULA", jsonObj.getString("MATRICULA"));
-                v.put("MODELO", jsonObj.getString("MODELO"));
-                v.put("MARCA", jsonObj.getString("MARCA"));
-                v.put("FECHA", jsonObj.getString("FECHA"));
+            JSONObject Obj = jsonArray.getJSONObject(i);
+            if(v.getInt("ID") == Obj.getInt("ID")){
+                Obj.put("ID",v.getInt("ID"));
+                Obj.put("MATRICULA",v.get("MATRICULA"));
+                Obj.put("MODELO",v.get("MODELO"));
+                Obj.put("MARCA",v.get("MARCA"));
+                Obj.put("FECHA",v.get("FECHA"));
                 break;
             }
         }
