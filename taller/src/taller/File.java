@@ -38,7 +38,7 @@ public class File {
 
     public File() {
        /*si falla cambia esta direccion*/
-        url  = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
+        url  = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_USUARIO";
         write = null;
         jsonArray = new JSONArray();
         clienteJsonArray = new JSONArray();
@@ -48,7 +48,7 @@ public class File {
 
         this.url = "";
         /*si falla cambia esta direccion*/
-        url = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\" + n +".json";
+        url = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\" + n +".json";
 
         //read = null;
 
@@ -100,12 +100,12 @@ public class File {
         }
         for(int i = 0; i < vehiculoJsonArray.length();i++){
             JSONObject jsonObj = vehiculoJsonArray.getJSONObject(i);
-            if(v.getInt("ID") == jsonObj.getInt("ID")){
-                v.put("ID",jsonObj.getInt("ID"));
+            if(v.getInt("IDVH") == jsonObj.getInt("IDVH")){
                 v.put("MATRICULA", jsonObj.getString("MATRICULA"));
-                v.put("MODELO", jsonObj.getString("MODELO"));
                 v.put("MARCA", jsonObj.getString("MARCA"));
                 v.put("FECHA", jsonObj.getString("FECHA"));
+                v.put("MODELO", jsonObj.getString("MODELO"));
+                v.put("IDVH",jsonObj.getInt("IDVH"));
                 return v;
             }
         }
@@ -146,7 +146,7 @@ public class File {
     
     public void writeToDiskClientes(){
         /*si falla cambia esta direccion*/
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
         
         try {
             
@@ -164,7 +164,7 @@ public class File {
     
     public void writeToDiskVheiculos(){
         /*si falla cambia esta direccion*/
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
         
         try {
             
@@ -210,7 +210,7 @@ public class File {
     
     private void readToListForClientes() throws FileNotFoundException, IOException{
         /*si falla cambia esta direccion*/
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
         
         
         try{
@@ -239,7 +239,7 @@ public class File {
         }
     }
     private void readToListForVehiculos()throws FileNotFoundException, IOException{
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
+        String falseUrl = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
         
         try{
             FileReader fileReader = new FileReader(falseUrl);
@@ -325,22 +325,23 @@ public class File {
             
             jsonAux = vehiculoJsonArray.getJSONObject(i);
             
-            if(u.getInt("ID") == jsonAux.getInt("ID")) {
+            if(u.getInt("IDVH") == jsonAux.getInt("IDVH")) {
                 
                 vehiculoJsonArray.remove(i);
                 
                 break;
             }
         }
+        writeToDiskVheiculos();
     }
     public void editDataV(JSONObject v)throws IOException{
         if(vehiculoJsonArray.isEmpty()) {
             readToListForVehiculos();
         }
-        for (int i = 0; i < vehiculoJsonArray.length(); i++){
-            JSONObject Obj = jsonArray.getJSONObject(i);
-            if(v.getInt("ID") == Obj.getInt("ID")){
-                Obj.put("ID",v.getInt("ID"));
+        for (int i = 1; i < vehiculoJsonArray.length(); i++){
+            JSONObject Obj = vehiculoJsonArray.getJSONObject(i);
+            if(v.getInt("IDVH") == Obj.getInt("IDVH")){
+                Obj.put("IDVH",v.getInt("IDVH"));
                 Obj.put("MATRICULA",v.get("MATRICULA"));
                 Obj.put("MODELO",v.get("MODELO"));
                 Obj.put("MARCA",v.get("MARCA"));

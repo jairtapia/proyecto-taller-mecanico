@@ -20,7 +20,7 @@ public class Header {
     private JSONObject obj;
     
     /*si falla cambia esta direccion*/
-     private String url =  "C:\\Users\\jairm\\Desktop\\proyecto-taller-mecanico\\taller\\src\\HEADER.json";
+     private String url =  "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\HEADER.json";
 
 
     public Header() {
@@ -193,7 +193,7 @@ public class Header {
     public void setVehiculoid(int v){
         obj = new JSONObject();
         
-        obj.put("vehiculoid" + String.valueOf(v), v);
+        obj.put("vehiculoid " + String.valueOf(v), v);
         
         this.vehiculosid.put(obj);
     }
