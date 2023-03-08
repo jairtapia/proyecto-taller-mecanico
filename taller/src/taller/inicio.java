@@ -18,13 +18,20 @@ public class inicio extends javax.swing.JFrame {
         myHeader = new Header();
         myHeader.fromDisk();
         auxId = myHeader.getUsers();
+        auxClientId = myHeader.getClients();
+        auxVehicleId = myHeader.getVehicles();
+        
         
         idField.setText(String.valueOf(auxId));
+        clienteIdField.setText(String.valueOf(auxClientId));
         
         setUsersIdBox(myHeader.getUsersId());
+        setClientsIdBox(myHeader.getClientesId());
     }
     
     private int auxId;
+    private int auxClientId;
+    private int auxVehicleId;
     private usuario newUser;
     private Cliente newCliente;
     private vehiculo newvehiculo;
@@ -94,6 +101,8 @@ public class inicio extends javax.swing.JFrame {
         lastMotherNameClienteField = new javax.swing.JTextField();
         usuarioIDBox = new javax.swing.JComboBox<>();
         searchClienteField = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        clienteIdField = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         ClienteIDBox = new javax.swing.JComboBox<>();
@@ -399,18 +408,13 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel3.add(suarchClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
 
-        nameClienteField.setEditable(false);
         nameClienteField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameClienteFieldActionPerformed(evt);
             }
         });
         jPanel3.add(nameClienteField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 140, -1));
-
-        lastNameClienteField.setEditable(false);
         jPanel3.add(lastNameClienteField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 140, -1));
-
-        lastMotherNameClienteField.setEditable(false);
         jPanel3.add(lastMotherNameClienteField, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 140, -1));
 
         usuarioIDBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
@@ -421,6 +425,17 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel3.add(usuarioIDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 140, -1));
         jPanel3.add(searchClienteField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 130, -1));
+
+        jLabel23.setText("cliente ID");
+        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, -1, -1));
+
+        clienteIdField.setEditable(false);
+        clienteIdField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clienteIdFieldActionPerformed(evt);
+            }
+        });
+        jPanel3.add(clienteIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 110, -1));
 
         jTabbedPane1.addTab("clientes", jPanel3);
 
@@ -482,7 +497,7 @@ public class inicio extends javax.swing.JFrame {
                 IDvehiculoFieldActionPerformed(evt);
             }
         });
-        jPanel4.add(IDvehiculoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 100, -1));
+        jPanel4.add(IDvehiculoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 100, -1));
         jPanel4.add(MatriculaVField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 140, -1));
         jPanel4.add(MarcaVFIeld, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 140, -1));
         jPanel4.add(ModeloVField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 140, -1));
@@ -578,9 +593,20 @@ public class inicio extends javax.swing.JFrame {
               int aux = objeto.getInt("UsuarioId " + String.valueOf(i + 1));
               
               usuarioIDBox.addItem(String.valueOf(aux));
+        }
+    }
+    private void setClientsIdBox(JSONArray myJson ) {
+            
+          for (int i = 0; i < myJson.length(); i++) {
+            
+              JSONObject objeto = myJson.getJSONObject(i);
+              
+              int aux = objeto.getInt("ClienteId " + String.valueOf(i + 1));
+              
               ClienteIDBox.addItem(String.valueOf(aux));
         }
     }
+    
     private void writeBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_writeBtonActionPerformed
         try {
             
@@ -829,18 +855,19 @@ public class inicio extends javax.swing.JFrame {
             
             if( !(searchClienteField.getText().equals("")))
             {
-                newUser = new usuario();
+                newCliente = new Cliente();
+                
                 JSONObject tempObj = new JSONObject();
 
-                newUser.setId(Integer.parseInt(searchClienteField.getText()));
+                newCliente.setClienteId(Integer.parseInt(searchClienteField.getText()));
 
-                tempObj = myFile.searchInFile(newUser.getJson());
+                tempObj = myFileClientes.searchClientInFile(newCliente.getJson());
                 
                 nameClienteField.setText(tempObj.getString("Name"));
                 
                 lastNameClienteField.setText(tempObj.getString("LastName"));
                 
-                lastMotherNameClienteField.setText(tempObj.getString("FirstName"));
+                lastMotherNameClienteField.setText(tempObj.getString("LastMotherName"));
                 
             }
             else{
@@ -855,38 +882,6 @@ public class inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_suarchClienteBtonActionPerformed
 
     private void usuarioIDBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioIDBoxActionPerformed
-        try {
-
-            if(!usuarioIDBox.getSelectedItem().toString().equals("0")){
-
-                int temp = 0;
-
-                newUser = new usuario();
-
-                JSONObject tempObj = new JSONObject();
-
-                temp = Integer.parseInt(usuarioIDBox.getSelectedItem().toString());
-
-                newUser.setId(temp);
-
-                tempObj = myFile.searchInFile(newUser.getJson());
-
-                nameClienteField.setText(tempObj.getString("Name"));
-
-                lastNameClienteField.setText(tempObj.getString("LastName"));
-
-                lastMotherNameClienteField.setText(tempObj.getString("FirstName"));
-
-            }else {
-
-                JOptionPane.showMessageDialog(this, "No ha seleccionado un Id Valido");
-
-            }
-
-        }catch (Exception ex) {
-
-            JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
-        }
 
     }//GEN-LAST:event_usuarioIDBoxActionPerformed
 
@@ -947,19 +942,24 @@ public class inicio extends javax.swing.JFrame {
             
             if(!usuarioIDBox.getSelectedItem().toString().equals("0")){
                 
-                newUser = new usuario();
+                newCliente = new Cliente();
                 
-                JSONObject tempObj = new JSONObject();
-
-                newUser.setId(Integer.parseInt(usuarioIDBox.getSelectedItem().toString()));
+                myHeader.setClienteId(++auxClientId);
                 
-                myHeader.setClienteId(newUser.getId());
+                myHeader.setClients(auxClientId);
                 
-                tempObj = myFile.searchInFile(newUser.getJson());
+                newCliente.setClienteId(auxClientId);
                 
-                myFile.saveCliente(tempObj);
+                newCliente.setUsuarioId(Integer.parseInt(usuarioIDBox.getSelectedItem().toString()));
                 
-                usuarioIDBox.removeItem(String.valueOf(tempObj.getInt("ID")));
+                newCliente.setName(nameClienteField.getText());
+                
+                newCliente.setLastName(lastNameClienteField.getText());
+                
+                newCliente.setLastMotherName(lastMotherNameClienteField.getText());
+                
+                myFileClientes.saveCliente(newCliente.getJson());
+                
                 setDefaultCliente();
                 
             }else {
@@ -981,13 +981,12 @@ public class inicio extends javax.swing.JFrame {
             
            if(!usuarioIDBox.getSelectedItem().toString().equals("0")) {
                
-                myFile.writeToDiskClientes();
+                myFileClientes.writeToDiskClientes();
                 
                 myHeader.toDisk();
 
                 setDefaultCliente();
-                
-               
+                   
            }else{
                
                JOptionPane.showMessageDialog(this, "No Hay Usuarios guardados");
@@ -1006,20 +1005,24 @@ public class inicio extends javax.swing.JFrame {
 
     private void editClienteBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editClienteBtonActionPerformed
         // TODO add your handling code here:
-        try {
+       try {
             
-            if(!usuarioIDBox.getSelectedItem().toString().equals("0")){
+            if(!searchClienteField.getText().equals("")){
                 
-                newUser = new usuario();
+                newCliente = new Cliente();
                 
-                JSONObject tempObj = new JSONObject();
-
-                newUser.setId(Integer.parseInt(searchClienteField.getText()));
+                newCliente.setClienteId(Integer.parseInt(searchClienteField.getText()));
                 
-                tempObj = myFile.searchInFile(newUser.getJson());
+                newCliente.setName(nameClienteField.getText());
                 
-                myFile.saveCliente(tempObj);
+                newCliente.setLastName(lastNameClienteField.getText());
                 
+                newCliente.setLastMotherName(lastMotherNameClienteField.getText());
+                
+                myFileClientes.editClient(newCliente.getJson());
+                
+                setDefaultCliente();
+         
             }else {
                 
                 JOptionPane.showMessageDialog(this, "No ha seleccionado un Id Valido");
@@ -1035,25 +1038,26 @@ public class inicio extends javax.swing.JFrame {
 
     private void deleatClienteBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleatClienteBtonActionPerformed
         // TODO add your handling code here:
-        try {
+       try {
             
-            if(!usuarioIDBox.getSelectedItem().toString().equals("0")) {
+            if(!searchClienteField.getText().equals("")) {
                 
-                auxId = Integer.parseInt(idField.getText());
-
                 newCliente = new Cliente();
                 
-                myHeader.deleatIdClientes(auxId);
-
-                newCliente.setId(auxId);
-
-                myFile.deletCliente(newCliente.getJson());
+                newCliente.setClienteId(Integer.parseInt(searchClienteField.getText()));
                 
-                auxId--;
+                myFileClientes.deletCliente(newCliente.getJson());
+               
+                myHeader.setClients(auxClientId - 1);
+                
+                myHeader.deleatIdClientes(Integer.parseInt(searchClienteField.getText()));
                 
                 myHeader.toDisk();
-
-                setDefaults(); 
+                
+                auxClientId --;
+                
+                setDefaultCliente();
+                
             }
             else{
                 
@@ -1247,6 +1251,10 @@ public class inicio extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_EditarVehiculoBtnActionPerformed
+
+    private void clienteIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clienteIdFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clienteIdFieldActionPerformed
     
     private void setDefaultVehiculo(){
         searchVehiculoField.setText("");
@@ -1315,6 +1323,7 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton RemoverVehiculoBtn;
     private javax.swing.JTextField addressField;
     private javax.swing.JButton cancelarClienteBton;
+    private javax.swing.JTextField clienteIdField;
     private javax.swing.JButton deleatClienteBton;
     private javax.swing.JButton editClienteBton;
     private javax.swing.JTextField idField;
@@ -1333,6 +1342,7 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

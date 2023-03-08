@@ -94,6 +94,31 @@ public class File {
         return null;
     }
     
+    public JSONObject searchClientInFile(JSONObject u) throws FileNotFoundException, IOException {
+        
+            if(clienteJsonArray.isEmpty()) {
+            readToListForClientes();
+            }
+            for (int i = 0; i < clienteJsonArray.length(); i++) {
+                
+                JSONObject obj = clienteJsonArray.getJSONObject(i);
+                
+                if(u.getInt("Cliente ID") == obj.getInt("Cliente ID"))  {
+                    
+                    u.put("Usuario ID", obj.getInt("Usuario ID"));
+
+                    u.put("Name", obj.getString("Name"));
+
+                    u.put("LastName", obj.getString("LastName"));
+
+                    u.put("LastMotherName", obj.getString("LastMotherName"));
+                              
+                    return u;
+                }
+            }
+        return null;
+    }
+    
     public JSONObject SearchVehiculo(JSONObject v)throws FileNotFoundException, IOException{
         if(vehiculoJsonArray.isEmpty()) {
             readToListForVehiculos();
@@ -112,18 +137,25 @@ public class File {
         return null;
     }
     
-    public void saveData(JSONObject u){
-        
+    public void saveData(JSONObject u)throws IOException{
+        if(jsonArray.isEmpty()){
+            readToList();
+        }
            jsonArray.put(u);
            
     }
     
-    public void saveCliente(JSONObject c){
-        
+    public void saveCliente(JSONObject c)throws IOException{
+        if(clienteJsonArray.isEmpty()){
+            readToListForClientes();
+        }
         clienteJsonArray.put(c);
     }
     
-    public void saveVehiculo(JSONObject v){
+    public void saveVehiculo(JSONObject v)throws IOException{
+        if(vehiculoJsonArray.isEmpty()){
+            readToListForVehiculos();
+        }
         vehiculoJsonArray.put(v);
     }
     
@@ -304,7 +336,7 @@ public class File {
             
             jsonAux = clienteJsonArray.getJSONObject(i);
             
-            if(u.getInt("ID") == jsonAux.getInt("ID")) {
+            if(u.getInt("Cliente ID") == jsonAux.getInt("Cliente ID")) {
                 
                 clienteJsonArray.remove(i);
                 
@@ -386,6 +418,32 @@ public class File {
                 }
             }
         writeToDisk();
+    }
+    
+    public void editClient(JSONObject c) throws IOException {
+        
+        if(clienteJsonArray.isEmpty()) {
+            
+            readToListForClientes();
+        }
+        for (int i = 0; i < clienteJsonArray.length(); i++) {
+                
+                JSONObject obj = clienteJsonArray.getJSONObject(i);
+                
+                if(c.getInt("Cliente ID") == obj.getInt("Cliente ID")) {
+                       
+                    obj.put("Usuario ID", c.getInt("Usuario ID"));
+
+                    obj.put("Name", c.getString("Name"));
+
+                    obj.put("LastName", c.getString("LastName"));
+
+                    obj.put("LastMotherName", c.getString("LastMotherName"));
+
+                    break;
+                }
+            }
+        writeToDiskClientes();
     }
     
     public boolean isValid(JSONObject u) throws IOException{

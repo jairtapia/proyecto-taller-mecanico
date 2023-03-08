@@ -1,25 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package taller;
+
 import org.json.JSONObject;
-public class Cliente extends usuario{
+
+public class Cliente {
+
     private String name;
     private String lastName;
     private String lastMotherName;
-    private int usiarioId;
+    private int usuarioId;
     private int clienteId;
-    
+
     public Cliente() {
         this.name = "Desconocido";
         this.lastName = "Desconocido";
         this.lastMotherName = "Desconocido";
-        this.usiarioId = 0;
+        this.usuarioId = 0;
         this.clienteId = 0;
     }
+    
+    public JSONObject getJson() {
+       
+           JSONObject obj = new JSONObject();
+           
+           obj.put("Cliente ID", this.clienteId);
+           
+           obj.put("Usuario ID", this.usuarioId);
 
+           obj.put("Name", this.name);
+           
+           obj.put("LastName", this.lastName);
+           
+           obj.put("LastMotherName", this.lastMotherName);
+           
+         
+        return obj;
+    }
+     
     public String getName() {
         return name;
     }
@@ -44,12 +60,12 @@ public class Cliente extends usuario{
         this.lastMotherName = lastMotherName;
     }
 
-    public int getUsiarioId() {
-        return usiarioId;
+    public int getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUsiarioId(int usiarioId) {
-        this.usiarioId = usiarioId;
+    public void setUsuarioId(int usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public int getClienteId() {
@@ -59,22 +75,20 @@ public class Cliente extends usuario{
     public void setClienteId(int clienteId) {
         this.clienteId = clienteId;
     }
-    public void setClient(JSONObject o){
-        this.clienteId = o.getInt("cliente ID");
-        this.usiarioId = o.getInt("usuario ID");
+    public void setClient(JSONObject o) {
+        
+        this.clienteId = o.getInt("Cliente ID");
+        
+        this.usuarioId = o.getInt("Usuario ID");
+        
         this.name = o.getString("Name");
+        
         this.lastName = o.getString("LastName");
+        
         this.lastMotherName = o.getString("LastMotherName");
-    }
-
-    public JSONObject getJson() {
-        JSONObject obj = new JSONObject();
-        obj.put("cliente ID", this.clienteId);
-        obj.put("usuario ID",this.usiarioId);
-        obj.put("Name",this.name);
-        obj.put("LastName",this.lastName);
-        obj.put("LastName",this.lastMotherName);
-        return obj;
+        
+        
+        
     }
     
 }
