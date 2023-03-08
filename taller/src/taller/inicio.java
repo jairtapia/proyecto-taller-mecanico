@@ -898,45 +898,7 @@ public class inicio extends javax.swing.JFrame {
         
     }
     private void ClienteIDBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteIDBoxActionPerformed
-        // TODO add your handling code here:
-        try {
-            newvehiculo = new vehiculo();
-            if(!ClienteIDBox.getSelectedItem().toString().equals("0")){
-
-                int temp = 0;
-
-                JSONObject tempObj = new JSONObject();
-
-                temp = Integer.parseInt(ClienteIDBox.getSelectedItem().toString());
-
-                newvehiculo.setIDvehiculo(temp);
-
-                tempObj = myFileVehiculos.SearchVehiculo(newvehiculo.getJson());
-                
-                if(tempObj != null){
-                    IDvehiculoField.setText(String.valueOf(tempObj.getInt("ID")));
-
-                    MatriculaVField.setText(tempObj.getString("MATRICULA"));
-
-                    MarcaVFIeld.setText(tempObj.getString("MARCA"));
-
-                    ModeloVField.setText(tempObj.getString("MODELO"));
-
-                    FechaVField.setText(tempObj.getString("FECHA")); 
-                }
-            }else {
-            newvehiculo.setIDvehiculo(Integer.parseInt(IDvehiculoField.getText()));
-            newvehiculo.setMarca(MarcaVFIeld.getText());
-            newvehiculo.setModelo(ModeloVField.getText());
-            newvehiculo.setFecha(FechaVField.getText());
-            newvehiculo.setMatricula(MatriculaVField.getText());
-            }
-            myFileVehiculos.saveVehiculo(newvehiculo.getJson());
-        }catch (Exception ex) {
-
-            JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
-        }
-        
+        // TODO add your handling code here: 
     }//GEN-LAST:event_ClienteIDBoxActionPerformed
 
     private void saveClienteBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveClienteBtonActionPerformed
@@ -1095,6 +1057,7 @@ public class inicio extends javax.swing.JFrame {
                 newvehiculo.setMatricula(MatriculaVField.getText());
                 myFileVehiculos.saveVehiculo(newvehiculo.getJson());
                 setDefaultVehiculo();
+                
             }
             
         }catch (Exception ex) {
@@ -1170,7 +1133,6 @@ public class inicio extends javax.swing.JFrame {
 
                 setDefaultVehiculo();
                 
-               
            }
                    
         }catch (Exception ex) {
@@ -1184,18 +1146,17 @@ public class inicio extends javax.swing.JFrame {
     private void RemoverVehiculoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoverVehiculoBtnActionPerformed
         // TODO add your handling code here:
         try{
-        int temp = 0;
+        
             if( !(searchVehiculoField.getText().equals("")))
             {
                 newvehiculo = new vehiculo();
-                JSONObject tempObj = new JSONObject();
-
-                temp = Integer.parseInt(String.valueOf(searchVehiculoField.getText()));
-                
-                newvehiculo.setIDvehiculo(temp);
+                newvehiculo.setIDvehiculo(Integer.parseInt(searchVehiculoField.getText()));
                 myFileVehiculos.deletevehiculo(newvehiculo.getJson());
-                myHeader.deleatIdVehiculos(temp);
+                myHeader.setVehicles(auxVehicleId-1);
+                myHeader.deleatIdVehiculos(Integer.parseInt(searchVehiculoField.getText()));
                 myHeader.toDisk();
+                auxVehicleId--;
+                setDefaultVehiculo();
             }
             else{
                 JOptionPane.showMessageDialog(this, "Falta el ID");
@@ -1237,7 +1198,7 @@ public class inicio extends javax.swing.JFrame {
     
     private void setDefaultVehiculo(){
         searchVehiculoField.setText("");
-        IDvehiculoField.setText("");
+        IDvehiculoField.setText(String.valueOf(auxVehicleId));
         MatriculaVField.setText("");
         MarcaVFIeld.setText("");
         ModeloVField.setText("");

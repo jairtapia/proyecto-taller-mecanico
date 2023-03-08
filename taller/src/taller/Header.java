@@ -163,7 +163,7 @@ public class Header {
             
             JSONObject jsonObject = (JSONObject) objeto;
             
-            if(id == jsonObject.getInt("ClienteId " + String.valueOf(i + 1))) {
+            if(id == jsonObject.getInt("Cliente Id" + String.valueOf(i + 1))) {
                 
                 clientesId.remove(i);
                 
@@ -193,7 +193,7 @@ public class Header {
         int i = 0;
         for (Object objeto : vehiculosid)  {
             JSONObject jsonObject = (JSONObject) objeto;
-            if(id == jsonObject.getInt("vehiculoid" + String.valueOf(i + 1))) {
+            if(id == jsonObject.getInt("vehiculo id" + String.valueOf(i + 1))) {
                 vehiculosid.remove(i);
                 break;
             }   
@@ -248,7 +248,7 @@ public class Header {
     public void setVehiculoid(int v){
         obj = new JSONObject();
         
-        obj.put("vehiculoid " + String.valueOf(v), v);
+        obj.put("vehiculo id" + String.valueOf(v), v);
         
         this.vehiculosid.put(obj);
     }
