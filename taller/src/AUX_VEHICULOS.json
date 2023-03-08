@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "MATRICULA": "asdads",
+    "MARCA": "asdad",
+    "FECHA": "asdd",
+    "MODELO": "asdd",
+    "cliente ID": 4,
+    "IDVH": 1
+  },
+  {
+    "MATRICULA": "sdfsf",
+    "MARCA": "ddany",
+    "FECHA": "31/12/01",
+    "MODELO": "audi",
+    "cliente ID": 3,
+    "IDVH": 2
+  },
+  {
+    "MATRICULA": "dany",
+    "MARCA": "algo",
+    "FECHA": "7854",
+    "MODELO": "sjds",
+    "cliente ID": 4,
+    "IDVH": 3
+  }
+]

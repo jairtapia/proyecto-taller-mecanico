@@ -22,8 +22,10 @@ public class inicio extends javax.swing.JFrame {
         auxVehicleId = myHeader.getVehicles();
         
         
+        
         idField.setText(String.valueOf(auxId));
         clienteIdField.setText(String.valueOf(auxClientId));
+        IDvehiculoField.setText(String.valueOf(auxVehicleId));
         
         setUsersIdBox(myHeader.getUsersId());
         setClientsIdBox(myHeader.getClientesId());
@@ -492,6 +494,7 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel4.add(FechaVField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 140, -1));
 
+        IDvehiculoField.setEditable(false);
         IDvehiculoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IDvehiculoFieldActionPerformed(evt);
@@ -961,6 +964,7 @@ public class inicio extends javax.swing.JFrame {
                 myFileClientes.saveCliente(newCliente.getJson());
                 
                 setDefaultCliente();
+                clienteIdField.setText(String.valueOf(auxClientId));
                 
             }else {
                 
@@ -1078,39 +1082,21 @@ public class inicio extends javax.swing.JFrame {
     private void NuevoVehiculoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoVehiculoBtnActionPerformed
         // TODO add your handling code here:
         try {
-            newvehiculo = new vehiculo();
+            
             if(!ClienteIDBox.getSelectedItem().toString().equals("0")){
-
-                int temp = 0;
-
-                JSONObject tempObj = new JSONObject();
-
-                temp = Integer.parseInt(ClienteIDBox.getSelectedItem().toString());
-
-                newvehiculo.setIDvehiculo(temp);
-
-                tempObj = myFileVehiculos.SearchVehiculo(newvehiculo.getJson());
-                
-                if(tempObj != null){
-                    IDvehiculoField.setText(String.valueOf(tempObj.getInt("ID")));
-
-                    MatriculaVField.setText(tempObj.getString("MATRICULA"));
-
-                    MarcaVFIeld.setText(tempObj.getString("MARCA"));
-
-                    ModeloVField.setText(tempObj.getString("MODELO"));
-
-                    FechaVField.setText(tempObj.getString("FECHA")); 
-                }
-            }else {
-            newvehiculo.setIDvehiculo(Integer.parseInt(IDvehiculoField.getText()));
-            myHeader.setVehiculoid(newvehiculo.getIDvehiculo());
-            newvehiculo.setMarca(MarcaVFIeld.getText());
-            newvehiculo.setModelo(ModeloVField.getText());
-            newvehiculo.setFecha(FechaVField.getText());
-            newvehiculo.setMatricula(MatriculaVField.getText());
+                newvehiculo = new vehiculo();
+                myHeader.setVehiculoid(++auxVehicleId);
+                myHeader.setVehicles(auxVehicleId);
+                newvehiculo.setIDvehiculo(auxVehicleId);
+                newvehiculo.setClienteID(Integer.parseInt(ClienteIDBox.getSelectedItem().toString()));
+                newvehiculo.setMarca(MarcaVFIeld.getText());
+                newvehiculo.setModelo(ModeloVField.getText());
+                newvehiculo.setFecha(FechaVField.getText());
+                newvehiculo.setMatricula(MatriculaVField.getText());
+                myFileVehiculos.saveVehiculo(newvehiculo.getJson());
+                setDefaultVehiculo();
             }
-            myFileVehiculos.saveVehiculo(newvehiculo.getJson());
+            
         }catch (Exception ex) {
 
             JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
@@ -1157,6 +1143,7 @@ public class inicio extends javax.swing.JFrame {
                     MarcaVFIeld.setText(tempObj.getString("MARCA"));
                     ModeloVField.setText(tempObj.getString("MODELO"));
                     FechaVField.setText(tempObj.getString("FECHA")); 
+                    
                 }
                 
             }
@@ -1183,14 +1170,6 @@ public class inicio extends javax.swing.JFrame {
 
                 setDefaultVehiculo();
                 
-               
-           }else{
-               
-                myFileVehiculos.writeToDiskVheiculos();
-                
-                myHeader.toDisk();
-
-                setDefaultVehiculo();
                
            }
                    

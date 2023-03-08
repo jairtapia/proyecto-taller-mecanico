@@ -930,6 +930,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="IDvehiculoField">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IDvehiculoFieldActionPerformed"/>
               </Events>

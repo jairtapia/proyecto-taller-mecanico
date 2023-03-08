@@ -1,5 +1,5 @@
 {
-  "LastVehicleId": 0,
+  "LastVehicleId": 3,
   "Usuarios": [
     {"UsuarioId 1": 1},
     {"UsuarioId 2": 2},
@@ -14,9 +14,14 @@
     {"ClienteId 1": 1},
     {"ClienteId 2": 2},
     {"ClienteId 3": 3},
+    {"ClienteId 4": 4},
     {"ClienteId 4": 4}
   ],
-  "LastClientId": 3,
+  "LastClientId": 4,
   "LastUserId": 9,
-  "vehiculos": []
+  "vehiculos": [
+    {"vehiculoid 1": 1},
+    {"vehiculoid 2": 2},
+    {"vehiculoid 3": 3}
+  ]
 }
