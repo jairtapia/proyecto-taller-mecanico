@@ -123,6 +123,18 @@ public class inicio extends javax.swing.JFrame {
         CancelarVehiculoBtn = new javax.swing.JButton();
         EditarVehiculoBtn = new javax.swing.JButton();
         RemoverVehiculoBtn = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -147,18 +159,6 @@ public class inicio extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("inicio");
@@ -209,7 +209,7 @@ public class inicio extends javax.swing.JFrame {
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/grafo.png"))); // NOI18N
         jLabel24.setText("jLabel24");
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 400));
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 370));
 
         jTabbedPane1.addTab("loggin", jPanel1);
 
@@ -266,7 +266,7 @@ public class inicio extends javax.swing.JFrame {
                 BtnSaveActionPerformed(evt);
             }
         });
-        jPanel2.add(BtnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 70, 20));
+        jPanel2.add(BtnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 70, 20));
 
         BtnEdit.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         BtnEdit.setText("editar");
@@ -276,7 +276,7 @@ public class inicio extends javax.swing.JFrame {
                 BtnEditActionPerformed(evt);
             }
         });
-        jPanel2.add(BtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 70, 20));
+        jPanel2.add(BtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 70, 20));
 
         writeBton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         writeBton.setText("guardar");
@@ -286,7 +286,7 @@ public class inicio extends javax.swing.JFrame {
                 writeBtonActionPerformed(evt);
             }
         });
-        jPanel2.add(writeBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 80, 20));
+        jPanel2.add(writeBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 80, 20));
 
         idField.setEditable(false);
         idField.setBackground(new java.awt.Color(204, 204, 204));
@@ -333,7 +333,7 @@ public class inicio extends javax.swing.JFrame {
                 BtnCancel1ActionPerformed(evt);
             }
         });
-        jPanel2.add(BtnCancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, 80, 20));
+        jPanel2.add(BtnCancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 80, 20));
 
         BtnRemove1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         BtnRemove1.setText("eliminar");
@@ -343,7 +343,7 @@ public class inicio extends javax.swing.JFrame {
                 BtnRemove1ActionPerformed(evt);
             }
         });
-        jPanel2.add(BtnRemove1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 320, 80, 20));
+        jPanel2.add(BtnRemove1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 80, 20));
 
         jTabbedPane1.addTab("usuarios", jPanel2);
 
@@ -372,7 +372,7 @@ public class inicio extends javax.swing.JFrame {
                 saveClienteBtonActionPerformed(evt);
             }
         });
-        jPanel3.add(saveClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 60, 20));
+        jPanel3.add(saveClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 60, 20));
 
         writeClienteBton.setText("Guardar");
         writeClienteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -381,7 +381,7 @@ public class inicio extends javax.swing.JFrame {
                 writeClienteBtonActionPerformed(evt);
             }
         });
-        jPanel3.add(writeClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 60, 20));
+        jPanel3.add(writeClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 60, 20));
 
         cancelarClienteBton.setText("Cancelar");
         cancelarClienteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -390,7 +390,7 @@ public class inicio extends javax.swing.JFrame {
                 cancelarClienteBtonActionPerformed(evt);
             }
         });
-        jPanel3.add(cancelarClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 60, 20));
+        jPanel3.add(cancelarClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 60, 20));
 
         editClienteBton.setText("Editar");
         editClienteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -399,7 +399,7 @@ public class inicio extends javax.swing.JFrame {
                 editClienteBtonActionPerformed(evt);
             }
         });
-        jPanel3.add(editClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 50, 20));
+        jPanel3.add(editClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 50, 20));
 
         deleatClienteBton.setText("Eliminar");
         deleatClienteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
@@ -408,7 +408,7 @@ public class inicio extends javax.swing.JFrame {
                 deleatClienteBtonActionPerformed(evt);
             }
         });
-        jPanel3.add(deleatClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, 60, 20));
+        jPanel3.add(deleatClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 60, 20));
 
         suarchClienteBton.setText("Buscar");
         suarchClienteBton.addActionListener(new java.awt.event.ActionListener() {
@@ -538,7 +538,7 @@ public class inicio extends javax.swing.JFrame {
                 NuevoVehiculoBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(NuevoVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 50, 20));
+        jPanel4.add(NuevoVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 50, 20));
 
         GuardarVehiculoBtn.setText("Salvar");
         GuardarVehiculoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -547,7 +547,7 @@ public class inicio extends javax.swing.JFrame {
                 GuardarVehiculoBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(GuardarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 50, 20));
+        jPanel4.add(GuardarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 50, 20));
 
         CancelarVehiculoBtn.setText("Cancelar");
         CancelarVehiculoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -556,7 +556,7 @@ public class inicio extends javax.swing.JFrame {
                 CancelarVehiculoBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(CancelarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 90, 20));
+        jPanel4.add(CancelarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 90, 20));
 
         EditarVehiculoBtn.setText("Edit");
         EditarVehiculoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -565,7 +565,7 @@ public class inicio extends javax.swing.JFrame {
                 EditarVehiculoBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(EditarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 60, 20));
+        jPanel4.add(EditarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 60, 20));
 
         RemoverVehiculoBtn.setText("Remover");
         RemoverVehiculoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
@@ -574,164 +574,31 @@ public class inicio extends javax.swing.JFrame {
                 RemoverVehiculoBtnActionPerformed(evt);
             }
         });
-        jPanel4.add(RemoverVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, 20));
+        jPanel4.add(RemoverVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 60, 20));
 
         jTabbedPane1.addTab("vehiculos", jPanel4);
 
-        jLabel25.setText("id");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel26.setText("matricula VH");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel27.setText("vehiculo ID");
-
-        jLabel28.setText("Falla");
-
-        jLabel29.setText("Fecha Entrada");
-
-        jLabel30.setText("Fecha Salida");
-
-        jLabel31.setText("pieza");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel32.setText("pieza ID");
-
-        jLabel33.setText("Cantidad");
-
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
-
-        jButton3.setText("jButton3");
-
-        jButton4.setText("jButton4");
-
-        jButton5.setText("jButton5");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel26)
-                                    .addComponent(jLabel25))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jComboBox1, 0, 131, Short.MAX_VALUE)))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel27)
-                                    .addComponent(jLabel28))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                    .addComponent(jTextField2))))
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel29)
-                            .addComponent(jLabel30)
-                            .addComponent(jLabel31)
-                            .addComponent(jLabel32)
-                            .addComponent(jLabel33))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addComponent(jComboBox2, 0, 120, Short.MAX_VALUE)
-                            .addComponent(jTextField6)
-                            .addComponent(jTextField7)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jButton1)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5)))
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel29)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel26)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel30)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel31)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addGap(61, 61, 61))
-        );
-
-        jTabbedPane1.addTab("reparaciones", jPanel5);
-
-        jLabel34.setText("jLabel34");
+        jLabel34.setText("pieza id");
 
         jTextField8.setText("jTextField8");
 
-        jLabel35.setText("jLabel35");
+        jLabel35.setText("descripcion");
 
-        jLabel36.setText("jLabel36");
+        jLabel36.setText("stock");
 
         jTextField9.setText("jTextField9");
 
         jTextField10.setText("jTextField10");
 
-        jButton6.setText("jButton6");
+        jButton6.setText("nuevo");
 
-        jButton7.setText("jButton7");
+        jButton7.setText("guardar");
 
-        jButton8.setText("jButton8");
+        jButton8.setText("cancelar");
 
-        jButton9.setText("jButton9");
+        jButton9.setText("editar");
 
-        jButton10.setText("jButton10");
+        jButton10.setText("remover");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -765,7 +632,7 @@ public class inicio extends javax.swing.JFrame {
                         .addComponent(jButton9)
                         .addGap(18, 18, 18)
                         .addComponent(jButton10)))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -782,7 +649,7 @@ public class inicio extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
                     .addComponent(jButton7)
@@ -794,11 +661,204 @@ public class inicio extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("piezas", jPanel6);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel25.setText("id");
+        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+
+        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 131, -1));
+
+        jLabel26.setText("matricula VH");
+        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 131, -1));
+
+        jLabel27.setText("vehiculo ID");
+        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+
+        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 129, -1));
+
+        jLabel28.setText("Falla");
+        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+
+        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 129, -1));
+
+        jLabel29.setText("Fecha Entrada");
+        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, -1, -1));
+
+        jLabel30.setText("Fecha Salida");
+        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
+
+        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel5.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 120, -1));
+
+        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 120, -1));
+
+        jLabel31.setText("pieza");
+        jPanel5.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
+        jPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 120, -1));
+
+        jLabel32.setText("pieza ID");
+        jPanel5.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
+
+        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 120, -1));
+
+        jLabel33.setText("Cantidad");
+        jPanel5.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, -1, -1));
+
+        jTextField7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel5.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 120, -1));
+
+        jButton1.setText("nuevo");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 49, 25));
+
+        jButton2.setText("guardar");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 50, 25));
+
+        jButton3.setText("cancelar");
+        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 55, 25));
+
+        jButton4.setText("editar");
+        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 65, 25));
+
+        jButton5.setText("remover");
+        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel5.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 70, 25));
+
+        jTabbedPane1.addTab("reparaciones", jPanel5);
+
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, 680, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setConfigurationu(String s){
+        switch(s){
+        case "ADMIN":
+        isAdmin();
+        break;
+        case "MANAGER":
+        isManager();
+        break;
+        case "SECRETARY":
+        isSecretary();
+        break;
+        case "MECHANIC":
+        isMechanic();
+        break; 
+        }  
+    }
+    private void isAdmin(){
+            BtnSave.setEnabled(true);
+            writeBton.setEnabled(true);
+            BtnCancel1.setEnabled(true);
+            BtnEdit.setEnabled(true);
+            BtnRemove1.setEnabled(true);
+            saveClienteBton.setEnabled(true);
+            writeClienteBton.setEnabled(true);
+            cancelarClienteBton.setEnabled(true);
+            editClienteBton.setEnabled(true);  
+            deleatClienteBton.setEnabled(true);        
+            NuevoVehiculoBtn.setEnabled(true);        
+            GuardarVehiculoBtn.setEnabled(true);
+            CancelarVehiculoBtn.setEnabled(true);
+            EditarVehiculoBtn.setEnabled(true);
+            RemoverVehiculoBtn.setEnabled(true);
+            /*FALTAN los otros botones*/
+            //todos los botones son true
+            
+    }
+    private void isManager(){
+            BtnSave.setEnabled(false);
+            writeBton.setEnabled(false);
+            BtnCancel1.setEnabled(false);
+            BtnEdit.setEnabled(false);
+            BtnRemove1.setEnabled(false);
+            saveClienteBton.setEnabled(true);
+            writeClienteBton.setEnabled(true);
+            cancelarClienteBton.setEnabled(true);
+            editClienteBton.setEnabled(true);  
+            deleatClienteBton.setEnabled(true);        
+            NuevoVehiculoBtn.setEnabled(true);        
+            GuardarVehiculoBtn.setEnabled(true);
+            CancelarVehiculoBtn.setEnabled(true);
+            EditarVehiculoBtn.setEnabled(true);
+            RemoverVehiculoBtn.setEnabled(true);
+            /*FALTAN los otros botones*/
+            
+    }
+    private void isSecretary(){
+            BtnSave.setEnabled(false);
+            writeBton.setEnabled(false);
+            BtnCancel1.setEnabled(false);
+            BtnEdit.setEnabled(false);
+            BtnRemove1.setEnabled(false);
+            saveClienteBton.setEnabled(true);
+            writeClienteBton.setEnabled(true);
+            cancelarClienteBton.setEnabled(true);
+            editClienteBton.setEnabled(false);  
+            deleatClienteBton.setEnabled(false);        
+            NuevoVehiculoBtn.setEnabled(true);        
+            GuardarVehiculoBtn.setEnabled(true);
+            CancelarVehiculoBtn.setEnabled(true);
+            EditarVehiculoBtn.setEnabled(false);
+            RemoverVehiculoBtn.setEnabled(false);
+            /*FALTAN los otros botones*/
+            //los botones de reparaciones todos van a estar en false al igual de las piezas
+            
+    }
+    private void isMechanic(){
+            BtnSave.setEnabled(false);
+            writeBton.setEnabled(false);
+            BtnCancel1.setEnabled(false);
+            BtnEdit.setEnabled(false);
+            BtnRemove1.setEnabled(false);
+            saveClienteBton.setEnabled(false);
+            writeClienteBton.setEnabled(false);
+            cancelarClienteBton.setEnabled(false);
+            editClienteBton.setEnabled(false);  
+            deleatClienteBton.setEnabled(false);        
+            NuevoVehiculoBtn.setEnabled(false);        
+            GuardarVehiculoBtn.setEnabled(false);
+            CancelarVehiculoBtn.setEnabled(false);
+            EditarVehiculoBtn.setEnabled(false);
+            RemoverVehiculoBtn.setEnabled(false);
+            /*FALTAN los otros botones*/
+            //todo false menos los botones de crear y leer en reparaciones
+                    
+                    
+                    
+    }
+    
     private void setUsersIdBox(JSONArray myJson ) {
             
           for (int i = 0; i < myJson.length(); i++) {
@@ -1032,7 +1092,7 @@ public class inicio extends javax.swing.JFrame {
         
         try {
             
-            
+            JSONObject tempObj = new JSONObject();
             newUser = new usuario();
             
             newUser.setUsermane(logUserName.getText());
@@ -1041,9 +1101,11 @@ public class inicio extends javax.swing.JFrame {
             
             
             if(myFile.isValid(newUser.getJson())) {
-                
+                    tempObj = myFile.searchUserByusername(newUser.getJson());
+                    newUser.setUser(tempObj);
                     JOptionPane.showMessageDialog(this, "Usuario Valido");
                     jTabbedPane1.setSelectedIndex(1);
+                    setConfigurationu(newUser.getPerfil());
             }else{
                 
                 JOptionPane.showMessageDialog(this, "Usuario Invalido");
@@ -1411,6 +1473,14 @@ public class inicio extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
     
     private void setDefaultVehiculo(){
         searchVehiculoField.setText("");

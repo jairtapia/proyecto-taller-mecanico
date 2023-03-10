@@ -464,4 +464,37 @@ public class File {
         
         return false;
     }
+    public JSONObject searchUserByusername(JSONObject u) throws FileNotFoundException, IOException{
+        if(jsonArray.isEmpty()) {
+            readToList();
+        }
+            for (int i = 0; i < jsonArray.length(); i++) {
+                
+                JSONObject jsonObj = jsonArray.getJSONObject(i);
+                
+                if((u.getString("UserName").equals(jsonObj.getString("UserName")))&&(u.getString("PassWord").equals(jsonObj.getString("PassWord")))){
+                    
+                    u.put("ID", jsonObj.getInt("ID"));
+           
+                    u.put("Name", jsonObj.getString("Name"));
+
+                    u.put("LastName", jsonObj.getString("LastName"));
+
+                    u.put("FirstName", jsonObj.getString("FirstName"));
+
+                    u.put("PhoneNumber", jsonObj.getString("PhoneNumber"));
+
+                    u.put("UserName", jsonObj.getString("UserName"));
+
+                    u.put("Address", jsonObj.getString("Address"));
+
+                    u.put("PassWord", jsonObj.getString("PassWord"));
+
+                    u.put("Perfil", jsonObj.getString("Perfil"));
+                    
+                    return u;
+                }
+            }
+            return null;
+    }
 }
