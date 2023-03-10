@@ -29,6 +29,8 @@ public class inicio extends javax.swing.JFrame {
         
         setUsersIdBox(myHeader.getUsersId());
         setClientsIdBox(myHeader.getClientesId());
+        
+        //setOff();
     }
     
     private int auxId;
@@ -206,15 +208,23 @@ public class inicio extends javax.swing.JFrame {
         lbltxtpwd.setText("contraseña");
         jPanel1.add(lbltxtpwd, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, -1, -1));
 
-        BtnLoggin.setBackground(new java.awt.Color(0, 153, 255));
+        BtnLoggin.setBackground(new java.awt.Color(220, 238, 242));
         BtnLoggin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        BtnLoggin.setForeground(new java.awt.Color(51, 102, 255));
         BtnLoggin.setText("loggin");
+        BtnLoggin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        BtnLoggin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BtnLoggin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnLogginMouseClicked(evt);
+            }
+        });
         BtnLoggin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnLogginActionPerformed(evt);
             }
         });
-        jPanel1.add(BtnLoggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, -1, 40));
+        jPanel1.add(BtnLoggin, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 280, 70, 40));
 
         jPanel8.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -328,9 +338,11 @@ public class inicio extends javax.swing.JFrame {
         jLabel10.setText("Pasword");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 261, -1, -1));
 
+        BtnSave.setBackground(new java.awt.Color(220, 238, 242));
         BtnSave.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         BtnSave.setText("nuevo");
         BtnSave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BtnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSaveActionPerformed(evt);
@@ -338,9 +350,11 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel2.add(BtnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 70, 20));
 
+        BtnEdit.setBackground(new java.awt.Color(220, 238, 242));
         BtnEdit.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         BtnEdit.setText("editar");
         BtnEdit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BtnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEditActionPerformed(evt);
@@ -348,9 +362,11 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel2.add(BtnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 70, 20));
 
+        writeBton.setBackground(new java.awt.Color(220, 238, 242));
         writeBton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         writeBton.setText("guardar");
         writeBton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        writeBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         writeBton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 writeBtonActionPerformed(evt);
@@ -395,9 +411,11 @@ public class inicio extends javax.swing.JFrame {
         perfilBox.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel2.add(perfilBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 150, -1));
 
+        BtnCancel1.setBackground(new java.awt.Color(220, 238, 242));
         BtnCancel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         BtnCancel1.setText("cancelar");
         BtnCancel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        BtnCancel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnCancel1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCancel1ActionPerformed(evt);
@@ -405,9 +423,11 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel2.add(BtnCancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 80, 20));
 
+        BtnRemove1.setBackground(new java.awt.Color(220, 238, 242));
         BtnRemove1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         BtnRemove1.setText("eliminar");
         BtnRemove1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51)));
+        BtnRemove1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnRemove1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnRemove1ActionPerformed(evt);
@@ -495,8 +515,10 @@ public class inicio extends javax.swing.JFrame {
         jLabel15.setText("Apellido Materno");
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
+        saveClienteBton.setBackground(new java.awt.Color(220, 238, 242));
         saveClienteBton.setText("Salvar");
         saveClienteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        saveClienteBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveClienteBton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveClienteBtonActionPerformed(evt);
@@ -504,8 +526,10 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel3.add(saveClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 60, 20));
 
+        writeClienteBton.setBackground(new java.awt.Color(220, 238, 242));
         writeClienteBton.setText("Guardar");
         writeClienteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        writeClienteBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         writeClienteBton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 writeClienteBtonActionPerformed(evt);
@@ -513,8 +537,10 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel3.add(writeClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 60, 20));
 
+        cancelarClienteBton.setBackground(new java.awt.Color(220, 238, 242));
         cancelarClienteBton.setText("Cancelar");
         cancelarClienteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        cancelarClienteBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cancelarClienteBton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarClienteBtonActionPerformed(evt);
@@ -522,8 +548,10 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel3.add(cancelarClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 60, 20));
 
+        editClienteBton.setBackground(new java.awt.Color(220, 238, 242));
         editClienteBton.setText("Editar");
         editClienteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        editClienteBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editClienteBton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editClienteBtonActionPerformed(evt);
@@ -531,8 +559,10 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel3.add(editClienteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 50, 20));
 
+        deleatClienteBton.setBackground(new java.awt.Color(220, 238, 242));
         deleatClienteBton.setText("Eliminar");
         deleatClienteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+        deleatClienteBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleatClienteBton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleatClienteBtonActionPerformed(evt);
@@ -722,8 +752,10 @@ public class inicio extends javax.swing.JFrame {
         ModeloVField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
         jPanel4.add(ModeloVField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 140, -1));
 
+        NuevoVehiculoBtn.setBackground(new java.awt.Color(220, 238, 242));
         NuevoVehiculoBtn.setText("Nuevo");
         NuevoVehiculoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        NuevoVehiculoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NuevoVehiculoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NuevoVehiculoBtnActionPerformed(evt);
@@ -731,8 +763,10 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel4.add(NuevoVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 50, 20));
 
+        GuardarVehiculoBtn.setBackground(new java.awt.Color(220, 238, 242));
         GuardarVehiculoBtn.setText("Salvar");
         GuardarVehiculoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        GuardarVehiculoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         GuardarVehiculoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarVehiculoBtnActionPerformed(evt);
@@ -740,8 +774,10 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel4.add(GuardarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 50, 20));
 
+        CancelarVehiculoBtn.setBackground(new java.awt.Color(220, 238, 242));
         CancelarVehiculoBtn.setText("Cancelar");
         CancelarVehiculoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        CancelarVehiculoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CancelarVehiculoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelarVehiculoBtnActionPerformed(evt);
@@ -749,8 +785,10 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel4.add(CancelarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 90, 20));
 
+        EditarVehiculoBtn.setBackground(new java.awt.Color(220, 238, 242));
         EditarVehiculoBtn.setText("Edit");
         EditarVehiculoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        EditarVehiculoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         EditarVehiculoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditarVehiculoBtnActionPerformed(evt);
@@ -758,8 +796,10 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel4.add(EditarVehiculoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 60, 20));
 
+        RemoverVehiculoBtn.setBackground(new java.awt.Color(220, 238, 242));
         RemoverVehiculoBtn.setText("Remover");
         RemoverVehiculoBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+        RemoverVehiculoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RemoverVehiculoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RemoverVehiculoBtnActionPerformed(evt);
@@ -922,8 +962,10 @@ public class inicio extends javax.swing.JFrame {
         jTextField7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
         jPanel5.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 120, -1));
 
+        jButton1.setBackground(new java.awt.Color(220, 238, 242));
         jButton1.setText("nuevo");
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -931,20 +973,28 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 49, 25));
 
+        jButton2.setBackground(new java.awt.Color(220, 238, 242));
         jButton2.setText("guardar");
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 50, 25));
 
+        jButton3.setBackground(new java.awt.Color(220, 238, 242));
         jButton3.setText("cancelar");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 55, 25));
 
+        jButton4.setBackground(new java.awt.Color(220, 238, 242));
         jButton4.setText("editar");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 65, 25));
 
+        jButton5.setBackground(new java.awt.Color(220, 238, 242));
         jButton5.setText("remover");
         jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 1, true));
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel5.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 70, 25));
 
         jPanel11.setBackground(new java.awt.Color(0, 0, 0));
@@ -1035,24 +1085,33 @@ public class inicio extends javax.swing.JFrame {
         jTextField10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
         jPanel6.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 110, -1));
 
+        jButton6.setBackground(new java.awt.Color(220, 238, 242));
         jButton6.setText("nuevo");
         jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 298, 60, 20));
 
+        jButton7.setBackground(new java.awt.Color(220, 238, 242));
         jButton7.setText("guardar");
         jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 298, 60, 20));
 
+        jButton8.setBackground(new java.awt.Color(220, 238, 242));
         jButton8.setText("cancelar");
         jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 298, 60, 20));
 
+        jButton9.setBackground(new java.awt.Color(220, 238, 242));
         jButton9.setText("editar");
         jButton9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 298, 50, 20));
 
+        jButton10.setBackground(new java.awt.Color(220, 238, 242));
         jButton10.setText("remover");
         jButton10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 1, true));
+        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 298, 60, 20));
 
         jPanel19.setBackground(new java.awt.Color(0, 0, 0));
@@ -1137,6 +1196,23 @@ public class inicio extends javax.swing.JFrame {
         isMechanic();
         break; 
         }  
+    }
+    public void setOff(){
+            BtnSave.setEnabled(false);
+            writeBton.setEnabled(false);
+            BtnCancel1.setEnabled(false);
+            BtnEdit.setEnabled(false);
+            BtnRemove1.setEnabled(false);
+            saveClienteBton.setEnabled(false);
+            writeClienteBton.setEnabled(false);
+            cancelarClienteBton.setEnabled(false);
+            editClienteBton.setEnabled(false);  
+            deleatClienteBton.setEnabled(false);        
+            NuevoVehiculoBtn.setEnabled(false);        
+            GuardarVehiculoBtn.setEnabled(false);
+            CancelarVehiculoBtn.setEnabled(false);
+            EditarVehiculoBtn.setEnabled(false);
+            RemoverVehiculoBtn.setEnabled(false);
     }
     private void isAdmin(){
             BtnSave.setEnabled(true);
@@ -1846,6 +1922,10 @@ public class inicio extends javax.swing.JFrame {
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void BtnLogginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLogginMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnLogginMouseClicked
     
     private void setDefaultVehiculo(){
         searchVehiculoField.setText("");

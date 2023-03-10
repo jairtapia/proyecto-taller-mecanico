@@ -86,5 +86,38 @@
     "LastName": "",
     "PassWord": "kira",
     "Name": ""
+  },
+  {
+    "UserName": "alguien",
+    "Address": "",
+    "Perfil": "ADMIN",
+    "FirstName": "",
+    "PhoneNumber": "",
+    "ID": 10,
+    "LastName": "",
+    "PassWord": "contraseña",
+    "Name": ""
+  },
+  {
+    "UserName": "alguien2",
+    "Address": "",
+    "Perfil": "MANAGER",
+    "FirstName": "",
+    "PhoneNumber": "",
+    "ID": 11,
+    "LastName": "",
+    "PassWord": "12345",
+    "Name": ""
+  },
+  {
+    "UserName": "nose",
+    "Address": "",
+    "Perfil": "SECRETARY",
+    "FirstName": "",
+    "PhoneNumber": "",
+    "ID": 12,
+    "LastName": "",
+    "PassWord": "nose",
+    "Name": ""
   }
 ]

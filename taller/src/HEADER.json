@@ -9,7 +9,10 @@
     {"UsuarioId 6": 6},
     {"UsuarioId 7": 7},
     {"UsuarioId 8": 8},
-    {"UsuarioId 9": 9}
+    {"UsuarioId 9": 9},
+    {"UsuarioId 10": 10},
+    {"UsuarioId 11": 11},
+    {"UsuarioId 12": 12}
   ],
   "Clientes": [
     {"ClienteId 1": 1},
@@ -19,6 +22,6 @@
     {"ClienteId 5": 5}
   ],
   "LastClientId": 5,
-  "LastUserId": 9,
+  "LastUserId": 12,
   "vehiculos": []
 }
