@@ -1,11 +1,24 @@
-[{
-  "UserName": "Zottoz",
-  "Address": "LomasdelPozo",
-  "Perfil": "ADMIN",
-  "FirstName": "AYALA",
-  "PhoneNumber": "3311107742",
-  "ID": 1,
-  "LastName": "OCHOA",
-  "PassWord": "101010",
-  "Name": "LUIS"
-}]
+[
+  {
+    "UserName": "Zottoz",
+    "Address": "LomasdelPozo",
+    "Perfil": "ADMIN",
+    "FirstName": "AYALA",
+    "PhoneNumber": "3311107742",
+    "ID": 1,
+    "LastName": "OCHOA",
+    "PassWord": "101010",
+    "Name": "LUIS"
+  },
+  {
+    "UserName": "jairt",
+    "Address": "oblatos",
+    "Perfil": "ADMIN",
+    "FirstName": "romo",
+    "PhoneNumber": "33158463543",
+    "ID": 2,
+    "LastName": "tapia",
+    "PassWord": "kira",
+    "Name": "jair"
+  }
+]

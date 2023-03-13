@@ -44,7 +44,7 @@ public class inicio extends javax.swing.JFrame {
         
         setFechaToDay();
         
-        //setOff();
+        setOff();
     }
     
     private int auxId;
@@ -117,6 +117,7 @@ public class inicio extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
+        BtnExit = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -140,6 +141,7 @@ public class inicio extends javax.swing.JFrame {
         jPanel14 = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
+        BtnExit1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         ClienteIDBox = new javax.swing.JComboBox<>();
@@ -166,6 +168,7 @@ public class inicio extends javax.swing.JFrame {
         jPanel25 = new javax.swing.JPanel();
         jPanel26 = new javax.swing.JPanel();
         jPanel27 = new javax.swing.JPanel();
+        BtnExit2 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         reparacionIdField = new javax.swing.JTextField();
@@ -197,6 +200,7 @@ public class inicio extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         reparacionSearchField = new javax.swing.JTextField();
         reparacionSearchBton = new javax.swing.JButton();
+        BtnExit3 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         piezasToCarrField = new javax.swing.JTextField();
@@ -220,6 +224,8 @@ public class inicio extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         searchPiezasField = new javax.swing.JTextField();
         newPiezaBton = new javax.swing.JButton();
+        BtnExit4 = new javax.swing.JButton();
+        jPanel32 = new javax.swing.JPanel();
 
         jButton11.setText("jButton11");
 
@@ -532,6 +538,16 @@ public class inicio extends javax.swing.JFrame {
 
         jPanel2.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 10, 390));
 
+        BtnExit.setBackground(new java.awt.Color(220, 238, 242));
+        BtnExit.setText("cerrar secion");
+        BtnExit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExitActionPerformed(evt);
+            }
+        });
+        jPanel2.add(BtnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, -1, -1));
+
         jTabbedPane1.addTab("usuarios", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(220, 238, 242));
@@ -712,6 +728,16 @@ public class inicio extends javax.swing.JFrame {
         );
 
         jPanel3.add(jPanel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 10, 390));
+
+        BtnExit1.setBackground(new java.awt.Color(220, 238, 242));
+        BtnExit1.setText("cerrar secion");
+        BtnExit1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExit1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BtnExit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, -1, -1));
 
         jTabbedPane1.addTab("clientes", jPanel3);
 
@@ -927,6 +953,16 @@ public class inicio extends javax.swing.JFrame {
 
         jPanel4.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, -1, -1));
 
+        BtnExit2.setBackground(new java.awt.Color(220, 238, 242));
+        BtnExit2.setText("cerrar secion");
+        BtnExit2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExit2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(BtnExit2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, -1, -1));
+
         jTabbedPane1.addTab("vehiculos", jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(220, 238, 242));
@@ -1129,8 +1165,8 @@ public class inicio extends javax.swing.JFrame {
         jPanel5.add(reparacionesDateChoser, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 120, -1));
 
         jLabel40.setText("Buscar");
-        jPanel5.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
-        jPanel5.add(reparacionSearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 140, -1));
+        jPanel5.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, -1, -1));
+        jPanel5.add(reparacionSearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 140, -1));
 
         reparacionSearchBton.setText("Buscar");
         reparacionSearchBton.addActionListener(new java.awt.event.ActionListener() {
@@ -1138,7 +1174,17 @@ public class inicio extends javax.swing.JFrame {
                 reparacionSearchBtonActionPerformed(evt);
             }
         });
-        jPanel5.add(reparacionSearchBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, -1));
+        jPanel5.add(reparacionSearchBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
+
+        BtnExit3.setBackground(new java.awt.Color(220, 238, 242));
+        BtnExit3.setText("cerrar secion");
+        BtnExit3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExit3ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnExit3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, -1, -1));
 
         jTabbedPane1.addTab("reparaciones", jPanel5);
 
@@ -1146,16 +1192,16 @@ public class inicio extends javax.swing.JFrame {
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel34.setText("pieza id");
-        jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+        jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, -1, -1));
 
         piezasToCarrField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel6.add(piezasToCarrField, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 110, -1));
+        jPanel6.add(piezasToCarrField, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 110, 110, -1));
 
         jLabel35.setText("Tipo");
-        jPanel6.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
+        jPanel6.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
 
         jLabel36.setText("stock");
-        jPanel6.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
+        jPanel6.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         piezasTypeField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
         piezasTypeField.addActionListener(new java.awt.event.ActionListener() {
@@ -1163,13 +1209,13 @@ public class inicio extends javax.swing.JFrame {
                 piezasTypeFieldActionPerformed(evt);
             }
         });
-        jPanel6.add(piezasTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 110, -1));
+        jPanel6.add(piezasTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 110, -1));
 
         piezasStockField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel6.add(piezasStockField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 110, -1));
+        jPanel6.add(piezasStockField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 110, -1));
 
         searhcPiezaBton.setBackground(new java.awt.Color(220, 238, 242));
-        searhcPiezaBton.setText("nuevo");
+        searhcPiezaBton.setText("buscar");
         searhcPiezaBton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         searhcPiezaBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         searhcPiezaBton.addActionListener(new java.awt.event.ActionListener() {
@@ -1177,7 +1223,7 @@ public class inicio extends javax.swing.JFrame {
                 searhcPiezaBtonActionPerformed(evt);
             }
         });
-        jPanel6.add(searhcPiezaBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 60, 20));
+        jPanel6.add(searhcPiezaBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 60, 20));
 
         savePiezaBton.setBackground(new java.awt.Color(220, 238, 242));
         savePiezaBton.setText("guardar");
@@ -1283,7 +1329,7 @@ public class inicio extends javax.swing.JFrame {
         jPanel6.add(jPanel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 10, 390));
 
         jLabel37.setText("Carro");
-        jPanel6.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
+        jPanel6.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
 
         piezasIdField.setEditable(false);
         piezasIdField.setText("0");
@@ -1293,19 +1339,19 @@ public class inicio extends javax.swing.JFrame {
                 piezasIdFieldActionPerformed(evt);
             }
         });
-        jPanel6.add(piezasIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 110, -1));
+        jPanel6.add(piezasIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 110, -1));
 
         jLabel38.setText("Nombre");
-        jPanel6.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, -1, -1));
+        jPanel6.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
 
         piezasNameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel6.add(piezasNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 110, -1));
+        jPanel6.add(piezasNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 110, -1));
 
         jLabel39.setText("Buscar");
-        jPanel6.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
+        jPanel6.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
 
         searchPiezasField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel6.add(searchPiezasField, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 110, -1));
+        jPanel6.add(searchPiezasField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 110, -1));
 
         newPiezaBton.setBackground(new java.awt.Color(220, 238, 242));
         newPiezaBton.setText("nuevo");
@@ -1318,7 +1364,32 @@ public class inicio extends javax.swing.JFrame {
         });
         jPanel6.add(newPiezaBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 298, 60, 20));
 
+        BtnExit4.setBackground(new java.awt.Color(220, 238, 242));
+        BtnExit4.setText("cerrar secion");
+        BtnExit4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExit4ActionPerformed(evt);
+            }
+        });
+        jPanel6.add(BtnExit4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, -1, -1));
+
         jTabbedPane1.addTab("piezas", jPanel6);
+
+        jPanel32.setBackground(new java.awt.Color(220, 238, 242));
+
+        javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
+        jPanel32.setLayout(jPanel32Layout);
+        jPanel32Layout.setHorizontalGroup(
+            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 685, Short.MAX_VALUE)
+        );
+        jPanel32Layout.setVerticalGroup(
+            jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 392, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("grafica", jPanel32);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 690, 420));
 
@@ -1356,6 +1427,12 @@ public class inicio extends javax.swing.JFrame {
     }
     
     public void setOff(){
+            jTabbedPane1.setEnabledAt(1, false);
+            jTabbedPane1.setEnabledAt(2, false);
+            jTabbedPane1.setEnabledAt(3, false);
+            jTabbedPane1.setEnabledAt(4, false);
+            jTabbedPane1.setEnabledAt(5, false);
+            jTabbedPane1.setEnabledAt(6, false);
             BtnSave.setEnabled(false);
             writeBton.setEnabled(false);
             BtnCancel1.setEnabled(false);
@@ -1371,9 +1448,28 @@ public class inicio extends javax.swing.JFrame {
             CancelarVehiculoBtn.setEnabled(false);
             EditarVehiculoBtn.setEnabled(false);
             RemoverVehiculoBtn.setEnabled(false);
+            reparacionesSaveBton.setEnabled(false);
+            reperacionesWriteBton.setEnabled(false);
+            reparacionesCancelarBton.setEnabled(false);
+            reparacionesEditBton.setEnabled(false);
+            reparacionesRemoveBton.setEnabled(false);
+            newPiezaBton.setEnabled(false);
+            savePiezaBton.setEnabled(false);
+            cancelPiezasBton.setEnabled(false);
+            editPiezasBton.setEnabled(false);
+            removePiezaBton.setEnabled(false);
+            
+            
     }
     
     private void isAdmin(){
+            jTabbedPane1.setEnabledAt(0, false);
+            jTabbedPane1.setEnabledAt(1, true);
+            jTabbedPane1.setEnabledAt(2, true);
+            jTabbedPane1.setEnabledAt(3, true);
+            jTabbedPane1.setEnabledAt(4, true);
+            jTabbedPane1.setEnabledAt(5, true);
+            jTabbedPane1.setEnabledAt(6, true);
             BtnSave.setEnabled(true);
             writeBton.setEnabled(true);
             BtnCancel1.setEnabled(true);
@@ -1389,12 +1485,28 @@ public class inicio extends javax.swing.JFrame {
             CancelarVehiculoBtn.setEnabled(true);
             EditarVehiculoBtn.setEnabled(true);
             RemoverVehiculoBtn.setEnabled(true);
-            /*FALTAN los otros botones*/
-            //todos los botones son true
+            jTabbedPane1.setSelectedIndex(1);
+            reparacionesSaveBton.setEnabled(true);
+            reperacionesWriteBton.setEnabled(true);
+            reparacionesCancelarBton.setEnabled(true);
+            reparacionesEditBton.setEnabled(true);
+            reparacionesRemoveBton.setEnabled(true);
+            newPiezaBton.setEnabled(true);
+            savePiezaBton.setEnabled(true);
+            cancelPiezasBton.setEnabled(true);
+            editPiezasBton.setEnabled(true);
+            removePiezaBton.setEnabled(true);
             
     }
     
     private void isManager(){
+            jTabbedPane1.setEnabledAt(0, false);
+            jTabbedPane1.setEnabledAt(1, false);
+            jTabbedPane1.setEnabledAt(2, true);
+            jTabbedPane1.setEnabledAt(3, true);
+            jTabbedPane1.setEnabledAt(4, true);
+            jTabbedPane1.setEnabledAt(5, true);
+            jTabbedPane1.setEnabledAt(6, true);
             BtnSave.setEnabled(false);
             writeBton.setEnabled(false);
             BtnCancel1.setEnabled(false);
@@ -1410,11 +1522,28 @@ public class inicio extends javax.swing.JFrame {
             CancelarVehiculoBtn.setEnabled(true);
             EditarVehiculoBtn.setEnabled(true);
             RemoverVehiculoBtn.setEnabled(true);
-            /*FALTAN los otros botones*/
+            jTabbedPane1.setSelectedIndex(2);
+            reparacionesSaveBton.setEnabled(true);
+            reperacionesWriteBton.setEnabled(true);
+            reparacionesCancelarBton.setEnabled(true);
+            reparacionesEditBton.setEnabled(true);
+            reparacionesRemoveBton.setEnabled(false);
+            newPiezaBton.setEnabled(true);
+            savePiezaBton.setEnabled(true);
+            cancelPiezasBton.setEnabled(true);
+            editPiezasBton.setEnabled(true);
+            removePiezaBton.setEnabled(true);
             
     }
     
     private void isSecretary(){
+            jTabbedPane1.setEnabledAt(0, false);
+            jTabbedPane1.setEnabledAt(1, false);
+            jTabbedPane1.setEnabledAt(2, true);
+            jTabbedPane1.setEnabledAt(3, true);
+            jTabbedPane1.setEnabledAt(4, false);
+            jTabbedPane1.setEnabledAt(5, false);
+            jTabbedPane1.setEnabledAt(6, true);
             BtnSave.setEnabled(false);
             writeBton.setEnabled(false);
             BtnCancel1.setEnabled(false);
@@ -1430,12 +1559,28 @@ public class inicio extends javax.swing.JFrame {
             CancelarVehiculoBtn.setEnabled(true);
             EditarVehiculoBtn.setEnabled(false);
             RemoverVehiculoBtn.setEnabled(false);
-            /*FALTAN los otros botones*/
-            //los botones de reparaciones todos van a estar en false al igual de las piezas
+            jTabbedPane1.setSelectedIndex(2);
+            reparacionesSaveBton.setEnabled(false);
+            reperacionesWriteBton.setEnabled(false);
+            reparacionesCancelarBton.setEnabled(false);
+            reparacionesEditBton.setEnabled(false);
+            reparacionesRemoveBton.setEnabled(false);
+            newPiezaBton.setEnabled(false);
+            savePiezaBton.setEnabled(false);
+            cancelPiezasBton.setEnabled(false);
+            editPiezasBton.setEnabled(false);
+            removePiezaBton.setEnabled(false);
             
     }
     
     private void isMechanic(){
+            jTabbedPane1.setEnabledAt(0, false);
+            jTabbedPane1.setEnabledAt(1, false);
+            jTabbedPane1.setEnabledAt(2, false);
+            jTabbedPane1.setEnabledAt(3, false);
+            jTabbedPane1.setEnabledAt(4, true);
+            jTabbedPane1.setEnabledAt(5, false);
+            jTabbedPane1.setEnabledAt(6, false);
             BtnSave.setEnabled(false);
             writeBton.setEnabled(false);
             BtnCancel1.setEnabled(false);
@@ -1451,11 +1596,17 @@ public class inicio extends javax.swing.JFrame {
             CancelarVehiculoBtn.setEnabled(false);
             EditarVehiculoBtn.setEnabled(false);
             RemoverVehiculoBtn.setEnabled(false);
-            /*FALTAN los otros botones*/
-            //todo false menos los botones de crear y leer en reparaciones
-                    
-                    
-                    
+            jTabbedPane1.setSelectedIndex(4);
+            reparacionesSaveBton.setEnabled(true);
+            reperacionesWriteBton.setEnabled(true);
+            reparacionesCancelarBton.setEnabled(false);
+            reparacionesEditBton.setEnabled(false);
+            reparacionesRemoveBton.setEnabled(false);
+            newPiezaBton.setEnabled(false);
+            savePiezaBton.setEnabled(false);
+            cancelPiezasBton.setEnabled(false);
+            editPiezasBton.setEnabled(false);
+            removePiezaBton.setEnabled(false);      
     }
     
     private void setUsersIdBox(JSONArray myJson ) {
@@ -1722,7 +1873,6 @@ public class inicio extends javax.swing.JFrame {
                     tempObj = myFile.searchUserByusername(newUser.getJson());
                     newUser.setUser(tempObj);
                     JOptionPane.showMessageDialog(this, "Usuario Valido");
-                    jTabbedPane1.setSelectedIndex(1);
                     setConfigurationu(newUser.getPerfil());
             }else{
                 
@@ -2586,7 +2736,36 @@ public class inicio extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_reparacionesRemoveBtonActionPerformed
-    
+
+    private void BtnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExitActionPerformed
+        // TODO add your handling code here:
+        exit();
+    }//GEN-LAST:event_BtnExitActionPerformed
+
+    private void BtnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExit1ActionPerformed
+        // TODO add your handling code here:
+        exit();
+    }//GEN-LAST:event_BtnExit1ActionPerformed
+
+    private void BtnExit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExit2ActionPerformed
+        // TODO add your handling code here:
+        exit();
+    }//GEN-LAST:event_BtnExit2ActionPerformed
+
+    private void BtnExit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExit3ActionPerformed
+        // TODO add your handling code here:
+        exit();
+    }//GEN-LAST:event_BtnExit3ActionPerformed
+
+    private void BtnExit4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExit4ActionPerformed
+        // TODO add your handling code here:
+        exit();
+    }//GEN-LAST:event_BtnExit4ActionPerformed
+    private void exit(){
+        jTabbedPane1.setEnabledAt(0, true);
+        jTabbedPane1.setSelectedIndex(0);
+        setOff();
+    }
     private void setDefaultPiezas() {
         
         piezasIdField.setText(String.valueOf(auxPiezaId));
@@ -2687,6 +2866,11 @@ public class inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancel1;
     private javax.swing.JButton BtnEdit;
+    private javax.swing.JButton BtnExit;
+    private javax.swing.JButton BtnExit1;
+    private javax.swing.JButton BtnExit2;
+    private javax.swing.JButton BtnExit3;
+    private javax.swing.JButton BtnExit4;
     private javax.swing.JButton BtnLoggin;
     private javax.swing.JButton BtnRemove1;
     private javax.swing.JButton BtnSave;
@@ -2780,6 +2964,7 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
