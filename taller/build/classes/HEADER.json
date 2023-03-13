@@ -1,27 +1,44 @@
 {
-  "LastVehicleId": 0,
-  "Usuarios": [
-    {"UsuarioId 1": 1},
-    {"UsuarioId 2": 2},
-    {"UsuarioId 3": 3},
-    {"UsuarioId 4": 4},
-    {"UsuarioId 5": 5},
-    {"UsuarioId 6": 6},
-    {"UsuarioId 7": 7},
-    {"UsuarioId 8": 8},
-    {"UsuarioId 9": 9},
-    {"UsuarioId 10": 10},
-    {"UsuarioId 11": 11},
-    {"UsuarioId 12": 12}
+  "LastVehicleId": 2,
+  "Usuarios": [{
+    "id": 1,
+    "Name": "LUIS"
+  }],
+  "Clientes": [{
+    "id": 1,
+    "Name": "JUAN"
+  }],
+  "LastClientId": 1,
+  "LastUserId": 1,
+  "LastReparacionId": 3,
+  "Reparaciones": [{
+    "Matricula": "83274hhh",
+    "id": 1,
+    "NamePieza": "Motor"
+  }],
+  "Piezas": [
+    {
+      "id": 1,
+      "Name": "Motor"
+    },
+    {
+      "id": 2,
+      "Name": "Faro"
+    },
+    {
+      "id": 3,
+      "Name": "Bomba"
+    }
   ],
-  "Clientes": [
-    {"ClienteId 1": 1},
-    {"ClienteId 2": 2},
-    {"ClienteId 3": 3},
-    {"ClienteId 4": 4},
-    {"ClienteId 5": 5}
-  ],
-  "LastClientId": 5,
-  "LastUserId": 12,
-  "vehiculos": []
+  "LastPiezaId": 3,
+  "vehiculos": [
+    {
+      "Matricula": "67P09JJK",
+      "id": 1
+    },
+    {
+      "Matricula": "83274hhh",
+      "id": 2
+    }
+  ]
 }

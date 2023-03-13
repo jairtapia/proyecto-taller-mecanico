@@ -3,32 +3,46 @@ package taller;
 import static java.awt.image.ImageObserver.HEIGHT;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class inicio extends javax.swing.JFrame {
 
    
     public inicio() throws IOException {
         initComponents();
-        
+         
         myHeader = new Header();
+        
         myHeader.fromDisk();
+        
         auxId = myHeader.getUsers();
         auxClientId = myHeader.getClients();
         auxVehicleId = myHeader.getVehicles();
-        
-        
-        
+        auxPiezaId = myHeader.getPiezas();
+        auxReparacion = myHeader.getReparacion();
+      
+        piezasIdField.setText(String.valueOf(auxPiezaId));
         idField.setText(String.valueOf(auxId));
         clienteIdField.setText(String.valueOf(auxClientId));
         IDvehiculoField.setText(String.valueOf(auxVehicleId));
+        reparacionIdField.setText(String.valueOf(auxReparacion));
         
-        setUsersIdBox(myHeader.getUsersId());
+        setUsersIdBox(myHeader.getUsersName());
         setClientsIdBox(myHeader.getClientesId());
+        setAutoIdBox(myHeader.getVehiculosid());
+        setPiezasIdBox(myHeader.getPiezasId());
+        
+        
+        setFechaToDay();
         
         //setOff();
     }
@@ -36,19 +50,30 @@ public class inicio extends javax.swing.JFrame {
     private int auxId;
     private int auxClientId;
     private int auxVehicleId;
+    private int auxPiezaId;
+    private int auxReparacion;
     private usuario newUser;
     private Cliente newCliente;
     private vehiculo newvehiculo;
+    private Pieza newPieza;
+    private Reparacion newReparacion;
     private boolean ban = false ;
     private final File myFile = new File("AUX_USUARIO");
     private final File myFileClientes = new File("AUX_CLIENTES");
     private final File myFileVehiculos = new File("AUX_VEHICULOS");
+    private final File myFilePiezas = new File("AUX_PIEZAS");
+    private final File myFileReparaciones = new File("AUX_REPARACIONES");
+
     private Header myHeader;// = new Header();
      
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton11 = new javax.swing.JButton();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jCalendar2 = new com.toedter.calendar.JCalendar();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         logUserName = new javax.swing.JTextField();
@@ -143,48 +168,60 @@ public class inicio extends javax.swing.JFrame {
         jPanel27 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        reparacionIdField = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        reparacionesAutoBox = new javax.swing.JComboBox<>();
         jLabel27 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        reparacionesIdVehiculoField = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        reparacionesFallaField = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        reparacionesFechaEntradaField = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        reparacionesPiezasBox = new javax.swing.JComboBox<>();
         jLabel32 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        reparacionesPiezasIdField = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        reparacionesStockField = new javax.swing.JTextField();
+        reparacionesSaveBton = new javax.swing.JButton();
+        reperacionesWriteBton = new javax.swing.JButton();
+        reparacionesCancelarBton = new javax.swing.JButton();
+        reparacionesEditBton = new javax.swing.JButton();
+        reparacionesRemoveBton = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
         jPanel31 = new javax.swing.JPanel();
+        reparacionesDateChoser = new com.toedter.calendar.JDateChooser();
+        jLabel40 = new javax.swing.JLabel();
+        reparacionSearchField = new javax.swing.JTextField();
+        reparacionSearchBton = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        piezasToCarrField = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        piezasTypeField = new javax.swing.JTextField();
+        piezasStockField = new javax.swing.JTextField();
+        searhcPiezaBton = new javax.swing.JButton();
+        savePiezaBton = new javax.swing.JButton();
+        cancelPiezasBton = new javax.swing.JButton();
+        editPiezasBton = new javax.swing.JButton();
+        removePiezaBton = new javax.swing.JButton();
         jPanel19 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
         jPanel28 = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        piezasIdField = new javax.swing.JTextField();
+        jLabel38 = new javax.swing.JLabel();
+        piezasNameField = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        searchPiezasField = new javax.swing.JTextField();
+        newPiezaBton = new javax.swing.JButton();
+
+        jButton11.setText("jButton11");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("inicio");
@@ -690,7 +727,7 @@ public class inicio extends javax.swing.JFrame {
                 ClienteIDBoxActionPerformed(evt);
             }
         });
-        jPanel4.add(ClienteIDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 170, -1));
+        jPanel4.add(ClienteIDBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 170, -1));
 
         jLabel17.setText("Ingrese ID a Buscar");
         jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, -1, -1));
@@ -741,7 +778,7 @@ public class inicio extends javax.swing.JFrame {
                 IDvehiculoFieldActionPerformed(evt);
             }
         });
-        jPanel4.add(IDvehiculoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 100, -1));
+        jPanel4.add(IDvehiculoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 140, -1));
 
         MatriculaVField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
         jPanel4.add(MatriculaVField, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 140, -1));
@@ -813,11 +850,11 @@ public class inicio extends javax.swing.JFrame {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel4.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 10));
@@ -828,11 +865,11 @@ public class inicio extends javax.swing.JFrame {
         jPanel16.setLayout(jPanel16Layout);
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel4.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 680, 10));
@@ -843,11 +880,11 @@ public class inicio extends javax.swing.JFrame {
         jPanel25.setLayout(jPanel25Layout);
         jPanel25Layout.setHorizontalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel25Layout.setVerticalGroup(
             jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel4.add(jPanel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 390));
@@ -897,105 +934,136 @@ public class inicio extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel25.setText("id");
-        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
 
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        reparacionIdField.setEditable(false);
+        reparacionIdField.setText("0");
+        reparacionIdField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        reparacionIdField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                reparacionIdFieldActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 131, -1));
+        jPanel5.add(reparacionIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 131, -1));
 
         jLabel26.setText("matricula VH");
-        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 131, -1));
+        reparacionesAutoBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
+        reparacionesAutoBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reparacionesAutoBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reparacionesAutoBoxActionPerformed(evt);
+            }
+        });
+        jPanel5.add(reparacionesAutoBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 131, -1));
 
         jLabel27.setText("vehiculo ID");
-        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
-        jTextField2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        reparacionesIdVehiculoField.setEditable(false);
+        reparacionesIdVehiculoField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        reparacionesIdVehiculoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                reparacionesIdVehiculoFieldActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 129, -1));
+        jPanel5.add(reparacionesIdVehiculoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 129, -1));
 
         jLabel28.setText("Falla");
-        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
-        jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 129, -1));
+        reparacionesFallaField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel5.add(reparacionesFallaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 129, -1));
 
         jLabel29.setText("Fecha Entrada");
-        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, -1, -1));
+        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
         jLabel30.setText("Fecha Salida");
-        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, -1, -1));
+        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, -1, -1));
 
-        jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel5.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 120, -1));
-
-        jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 120, -1));
+        reparacionesFechaEntradaField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel5.add(reparacionesFechaEntradaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, 120, -1));
 
         jLabel31.setText("pieza");
-        jPanel5.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, -1));
+        jPanel5.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, -1, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
-        jPanel5.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 120, -1));
-
-        jLabel32.setText("pieza ID");
-        jPanel5.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, -1, -1));
-
-        jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 120, -1));
-
-        jLabel33.setText("Cantidad");
-        jPanel5.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, -1, -1));
-
-        jTextField7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel5.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 120, -1));
-
-        jButton1.setBackground(new java.awt.Color(220, 238, 242));
-        jButton1.setText("nuevo");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        reparacionesPiezasBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0" }));
+        reparacionesPiezasBox.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 255), 1, true));
+        reparacionesPiezasBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                reparacionesPiezasBoxActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 49, 25));
+        jPanel5.add(reparacionesPiezasBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 120, -1));
 
-        jButton2.setBackground(new java.awt.Color(220, 238, 242));
-        jButton2.setText("guardar");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 50, 25));
+        jLabel32.setText("pieza ID");
+        jPanel5.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, -1, -1));
 
-        jButton3.setBackground(new java.awt.Color(220, 238, 242));
-        jButton3.setText("cancelar");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 55, 25));
+        reparacionesPiezasIdField.setEditable(false);
+        reparacionesPiezasIdField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel5.add(reparacionesPiezasIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 120, -1));
 
-        jButton4.setBackground(new java.awt.Color(220, 238, 242));
-        jButton4.setText("editar");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 65, 25));
+        jLabel33.setText("Cantidad");
+        jPanel5.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, -1, -1));
 
-        jButton5.setBackground(new java.awt.Color(220, 238, 242));
-        jButton5.setText("remover");
-        jButton5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 1, true));
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel5.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 70, 25));
+        reparacionesStockField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel5.add(reparacionesStockField, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 120, -1));
+
+        reparacionesSaveBton.setBackground(new java.awt.Color(220, 238, 242));
+        reparacionesSaveBton.setText("nuevo");
+        reparacionesSaveBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reparacionesSaveBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reparacionesSaveBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reparacionesSaveBtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(reparacionesSaveBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 49, 25));
+
+        reperacionesWriteBton.setBackground(new java.awt.Color(220, 238, 242));
+        reperacionesWriteBton.setText("guardar");
+        reperacionesWriteBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reperacionesWriteBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reperacionesWriteBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reperacionesWriteBtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(reperacionesWriteBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, 50, 25));
+
+        reparacionesCancelarBton.setBackground(new java.awt.Color(220, 238, 242));
+        reparacionesCancelarBton.setText("cancelar");
+        reparacionesCancelarBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        reparacionesCancelarBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reparacionesCancelarBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reparacionesCancelarBtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(reparacionesCancelarBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 55, 25));
+
+        reparacionesEditBton.setBackground(new java.awt.Color(220, 238, 242));
+        reparacionesEditBton.setText("editar");
+        reparacionesEditBton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        reparacionesEditBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reparacionesEditBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reparacionesEditBtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(reparacionesEditBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 65, 25));
+
+        reparacionesRemoveBton.setBackground(new java.awt.Color(220, 238, 242));
+        reparacionesRemoveBton.setText("remover");
+        reparacionesRemoveBton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 1, true));
+        reparacionesRemoveBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        reparacionesRemoveBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reparacionesRemoveBtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(reparacionesRemoveBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 70, 25));
 
         jPanel11.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -1003,11 +1071,11 @@ public class inicio extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel5.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 680, 10));
@@ -1018,11 +1086,11 @@ public class inicio extends javax.swing.JFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel5.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 10));
@@ -1033,11 +1101,11 @@ public class inicio extends javax.swing.JFrame {
         jPanel30.setLayout(jPanel30Layout);
         jPanel30Layout.setHorizontalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel30Layout.setVerticalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel5.add(jPanel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 0, 10, 390));
@@ -1048,14 +1116,29 @@ public class inicio extends javax.swing.JFrame {
         jPanel31.setLayout(jPanel31Layout);
         jPanel31Layout.setHorizontalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel31Layout.setVerticalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel5.add(jPanel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 10, 390));
+
+        reparacionesDateChoser.setDateFormatString("dd/mm/yyyy");
+        jPanel5.add(reparacionesDateChoser, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 120, -1));
+
+        jLabel40.setText("Buscar");
+        jPanel5.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+        jPanel5.add(reparacionSearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 140, -1));
+
+        reparacionSearchBton.setText("Buscar");
+        reparacionSearchBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reparacionSearchBtonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(reparacionSearchBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 20, -1, -1));
 
         jTabbedPane1.addTab("reparaciones", jPanel5);
 
@@ -1065,54 +1148,79 @@ public class inicio extends javax.swing.JFrame {
         jLabel34.setText("pieza id");
         jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
 
-        jTextField8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel6.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 110, -1));
+        piezasToCarrField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel6.add(piezasToCarrField, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 110, -1));
 
-        jLabel35.setText("descripcion");
-        jPanel6.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, -1));
+        jLabel35.setText("Tipo");
+        jPanel6.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, -1, -1));
 
         jLabel36.setText("stock");
         jPanel6.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, -1, -1));
 
-        jTextField9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        piezasTypeField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        piezasTypeField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                piezasTypeFieldActionPerformed(evt);
             }
         });
-        jPanel6.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 110, -1));
+        jPanel6.add(piezasTypeField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 110, -1));
 
-        jTextField10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
-        jPanel6.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 110, -1));
+        piezasStockField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel6.add(piezasStockField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 110, -1));
 
-        jButton6.setBackground(new java.awt.Color(220, 238, 242));
-        jButton6.setText("nuevo");
-        jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 298, 60, 20));
+        searhcPiezaBton.setBackground(new java.awt.Color(220, 238, 242));
+        searhcPiezaBton.setText("nuevo");
+        searhcPiezaBton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        searhcPiezaBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        searhcPiezaBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searhcPiezaBtonActionPerformed(evt);
+            }
+        });
+        jPanel6.add(searhcPiezaBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 60, 20));
 
-        jButton7.setBackground(new java.awt.Color(220, 238, 242));
-        jButton7.setText("guardar");
-        jButton7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 298, 60, 20));
+        savePiezaBton.setBackground(new java.awt.Color(220, 238, 242));
+        savePiezaBton.setText("guardar");
+        savePiezaBton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        savePiezaBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        savePiezaBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savePiezaBtonActionPerformed(evt);
+            }
+        });
+        jPanel6.add(savePiezaBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 298, 60, 20));
 
-        jButton8.setBackground(new java.awt.Color(220, 238, 242));
-        jButton8.setText("cancelar");
-        jButton8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        jPanel6.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 298, 60, 20));
+        cancelPiezasBton.setBackground(new java.awt.Color(220, 238, 242));
+        cancelPiezasBton.setText("cancelar");
+        cancelPiezasBton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        cancelPiezasBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelPiezasBtonActionPerformed(evt);
+            }
+        });
+        jPanel6.add(cancelPiezasBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 298, 60, 20));
 
-        jButton9.setBackground(new java.awt.Color(220, 238, 242));
-        jButton9.setText("editar");
-        jButton9.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 298, 50, 20));
+        editPiezasBton.setBackground(new java.awt.Color(220, 238, 242));
+        editPiezasBton.setText("editar");
+        editPiezasBton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        editPiezasBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editPiezasBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editPiezasBtonActionPerformed(evt);
+            }
+        });
+        jPanel6.add(editPiezasBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 298, 50, 20));
 
-        jButton10.setBackground(new java.awt.Color(220, 238, 242));
-        jButton10.setText("remover");
-        jButton10.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 1, true));
-        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 298, 60, 20));
+        removePiezaBton.setBackground(new java.awt.Color(220, 238, 242));
+        removePiezaBton.setText("remover");
+        removePiezaBton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 1, true));
+        removePiezaBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        removePiezaBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removePiezaBtonActionPerformed(evt);
+            }
+        });
+        jPanel6.add(removePiezaBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(466, 298, 60, 20));
 
         jPanel19.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -1174,13 +1282,62 @@ public class inicio extends javax.swing.JFrame {
 
         jPanel6.add(jPanel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 10, 390));
 
+        jLabel37.setText("Carro");
+        jPanel6.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
+
+        piezasIdField.setEditable(false);
+        piezasIdField.setText("0");
+        piezasIdField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        piezasIdField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                piezasIdFieldActionPerformed(evt);
+            }
+        });
+        jPanel6.add(piezasIdField, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 110, -1));
+
+        jLabel38.setText("Nombre");
+        jPanel6.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 170, -1, -1));
+
+        piezasNameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel6.add(piezasNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 110, -1));
+
+        jLabel39.setText("Buscar");
+        jPanel6.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, -1, -1));
+
+        searchPiezasField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        jPanel6.add(searchPiezasField, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 110, -1));
+
+        newPiezaBton.setBackground(new java.awt.Color(220, 238, 242));
+        newPiezaBton.setText("nuevo");
+        newPiezaBton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        newPiezaBton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        newPiezaBton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newPiezaBtonActionPerformed(evt);
+            }
+        });
+        jPanel6.add(newPiezaBton, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 298, 60, 20));
+
         jTabbedPane1.addTab("piezas", jPanel6);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 690, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void setFechaToDay() {
+        
+        LocalDate toDay = LocalDate.now();
+        
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        String formatDate = toDay.format(format);
+        
+        reparacionesFechaEntradaField.setText(formatDate);
+        
+        FechaVField.setText(formatDate);
+    }
+    
     private void setConfigurationu(String s){
         switch(s){
         case "ADMIN":
@@ -1197,6 +1354,7 @@ public class inicio extends javax.swing.JFrame {
         break; 
         }  
     }
+    
     public void setOff(){
             BtnSave.setEnabled(false);
             writeBton.setEnabled(false);
@@ -1214,6 +1372,7 @@ public class inicio extends javax.swing.JFrame {
             EditarVehiculoBtn.setEnabled(false);
             RemoverVehiculoBtn.setEnabled(false);
     }
+    
     private void isAdmin(){
             BtnSave.setEnabled(true);
             writeBton.setEnabled(true);
@@ -1234,6 +1393,7 @@ public class inicio extends javax.swing.JFrame {
             //todos los botones son true
             
     }
+    
     private void isManager(){
             BtnSave.setEnabled(false);
             writeBton.setEnabled(false);
@@ -1253,6 +1413,7 @@ public class inicio extends javax.swing.JFrame {
             /*FALTAN los otros botones*/
             
     }
+    
     private void isSecretary(){
             BtnSave.setEnabled(false);
             writeBton.setEnabled(false);
@@ -1273,6 +1434,7 @@ public class inicio extends javax.swing.JFrame {
             //los botones de reparaciones todos van a estar en false al igual de las piezas
             
     }
+    
     private void isMechanic(){
             BtnSave.setEnabled(false);
             writeBton.setEnabled(false);
@@ -1302,20 +1464,45 @@ public class inicio extends javax.swing.JFrame {
             
               JSONObject objeto = myJson.getJSONObject(i);
               
-              int aux = objeto.getInt("UsuarioId " + String.valueOf(i + 1));
+              String aux = objeto.getString("Name");
               
-              usuarioIDBox.addItem(String.valueOf(aux));
+              usuarioIDBox.addItem(aux);
         }
     }
+    
     private void setClientsIdBox(JSONArray myJson ) {
             
           for (int i = 0; i < myJson.length(); i++) {
             
               JSONObject objeto = myJson.getJSONObject(i);
               
-              int aux = objeto.getInt("ClienteId " + String.valueOf(i + 1));
+              String aux = objeto.getString("Name");
               
-              ClienteIDBox.addItem(String.valueOf(aux));
+              ClienteIDBox.addItem(aux);
+        }
+    }
+    
+    private void setPiezasIdBox(JSONArray myJson ) {
+            
+          for (int i = 0; i < myJson.length(); i++) {
+            
+              JSONObject objeto = myJson.getJSONObject(i);
+              
+              String aux = objeto.getString("Name");
+              
+              reparacionesPiezasBox.addItem(aux);
+        }
+    }
+    
+    private void setAutoIdBox(JSONArray myJson ) {
+            
+          for (int i = 0; i < myJson.length(); i++) {
+            
+              JSONObject objeto = myJson.getJSONObject(i);
+              
+              String aux = objeto.getString("Matricula");
+              
+             reparacionesAutoBox.addItem(aux);
         }
     }
     
@@ -1353,10 +1540,8 @@ public class inicio extends javax.swing.JFrame {
                 
                 auxId++;
                 
-                myHeader.setUsers(auxId);
-                
-                myHeader.setUsers(auxId);
-
+                myHeader.setUsersId(auxId);
+               
                 newUser.setId(auxId);
                 
                 newUser.setNombre(nameField.getText());
@@ -1375,11 +1560,9 @@ public class inicio extends javax.swing.JFrame {
 
                 newUser.setPasword(passWordField.getText());
                 
-                myHeader.setId(auxId);
+                myHeader.setNombre(newUser.getNombre(), newUser.getId());
 
                 myFile.saveData(newUser.getJson());
-
-                myHeader.toDisk();
 
                 setDefaults();
                 
@@ -1411,20 +1594,18 @@ public class inicio extends javax.swing.JFrame {
             
             if(!(searchField.getText().equals(""))) {
               
-                auxId = Integer.parseInt(searchField.getText());
-
                 newUser = new usuario();
                 
-                myHeader.deleatId(auxId);
-
-                myHeader.setUsers(auxId);
-
-                newUser.setId(auxId);
+                newUser.setId(Integer.parseInt(idField.getText()));
 
                 myFile.deletData(newUser.getJson());
                 
+                myHeader.deleatUserName(newUser.getId());
+                
                 auxId--;
-
+                 
+                myHeader.setUsersId(auxId);
+                
                 myHeader.toDisk();
 
                 setDefaults(); 
@@ -1583,6 +1764,7 @@ public class inicio extends javax.swing.JFrame {
                 
                 lastMotherNameClienteField.setText(tempObj.getString("LastMotherName"));
                 
+                
             }
             else{
                 
@@ -1607,7 +1789,12 @@ public class inicio extends javax.swing.JFrame {
                 
         lastMotherNameClienteField.setText("");
         
+        clienteIdField.setText(String.valueOf(auxClientId));
+        
+        setClientsIdBox(myHeader.getClientesId());
+        
     }
+    
     private void ClienteIDBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteIDBoxActionPerformed
         // TODO add your handling code here: 
     }//GEN-LAST:event_ClienteIDBoxActionPerformed
@@ -1620,13 +1807,10 @@ public class inicio extends javax.swing.JFrame {
                 
                 newCliente = new Cliente();
                 
-                myHeader.setClienteId(++auxClientId);
+                newCliente.setClienteId(++auxClientId);
                 
-                myHeader.setClients(auxClientId);
-                
-                newCliente.setClienteId(auxClientId);
-                
-                newCliente.setUsuarioId(Integer.parseInt(usuarioIDBox.getSelectedItem().toString()));
+                newCliente.setUsuarioId(myHeader.findIdData(myHeader.getUsersName(),
+                                                    usuarioIDBox.getSelectedItem().toString()));
                 
                 newCliente.setName(nameClienteField.getText());
                 
@@ -1636,7 +1820,12 @@ public class inicio extends javax.swing.JFrame {
                 
                 myFileClientes.saveCliente(newCliente.getJson());
                 
+                myHeader.setClienteId(newCliente.getName(), auxClientId);
+                
+                myHeader.setClients(auxClientId);
+                
                 setDefaultCliente();
+                
                 clienteIdField.setText(String.valueOf(auxClientId));
                 
             }else {
@@ -1661,9 +1850,7 @@ public class inicio extends javax.swing.JFrame {
                 myFileClientes.writeToDiskClientes();
                 
                 myHeader.toDisk();
-
-                setDefaultCliente();
-                   
+   
            }else{
                
                JOptionPane.showMessageDialog(this, "No Hay Usuarios guardados");
@@ -1723,11 +1910,11 @@ public class inicio extends javax.swing.JFrame {
                 
                 newCliente.setClienteId(Integer.parseInt(searchClienteField.getText()));
                 
-                myFileClientes.deletCliente(newCliente.getJson());
+                newCliente.setClient(myFileClientes.deletCliente(newCliente.getJson()));
                
-                myHeader.setClients(auxClientId - 1);
+                myHeader.setClients(auxClientId -1);
                 
-                myHeader.deleatIdClientes(Integer.parseInt(searchClienteField.getText()));
+                myHeader.deleatIdClientes(newCliente.getClienteId());
                 
                 myHeader.toDisk();
                 
@@ -1757,16 +1944,28 @@ public class inicio extends javax.swing.JFrame {
         try {
             
             if(!ClienteIDBox.getSelectedItem().toString().equals("0")){
+                
                 newvehiculo = new vehiculo();
-                myHeader.setVehiculoid(++auxVehicleId);
-                myHeader.setVehicles(auxVehicleId);
-                newvehiculo.setIDvehiculo(auxVehicleId);
-                newvehiculo.setClienteID(Integer.parseInt(ClienteIDBox.getSelectedItem().toString()));
+                
+                newvehiculo.setIDvehiculo(++auxVehicleId);
+                
+                newvehiculo.setClienteID(myHeader.findIdData(myHeader.getClientesId(),
+                        ClienteIDBox.getSelectedItem().toString()));
+                
                 newvehiculo.setMarca(MarcaVFIeld.getText());
+                
                 newvehiculo.setModelo(ModeloVField.getText());
+                
                 newvehiculo.setFecha(FechaVField.getText());
+                
                 newvehiculo.setMatricula(MatriculaVField.getText());
+                
                 myFileVehiculos.saveVehiculo(newvehiculo.getJson());
+                
+                myHeader.setVehiculoid(newvehiculo.getMatricula(), auxVehicleId);
+                
+                myHeader.setVehicles(auxVehicleId);
+                     
                 setDefaultVehiculo();
                 
             }
@@ -1860,13 +2059,21 @@ public class inicio extends javax.swing.JFrame {
         
             if( !(searchVehiculoField.getText().equals("")))
             {
+                
                 newvehiculo = new vehiculo();
+                
                 newvehiculo.setIDvehiculo(Integer.parseInt(searchVehiculoField.getText()));
+                
                 myFileVehiculos.deletevehiculo(newvehiculo.getJson());
+                
                 myHeader.setVehicles(auxVehicleId-1);
+                
                 myHeader.deleatIdVehiculos(Integer.parseInt(searchVehiculoField.getText()));
+                
                 myHeader.toDisk();
+                
                 auxVehicleId--;
+                
                 setDefaultVehiculo();
             }
             else{
@@ -1882,16 +2089,23 @@ public class inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
         int temp = 0;
-            if( !(searchVehiculoField.getText().equals("")))
+          if( !(searchVehiculoField.getText().equals("")))
             {
                 newvehiculo = new vehiculo();
-                temp = Integer.parseInt(IDvehiculoField.getText());
-                    newvehiculo.setIDvehiculo(Integer.parseInt(IDvehiculoField.getText()));
-                    newvehiculo.setMarca(MarcaVFIeld.getText());
-                    newvehiculo.setModelo(ModeloVField.getText());
-                    newvehiculo.setFecha(FechaVField.getText());
-                    newvehiculo.setMatricula(MatriculaVField.getText());
-                    myFileVehiculos.editDataV(newvehiculo.getJson());
+               
+                newvehiculo.setIDvehiculo(Integer.parseInt(IDvehiculoField.getText()));
+                
+                newvehiculo.setMarca(MarcaVFIeld.getText());
+                
+                newvehiculo.setModelo(ModeloVField.getText());
+                
+                newvehiculo.setFecha(FechaVField.getText());
+                    
+                newvehiculo.setMatricula(MatriculaVField.getText());
+                    
+                myFileVehiculos.editDataV(newvehiculo.getJson());
+                    
+                    setDefaultVehiculo();
             }
             else{
                 JOptionPane.showMessageDialog(this, "Falta el ID");
@@ -1907,25 +2121,488 @@ public class inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_clienteIdFieldActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void reparacionIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparacionIdFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_reparacionIdFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void reparacionesSaveBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparacionesSaveBtonActionPerformed
+        try{
+        if(!(reparacionesAutoBox.getSelectedItem().toString().equals("0") 
+                || reparacionesPiezasBox.getSelectedItem().toString().equals("0"))) {
+            
+            newReparacion = new Reparacion();
+            
+            
+            newReparacion.setReparacionesId(++auxReparacion);
+            
+            ///////
+            
+            int auxIntVehicle = myHeader.findIdVehiculo(myHeader.getVehiculosid(), reparacionesAutoBox.getSelectedItem().toString());
+            
+            JSONObject auxVehicleObj = new JSONObject();
+            
+            vehiculo auxvehiculo = new vehiculo();
+            
+            auxvehiculo.setIDvehiculo(auxIntVehicle);
+            
+            auxVehicleObj = myFileVehiculos.SearchVehiculo(auxvehiculo.getJson());
+            
+            ////////////////////
+            
+            JSONObject auxPiezaObj = new JSONObject();
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+            int auxIntPieza = myHeader.findIdData(myHeader.getPiezasId(), reparacionesPiezasBox.getSelectedItem().toString());
+            
+            Pieza auxPieza = new Pieza();
+            
+            auxPieza.setPiezaId(auxIntPieza);
+            
+            auxPiezaObj = myFilePiezas.searchPiezaInFile(auxPieza.getJson());
+            
+           
+            
+            //////////////////
+            
+            myHeader.setReparacion(auxReparacion);
+            
+            myHeader.setReparacionId(auxVehicleObj.getString("Matricula"), auxPiezaObj.getString("Name"), auxReparacion);
+            
+            ////////////
+           
+            newReparacion.setMyVehiculo(new vehiculo(auxVehicleObj));
+            
+            newReparacion.setMypieza(new Pieza(auxPiezaObj));
+            
+            newReparacion.setFechaEntrada(reparacionesFechaEntradaField.getText());
+            
+            Date myFecha = reparacionesDateChoser.getDate();
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+            SimpleDateFormat formatDate = new SimpleDateFormat("dd/mm/yyyy");
+
+            String dateString = formatDate.format(myFecha);
+
+            newReparacion.setFechaSalida(dateString);
+            
+            newReparacion.setFalla(reparacionesFallaField.getText());
+            
+            newReparacion.setCantidad(Integer.parseInt(reparacionesStockField.getText()));
+            
+            /////////////////
+            
+            myFileReparaciones.saveReparacion(newReparacion.getJson());
+            
+            setDefaultReparacion();
+            
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Falta el ID");
+            }
+          
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        }
+    }//GEN-LAST:event_reparacionesSaveBtonActionPerformed
+
+    private void reparacionesIdVehiculoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparacionesIdVehiculoFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_reparacionesIdVehiculoFieldActionPerformed
+
+    private void piezasTypeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_piezasTypeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_piezasTypeFieldActionPerformed
 
     private void BtnLogginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnLogginMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnLogginMouseClicked
+
+    private void searhcPiezaBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searhcPiezaBtonActionPerformed
+    try {
+            
+            if(!searchPiezasField.getText().equals("")) {
+                
+                newPieza = new Pieza();
+                
+                newPieza.setPiezaId(Integer.parseInt(searchPiezasField.getText()));
+                
+                JSONObject obj = new JSONObject();
+                
+                obj = myFilePiezas.searchPiezaInFile(newPieza.getJson());
+                     
+                piezasIdField.setText(String.valueOf(obj.getInt("PiezaId")));
+        
+                piezasNameField.setText(obj.getString("Name"));
+
+                piezasStockField.setText(String.valueOf(obj.getInt("Cant")));
+
+                piezasToCarrField.setText(obj.getString("ToCar"));
+
+                piezasTypeField.setText(obj.getString("Type"));
+
+                
+            }
+            else{
+                
+                JOptionPane.showMessageDialog(this, "Falta de Inventario");
+            
+            }
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        } 
+       
+
+    }//GEN-LAST:event_searhcPiezaBtonActionPerformed
+
+    private void newPiezaBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newPiezaBtonActionPerformed
+        try {
+            
+            if(!piezasStockField.getText().equals("0")) {
+                
+                newPieza = new Pieza();
+                
+                newPieza.setPiezaId(++auxPiezaId);
+                
+                newPieza.setName(piezasNameField.getText());
+                
+                newPieza.setToCar(piezasToCarrField.getText());
+                
+                newPieza.setType(piezasTypeField.getText());
+                
+                newPieza.setCant(Integer.parseInt(piezasStockField.getText()));
+                
+                myFilePiezas.savePieza(newPieza.getJson());
+                
+                myHeader.setPiezas(auxPiezaId);
+                
+                myHeader.setPizasId(newPieza.getName(), newPieza.getPiezaId());
+                
+                setDefaultPiezas();
+                
+            }
+            else{
+                
+                JOptionPane.showMessageDialog(this, "Falta de Inventario");
+            
+            }
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        } 
+        
+        
+    }//GEN-LAST:event_newPiezaBtonActionPerformed
+
+    private void savePiezaBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePiezaBtonActionPerformed
+        
+        try {
+                
+                myFilePiezas.writeToDiskPiezas();
+                
+                myHeader.toDisk();
+           
+            
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        } 
+        
+        
+    }//GEN-LAST:event_savePiezaBtonActionPerformed
+
+    private void cancelPiezasBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelPiezasBtonActionPerformed
+        // TODO add your handling code here:
+        setDefaultPiezas();
+    }//GEN-LAST:event_cancelPiezasBtonActionPerformed
+
+    private void editPiezasBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPiezasBtonActionPerformed
+         try {
+            
+            if(!searchPiezasField.getText().equals("")) {
+                
+                newPieza = new Pieza();
+                
+                newPieza.setPiezaId(Integer.parseInt(piezasIdField.getText()));
+                
+                newPieza.setName(piezasNameField.getText());
+                
+                newPieza.setToCar(piezasToCarrField.getText());
+                
+                newPieza.setType(piezasTypeField.getText());
+                
+                newPieza.setCant(Integer.parseInt(piezasStockField.getText()));
+                
+                myFilePiezas.editPieza(newPieza.getJson());
+                
+                setDefaultPiezas();
+     
+            }
+            else{
+                
+                JOptionPane.showMessageDialog(this, "Falta de Datos");
+            
+            }
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        } 
+        
+    }//GEN-LAST:event_editPiezasBtonActionPerformed
+
+    private void piezasIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_piezasIdFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_piezasIdFieldActionPerformed
+
+    private void removePiezaBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removePiezaBtonActionPerformed
+           try {
+            
+            if(!searchPiezasField.getText().equals("")) {
+                
+                newPieza = new Pieza();
+                
+                newPieza.setPiezaId(Integer.parseInt(piezasIdField.getText()));
+                
+                myFilePiezas.deletPieza(newPieza.getJson());
+                
+                myHeader.deleatIdPieza(Integer.parseInt(piezasIdField.getText()));
+                
+                myHeader.setPiezas(--auxPiezaId);
+                
+                myHeader.toDisk();
+             
+                setDefaultPiezas();
+     
+            }
+            else{
+                
+                JOptionPane.showMessageDialog(this, "Falta de Datos");
+            
+            }
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        }     
+    }//GEN-LAST:event_removePiezaBtonActionPerformed
+
+    private void reparacionesAutoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparacionesAutoBoxActionPerformed
+        
+        try {
+            int temp = myHeader.findIdVehiculo(myHeader.getVehiculosid(), reparacionesAutoBox.getSelectedItem().toString());
+            
+            reparacionesIdVehiculoField.setText(String.valueOf(temp));
+            
+        } catch (IOException ex) {
+            Logger.getLogger(inicio.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }
+    }//GEN-LAST:event_reparacionesAutoBoxActionPerformed
+
+    private void reperacionesWriteBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reperacionesWriteBtonActionPerformed
+          try {
+            
+            if(!(reparacionesAutoBox.getSelectedItem().toString().equals("0"))) {
+                
+                myFileReparaciones.writeToDiskReparaciones();
+                
+                myHeader.toDisk();
+               
+            }
+            else{
+                
+                JOptionPane.showMessageDialog(this, "Falta de Datos");
+            
+            }
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        } 
+    }//GEN-LAST:event_reperacionesWriteBtonActionPerformed
+
+    private void reparacionesCancelarBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparacionesCancelarBtonActionPerformed
+        try {
+            // TODO add your handling code here:
+            setDefaultReparacion();
+        } catch (ParseException ex) {
+            Logger.getLogger(inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_reparacionesCancelarBtonActionPerformed
+
+    private void reparacionesEditBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparacionesEditBtonActionPerformed
+        try{
+        if(!reparacionSearchField.getText().equals("")) {
+            
+            newReparacion = new Reparacion();
+            
+            
+            newReparacion.setReparacionesId(++auxReparacion);
+            
+            ///////
+            
+            int auxIntVehicle = myHeader.findIdVehiculo(myHeader.getVehiculosid(), reparacionesAutoBox.getSelectedItem().toString());
+            
+            JSONObject auxVehicleObj = new JSONObject();
+            
+            vehiculo auxvehiculo = new vehiculo();
+            
+            auxvehiculo.setIDvehiculo(auxIntVehicle);
+            
+            auxVehicleObj = myFileVehiculos.SearchVehiculo(auxvehiculo.getJson());
+            
+            ////////////////////
+            
+            JSONObject auxPiezaObj = new JSONObject();
+
+            int auxIntPieza = myHeader.findIdData(myHeader.getPiezasId(), reparacionesPiezasBox.getSelectedItem().toString());
+            
+            Pieza auxPieza = new Pieza();
+            
+            auxPieza.setPiezaId(auxIntPieza);
+            
+            auxPiezaObj = myFilePiezas.searchPiezaInFile(auxPieza.getJson());
+            
+            //////
+            
+            newReparacion.setMyVehiculo(new vehiculo(auxVehicleObj));
+            
+            newReparacion.setMypieza(new Pieza(auxPiezaObj));
+            
+            newReparacion.setFechaEntrada(reparacionesFechaEntradaField.getText());
+            
+            Date myFecha = reparacionesDateChoser.getDate();
+
+            SimpleDateFormat formatDate = new SimpleDateFormat("dd/mm/yyyy");
+
+            String dateString = formatDate.format(myFecha);
+
+            newReparacion.setFechaSalida(dateString);
+            
+            newReparacion.setFalla(reparacionesFallaField.getText());
+            
+            newReparacion.setCantidad(Integer.parseInt(reparacionesStockField.getText()));
+            
+            /////////////////
+            
+            myFileReparaciones.editReparaciones(newReparacion.getJson());
+            
+            setDefaultReparacion();
+            
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Falta el ID");
+            }
+          
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        }  
+    }//GEN-LAST:event_reparacionesEditBtonActionPerformed
+
+    private void reparacionesPiezasBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparacionesPiezasBoxActionPerformed
+        try {
+            int temp = myHeader.findIdData(myHeader.getPiezasId(), reparacionesPiezasBox.getSelectedItem().toString());
+            
+            reparacionesPiezasIdField.setText(String.valueOf(temp));
+            
+        } catch (IOException ex) {
+            Logger.getLogger(inicio.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }
+        
+    }//GEN-LAST:event_reparacionesPiezasBoxActionPerformed
+
+    private void reparacionSearchBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparacionSearchBtonActionPerformed
+        try {
+            
+            int temp = Integer.parseInt(reparacionSearchField.getText());
+            
+            newReparacion = new Reparacion();
+            
+            newReparacion.setReparacionesId(temp);
+            
+            JSONObject obj = new JSONObject();
+            
+            obj = myFileReparaciones.searchReparacionesInFile(newReparacion.getJson());
+            
+            reparacionIdField.setText(String.valueOf(obj.getInt("id")));
+            
+            //reparacionesAutoBox.addItem(obj.getJSONObject("Vehiculo").getString("Matricula"));
+            
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/mm/yyyy");
+            
+            Date fecha = formatoFecha.parse(obj.getString("FechaSalida"));
+            
+            reparacionesDateChoser.setDate(fecha);
+            
+            reparacionesFallaField.setText(obj.getString("Falla"));
+            
+            reparacionesFechaEntradaField.setText(obj.getString("FechaEntrada"));
+            
+            reparacionesIdVehiculoField.setText(String.valueOf(obj.getJSONObject("Vehiculo").getInt("id")));
+            
+            //reparacionesPiezasBox.addItem(obj.getJSONObject("Pieza").getString("Name"));
+            
+            reparacionesPiezasIdField.setText(String.valueOf(obj.getJSONObject("Pieza").getInt("PiezaId")));
+            
+            reparacionesStockField.setText(String.valueOf(obj.getInt("Cantidad")));
+            
+            
+             
+        } catch (IOException ex) {
+            Logger.getLogger(inicio.class.getName()).log(Level.SEVERE, null, ex);
+        
+        } catch (ParseException ex) {
+            Logger.getLogger(inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }//GEN-LAST:event_reparacionSearchBtonActionPerformed
+
+    private void reparacionesRemoveBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reparacionesRemoveBtonActionPerformed
+        try{
+        if(!reparacionSearchField.getText().equals("")) {
+            
+            newReparacion = new Reparacion();
+            
+            newReparacion.setReparacionesId(Integer.parseInt(reparacionSearchField.getText()));
+            
+            myHeader.deleatIdReparacion(newReparacion.getReparacionesId());
+            
+            myFileReparaciones.deletReparaciones(newReparacion.getJson());
+            
+            --auxReparacion;
+            
+            myHeader.setReparacion(auxReparacion);
+            
+            setDefaultReparacion();
+           
+           
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Falta el ID");
+            }
+          
+            } catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+        }  
+        
+        
+    }//GEN-LAST:event_reparacionesRemoveBtonActionPerformed
+    
+    private void setDefaultPiezas() {
+        
+        piezasIdField.setText(String.valueOf(auxPiezaId));
+        
+        piezasNameField.setText("");
+        
+        piezasStockField.setText("0");
+        
+        piezasToCarrField.setText("");
+        
+        piezasTypeField.setText("");
+        
+        reparacionesPiezasBox.removeAllItems();
+        
+        setPiezasIdBox(myHeader.getPiezasId());
+    }
     
     private void setDefaultVehiculo(){
         searchVehiculoField.setText("");
@@ -1934,6 +2611,10 @@ public class inicio extends javax.swing.JFrame {
         MarcaVFIeld.setText("");
         ModeloVField.setText("");
         FechaVField.setText("");
+        
+        reparacionesAutoBox.removeAllItems();
+        
+        setAutoIdBox(myHeader.getVehiculosid());
     }
     
     private void setDefaults() {
@@ -1957,6 +2638,36 @@ public class inicio extends javax.swing.JFrame {
         passWordField.setText("");
         
         ban = false;
+        
+        usuarioIDBox.removeAllItems();
+        
+        setUsersIdBox(myHeader.getUsersName());
+        
+    }
+    
+    private void setDefaultReparacion() throws ParseException {
+        
+            reparacionIdField.setText(String.valueOf(auxReparacion));
+            
+            //reparacionesAutoBox.addItem(obj.getJSONObject("Vehiculo").getString("Matricula"));
+            
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/mm/yyyy");
+            
+            Date fecha = formatoFecha.parse("00/00/0000");
+            
+            reparacionesDateChoser.setDate(fecha);
+            
+            reparacionesFallaField.setText("");
+            
+            reparacionesFechaEntradaField.setText("00/00/0000");
+            
+            reparacionesIdVehiculoField.setText("");
+            
+            //reparacionesPiezasBox.addItem(obj.getJSONObject("Pieza").getString("Name"));
+            
+            reparacionesPiezasIdField.setText("");
+            
+            reparacionesStockField.setText("0");
         
     }
     
@@ -1993,23 +2704,17 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton NuevoVehiculoBtn;
     private javax.swing.JButton RemoverVehiculoBtn;
     private javax.swing.JTextField addressField;
+    private javax.swing.JButton cancelPiezasBton;
     private javax.swing.JButton cancelarClienteBton;
     private javax.swing.JTextField clienteIdField;
     private javax.swing.JButton deleatClienteBton;
     private javax.swing.JButton editClienteBton;
+    private javax.swing.JButton editPiezasBton;
     private javax.swing.JTextField idField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton jButton11;
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private com.toedter.calendar.JCalendar jCalendar2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2040,7 +2745,11 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2078,16 +2787,6 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField lastMotherNameClienteField;
     private javax.swing.JTextField lastNameClienteField;
     private javax.swing.JTextField lastNameField;
@@ -2098,13 +2797,39 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JTextField motherLastNameField;
     private javax.swing.JTextField nameClienteField;
     private javax.swing.JTextField nameField;
+    private javax.swing.JButton newPiezaBton;
     private javax.swing.JPasswordField passWordField;
     private javax.swing.JComboBox<String> perfilBox;
     private javax.swing.JTextField phoneNumberField;
+    private javax.swing.JTextField piezasIdField;
+    private javax.swing.JTextField piezasNameField;
+    private javax.swing.JTextField piezasStockField;
+    private javax.swing.JTextField piezasToCarrField;
+    private javax.swing.JTextField piezasTypeField;
+    private javax.swing.JButton removePiezaBton;
+    private javax.swing.JTextField reparacionIdField;
+    private javax.swing.JButton reparacionSearchBton;
+    private javax.swing.JTextField reparacionSearchField;
+    private javax.swing.JComboBox<String> reparacionesAutoBox;
+    private javax.swing.JButton reparacionesCancelarBton;
+    private com.toedter.calendar.JDateChooser reparacionesDateChoser;
+    private javax.swing.JButton reparacionesEditBton;
+    private javax.swing.JTextField reparacionesFallaField;
+    private javax.swing.JTextField reparacionesFechaEntradaField;
+    private javax.swing.JTextField reparacionesIdVehiculoField;
+    private javax.swing.JComboBox<String> reparacionesPiezasBox;
+    private javax.swing.JTextField reparacionesPiezasIdField;
+    private javax.swing.JButton reparacionesRemoveBton;
+    private javax.swing.JButton reparacionesSaveBton;
+    private javax.swing.JTextField reparacionesStockField;
+    private javax.swing.JButton reperacionesWriteBton;
     private javax.swing.JButton saveClienteBton;
+    private javax.swing.JButton savePiezaBton;
     private javax.swing.JTextField searchClienteField;
     private javax.swing.JTextField searchField;
+    private javax.swing.JTextField searchPiezasField;
     private javax.swing.JTextField searchVehiculoField;
+    private javax.swing.JButton searhcPiezaBton;
     private javax.swing.JButton suarchClienteBton;
     private javax.swing.JTextField userNameField;
     private javax.swing.JComboBox<String> usuarioIDBox;

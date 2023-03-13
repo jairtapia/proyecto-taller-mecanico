@@ -15,14 +15,20 @@ public class Header {
     private int users;
     private int clients;
     private int vehicles;
+    private int piezas;
+    private int reparacion;
+
     
     private JSONArray clientesId;
-    private JSONArray usersId;
+    private JSONArray usersNames;
     private JSONArray vehiculosid;
+    private JSONArray piezasId;
+    private JSONArray reparacionesId;
+
     private JSONObject obj;
     
     /*si falla cambia esta direccion*/
-     private String url =  "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\HEADER.json";
+     private String url =  "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\HEADER.json";
 
 
     public Header() {
@@ -30,20 +36,23 @@ public class Header {
         this.users = 0;
         this.cont = 0;
         
-        this.usersId = new JSONArray();
+        this.usersNames = new JSONArray();
     }
+    
     public Header(Header h) {
 
         this.users = h.users;
     }
-    public Header(int a)
-    {
+    
+    public Header(int a){
         this.users = a;
     }
+    
     public int getUsers() {
         return users;
     }
-    public void setUsers(int users) {
+    
+    public void setUsersId(int users) {
         this.users = users;
     }
 
@@ -54,7 +63,17 @@ public class Header {
     public void setClients(int clients) {
         this.clients = clients;
     }
-
+    
+    public void setPiezas(int p) {
+        
+        this.piezas = p;
+    }
+    
+    public int getPiezas() {
+        
+        return this.piezas;
+    }
+    
     public int getVehicles() {
         return vehicles;
     }
@@ -67,13 +86,16 @@ public class Header {
 
         this.users ++;
     }
-    public void setId(int i) {
+    
+    public void setNombre(String name, int id) {
         
         obj = new JSONObject();
         
-        obj.put("UsuarioId " + String.valueOf(i), i);
+        obj.put("Name", name);
         
-        this.usersId.put(obj);
+        obj.put("id", id);
+        
+        this.usersNames.put(obj);
         
     }
     
@@ -90,11 +112,19 @@ public class Header {
             
             obj.put("LastVehicleId",this.vehicles);
             
-            obj.put("Usuarios", usersId);
+            obj.put("LastPiezaId", this.piezas);
+            
+            obj.put("LastReparacionId", this.reparacion);
+            
+            obj.put("Piezas", piezasId);
+            
+            obj.put("Usuarios", usersNames);
             
             obj.put("Clientes", clientesId);
             
             obj.put("vehiculos", vehiculosid);
+            
+            obj.put("Reparaciones", reparacionesId);
          
             file.write(obj.toString(2));
                 
@@ -106,9 +136,9 @@ public class Header {
 
     }
     
-    public void deleatId(int id) throws IOException {
+    public void deleatUserName(int id) throws IOException {
         
-        if (usersId.isEmpty()) {
+        if (usersNames.isEmpty()) {
             
             String myJson = new String(Files.readAllBytes(Paths.get(url)), StandardCharsets.UTF_8);
 
@@ -116,7 +146,7 @@ public class Header {
             
             clientesId = jsonObject.getJSONArray("Clientes");
             
-            usersId = jsonObject.getJSONArray("Usuarios");
+            usersNames = jsonObject.getJSONArray("Usuarios");
             
             vehiculosid = jsonObject.getJSONArray("vehiculos");
             
@@ -124,13 +154,13 @@ public class Header {
         
         int i = 0;
         
-        for (Object objeto : usersId)  {
+        for (Object objeto : usersNames)  {
             
             JSONObject jsonObject = (JSONObject) objeto;
             
-            if(id == jsonObject.getInt("UsuarioId " + String.valueOf(i + 1))) {
+            if(id == jsonObject.getInt("id")) {
                 
-                usersId.remove(i);
+                usersNames.remove(i);
                 
                 break;
             }
@@ -139,7 +169,6 @@ public class Header {
         }
         
         toDisk();
-        
     }
     
     public void deleatIdClientes(int id) throws IOException {
@@ -152,7 +181,7 @@ public class Header {
             
             clientesId = jsonObject.getJSONArray("Clientes");
             
-            usersId = jsonObject.getJSONArray("Usuarios");
+            usersNames = jsonObject.getJSONArray("Usuarios");
             
             vehiculosid = jsonObject.getJSONArray("vehiculos");
         }
@@ -163,7 +192,7 @@ public class Header {
             
             JSONObject jsonObject = (JSONObject) objeto;
             
-            if(id == jsonObject.getInt("Cliente Id" + String.valueOf(i + 1))) {
+            if(id == jsonObject.getInt("id")) {
                 
                 clientesId.remove(i);
                 
@@ -185,16 +214,21 @@ public class Header {
             
             clientesId = jsonObject.getJSONArray("Clientes");
             
-            usersId = jsonObject.getJSONArray("Usuarios");
+            usersNames = jsonObject.getJSONArray("Usuarios");
             
             vehiculosid = jsonObject.getJSONArray("vehiculos");
         }
         
         int i = 0;
+        
         for (Object objeto : vehiculosid)  {
+        
             JSONObject jsonObject = (JSONObject) objeto;
-            if(id == jsonObject.getInt("vehiculo id" + String.valueOf(i + 1))) {
+            
+            if(id == jsonObject.getInt("id")) {
+            
                 vehiculosid.remove(i);
+                
                 break;
             }   
             i ++;
@@ -202,9 +236,60 @@ public class Header {
         toDisk();
     }
     
-    public JSONArray getUsersId() {
+    public void deleatIdPieza(int id) throws IOException{
+        if(piezasId.isEmpty()){
+            String myJson = new String(Files.readAllBytes(Paths.get(url)), StandardCharsets.UTF_8);
+
+            JSONObject jsonObject = new JSONObject(myJson);
+        
+            piezasId = jsonObject.getJSONArray("Piezas");
+        }
+        
+        int i = 0;
+        
+        for (Object objeto : piezasId)  {
+        
+            JSONObject jsonObject = (JSONObject) objeto;
+            
+            if(id == jsonObject.getInt("id")) {
+            
+                vehiculosid.remove(i);
+                
+                break;
+            }   
+            i ++;
+        }
+        toDisk();
+    }
+       public void deleatIdReparacion(int id) throws IOException{
+        if(reparacionesId.isEmpty()){
+            String myJson = new String(Files.readAllBytes(Paths.get(url)), StandardCharsets.UTF_8);
+
+            JSONObject jsonObject = new JSONObject(myJson);
+        
+            reparacionesId = jsonObject.getJSONArray("Reparaciones");
+        }
+        
+        int i = 0;
+        
+        for (Object objeto : reparacionesId)  {
+        
+            JSONObject jsonObject = (JSONObject) objeto;
+            
+            if(id == jsonObject.getInt("id")) {
+            
+                reparacionesId.remove(i);
+                
+                break;
+            }   
+            
+            i ++;
+        }
+        toDisk();
+    }
+    public JSONArray getUsersName() {
     
-        return this.usersId;
+        return this.usersNames;
     }
 
     public JSONArray getClientesId() {
@@ -214,7 +299,12 @@ public class Header {
     public JSONArray getVehiculosid() {
         return vehiculosid;
     }
-
+    
+    public JSONArray getPiezasId() {
+        
+        return piezasId;
+    }
+    
     public void fromDisk() throws IOException {
         String myJson = new String(Files.readAllBytes(Paths.get(url)), StandardCharsets.UTF_8);
 
@@ -224,33 +314,130 @@ public class Header {
         
         this.clients = jsonObject.getInt("LastClientId");
         
+        this.piezas = jsonObject.getInt("LastPiezaId");
+        
+        this.piezasId = jsonObject.getJSONArray("Piezas");
+        
         this.vehicles = jsonObject.getInt("LastVehicleId");
 
-        this.usersId = jsonObject.getJSONArray("Usuarios");
+        this.usersNames = jsonObject.getJSONArray("Usuarios");
         
         this.clientesId = jsonObject.getJSONArray("Clientes");
         
         this.vehiculosid = jsonObject.getJSONArray("vehiculos");
+        
+        this.reparacion = jsonObject.getInt("LastReparacionId");
+        
+        this.reparacionesId = jsonObject.getJSONArray("Reparaciones");
 
         this.cont ++;
     }
     
-    
-    public void setClienteId(int c) {
+    public void setPizasId(String matricula, int p) {
 
            obj = new JSONObject();
 
-           obj.put("ClienteId " + String.valueOf(c), c);
+           obj.put("Name", matricula);
+           
+           obj.put("id", p);
+           
+           this.piezasId.put(obj);
+
+       }
+    
+    public void setClienteId(String name, int c) {
+
+           obj = new JSONObject();
+
+           obj.put("Name", name);
+           
+           obj.put("id", c);
 
            this.clientesId.put(obj);
 
        }
-    public void setVehiculoid(int v){
+    
+    public void setVehiculoid(String v, int i){
+        
         obj = new JSONObject();
         
-        obj.put("vehiculo id" + String.valueOf(v), v);
+        obj.put("Matricula", v);
+        
+        obj.put("id", i);
         
         this.vehiculosid.put(obj);
     }
-
+    
+    public int findIdData(JSONArray items, String name) throws IOException {
+        
+        fromDisk();
+        
+        int id = 0;
+        
+        for(int i = 0; items.length() >= 0; i ++) {
+            
+            JSONObject obj = items.getJSONObject(i);
+            
+            if(obj.getString("Name").equals(name)) {
+                
+                id = obj.getInt("id");
+                
+                break;
+            }
+            
+        }
+        
+        return id;
+    }
+    
+    public int findIdVehiculo(JSONArray items, String name) throws IOException {
+        
+        fromDisk();
+        
+        int id = 0;
+        
+        for(int i = 0; items.length() >= 0; i ++) {
+            
+            JSONObject obj = items.getJSONObject(i);
+            
+            if(obj.getString("Matricula").equals(name)) {
+                
+                id = obj.getInt("id");
+                
+                break;
+            }
+            
+        }
+        
+        return id;
+    }
+    
+    public void setReparacion(int r) {
+        
+        this.reparacion = r;
+    }
+    
+    public void setReparacionId(String matricula, String namePieza, int id){
+        
+        obj = new JSONObject();
+        
+        obj.put("Matricula", matricula);
+        
+        obj.put("NamePieza", namePieza);
+        
+        obj.put("id", id);
+        
+        this.reparacionesId.put(obj);
+    }
+    
+    public int getReparacion() {
+        
+        return this.reparacion;
+    }
+    
+    public JSONArray getReparacionId() {
+        
+        return this.reparacionesId;
+    }
+    
 }

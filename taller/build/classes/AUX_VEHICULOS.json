@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "Fecha": "12/03/2023",
+    "Marca": "TESLA",
+    "Modelo": "2010",
+    "Matricula": "67P09JJK",
+    "id": 1,
+    "Cliente Id": 1
+  },
+  {
+    "Fecha": "12/03/2023",
+    "Marca": "TOYOTA",
+    "Modelo": "2010",
+    "Matricula": "83274hhh",
+    "id": 2,
+    "Cliente Id": 1
+  }
+]

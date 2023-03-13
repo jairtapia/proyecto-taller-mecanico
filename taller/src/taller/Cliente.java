@@ -17,6 +17,14 @@ public class Cliente {
         this.usuarioId = 0;
         this.clienteId = 0;
     }
+     public Cliente(JSONObject o) {
+        this.name = o.getString("Name");
+        this.lastName = o.getString("LastName");
+        this.lastMotherName = o.getString("LastMotherName");
+        this.usuarioId = o.getInt("Usuario ID");
+        this.clienteId = o.getInt("Cliente ID");
+    }
+    
     
     public JSONObject getJson() {
        

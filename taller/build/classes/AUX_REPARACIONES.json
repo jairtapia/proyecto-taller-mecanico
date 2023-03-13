@@ -1,0 +1,68 @@
+[
+  {
+    "FechaEntrada": "12/03/2023",
+    "Cantidad": 111,
+    "id": 1,
+    "Pieza": {
+      "Type": "MECANICA",
+      "PiezaId": 1,
+      "ToCar": "FORD",
+      "Cant": 5,
+      "Name": "BIELETAS"
+    },
+    "Vehiculo": {
+      "Fecha": "12/03/2023",
+      "Marca": "TESLA",
+      "Modelo": "2010",
+      "Matricula": "67P09JJK",
+      "id": 1,
+      "Cliente Id": 1
+    },
+    "Falla": "Motor",
+    "FechaSalida": "09/09/2023"
+  },
+  {
+    "FechaEntrada": "12/03/2023",
+    "Cantidad": 222,
+    "id": 2,
+    "Pieza": {
+      "Type": "Mecanica",
+      "PiezaId": 1,
+      "ToCar": "Audi",
+      "Cant": 5,
+      "Name": "Motor"
+    },
+    "Vehiculo": {
+      "Fecha": "12/03/2023",
+      "Marca": "TOYOTA",
+      "Modelo": "2010",
+      "Matricula": "83274hhh",
+      "id": 2,
+      "Cliente Id": 1
+    },
+    "Falla": "Motor",
+    "FechaSalida": "17/45/2023"
+  },
+  {
+    "FechaEntrada": "12/03/2023",
+    "Cantidad": 2,
+    "id": 3,
+    "Pieza": {
+      "Type": "Mecanica",
+      "PiezaId": 1,
+      "ToCar": "Audi",
+      "Cant": 5,
+      "Name": "Motor"
+    },
+    "Vehiculo": {
+      "Fecha": "12/03/2023",
+      "Marca": "TOYOTA",
+      "Modelo": "2010",
+      "Matricula": "83274hhh",
+      "id": 2,
+      "Cliente Id": 1
+    },
+    "Falla": "Motot",
+    "FechaSalida": "16/23/2023"
+  }
+]

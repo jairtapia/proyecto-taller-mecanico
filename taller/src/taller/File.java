@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Properties;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import netscape.javascript.JSObject;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,21 +35,23 @@ public class File {
     private JSONArray jsonArray;
     private JSONArray clienteJsonArray;
     private JSONArray vehiculoJsonArray;
-
+    private JSONArray piezasJsonArray;
+    private JSONArray reparacionesJSONArray;
 
     public File() {
        /*si falla cambia esta direccion*/
-        url  = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_USUARIO";
+        url  = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\AUX_USUARIO.json";
         write = null;
         jsonArray = new JSONArray();
         clienteJsonArray = new JSONArray();
         vehiculoJsonArray = new JSONArray();
     }
+    
     public File(String n) {
 
         this.url = "";
         /*si falla cambia esta direccion*/
-        url = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\" + n +".json";
+        url = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\" + n +".json";
 
         //read = null;
 
@@ -57,8 +60,10 @@ public class File {
         jsonArray = new JSONArray();
         clienteJsonArray = new JSONArray();
         vehiculoJsonArray = new JSONArray();
+        piezasJsonArray = new JSONArray();
+        reparacionesJSONArray = new JSONArray();
     }
-
+    
     public JSONObject searchInFile(JSONObject u) throws FileNotFoundException, IOException {
         
             if(jsonArray.isEmpty()) {
@@ -125,15 +130,60 @@ public class File {
         }
         for(int i = 0; i < vehiculoJsonArray.length();i++){
             JSONObject jsonObj = vehiculoJsonArray.getJSONObject(i);
-            if(v.getInt("IDVH") == jsonObj.getInt("IDVH")){
-                v.put("MATRICULA", jsonObj.getString("MATRICULA"));
-                v.put("MARCA", jsonObj.getString("MARCA"));
-                v.put("FECHA", jsonObj.getString("FECHA"));
-                v.put("MODELO", jsonObj.getString("MODELO"));
-                v.put("IDVH",jsonObj.getInt("IDVH"));
+            if(v.getInt("id") == jsonObj.getInt("id")){
+                v.put("Matricula", jsonObj.getString("Matricula"));
+                v.put("Marca", jsonObj.getString("Marca"));
+                v.put("Fecha", jsonObj.getString("Fecha"));
+                v.put("Modelo", jsonObj.getString("Modelo"));
+                v.put("Cliente Id",jsonObj.getInt("Cliente Id"));
                 return v;
             }
         }
+        return null;
+    }
+    
+    public JSONObject searchPiezaInFile(JSONObject p) throws FileNotFoundException, IOException {
+        
+            if(piezasJsonArray.isEmpty()) {
+            readToListForPiezas();
+            }
+            for (int i = 0; i < piezasJsonArray.length(); i++) {
+                
+                JSONObject obj = piezasJsonArray.getJSONObject(i);
+                
+                if(p.getInt("PiezaId") == obj.getInt("PiezaId"))  {
+                    
+                    p.put("Name", obj.getString("Name"));
+                    
+                    p.put("Type", obj.getString("Type"));
+                    
+                    p.put("ToCar", obj.getString("ToCar"));
+                    
+                    p.put("Cant", obj.getInt("Cant"));
+                          
+                    return p;
+                }
+            }
+            
+        return null;
+    }
+   
+    public JSONObject searchReparacionesInFile(JSONObject r) throws FileNotFoundException, IOException {
+        
+            if(reparacionesJSONArray.isEmpty()) {
+            
+                    readToListForReparaciones();
+            }
+            for (int i = 0; i < reparacionesJSONArray.length(); i++) {
+                
+                JSONObject obj = reparacionesJSONArray.getJSONObject(i);
+                    
+                    if(r.getInt("id") == obj.getInt("id")) {
+                        
+                        return obj;
+                }
+            }
+            
         return null;
     }
     
@@ -159,6 +209,26 @@ public class File {
         vehiculoJsonArray.put(v);
     }
     
+    public void savePieza(JSONObject p) throws IOException{
+        
+         if(piezasJsonArray.isEmpty()) {
+            
+            readToList();
+        }
+        
+        piezasJsonArray.put(p);
+    }
+    
+    public void saveReparacion(JSONObject p) throws IOException{
+        
+         if(reparacionesJSONArray.isEmpty()) {
+            
+            readToListForReparaciones();
+        }
+        
+        reparacionesJSONArray.put(p);
+    }
+    
     public void writeToDisk(){
         
         try {
@@ -178,7 +248,7 @@ public class File {
     
     public void writeToDiskClientes(){
         /*si falla cambia esta direccion*/
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
+        String falseUrl = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
         
         try {
             
@@ -196,13 +266,49 @@ public class File {
     
     public void writeToDiskVheiculos(){
         /*si falla cambia esta direccion*/
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
+        String falseUrl = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
         
         try {
             
             write = new FileWriter(falseUrl, false); 
         
             write.write(vehiculoJsonArray.toString(2));
+            
+            write.close();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       
+    }
+    
+    public void writeToDiskPiezas(){
+        /*si falla cambia esta direccion*/
+        String falseUrl = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\AUX_PIEZAS.json";
+        
+        try {
+            
+            write = new FileWriter(falseUrl, false); 
+        
+            write.write(piezasJsonArray.toString(2));
+            
+            write.close();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       
+    }
+    
+    public void writeToDiskReparaciones(){
+        /*si falla cambia esta direccion*/
+        String falseUrl = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\AUX_REPARACIONES.json";
+        
+        try {
+            
+            write = new FileWriter(falseUrl, false); 
+        
+            write.write(reparacionesJSONArray.toString(2));
             
             write.close();
             
@@ -242,7 +348,7 @@ public class File {
     
     private void readToListForClientes() throws FileNotFoundException, IOException{
         /*si falla cambia esta direccion*/
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
+        String falseUrl = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\AUX_CLIENTES.json";
         
         
         try{
@@ -270,8 +376,9 @@ public class File {
             return;
         }
     }
+    
     private void readToListForVehiculos()throws FileNotFoundException, IOException{
-        String falseUrl = "C:\\Users\\jairm\\Desktop\\fdgdfg\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
+        String falseUrl = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\AUX_VEHICULOS.json";
         
         try{
             FileReader fileReader = new FileReader(falseUrl);
@@ -300,6 +407,68 @@ public class File {
         
     }
     
+    private void readToListForPiezas() throws FileNotFoundException, IOException{
+        /*si falla cambia esta direccion*/
+        String falseUrl = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\AUX_PIEZAS.json";
+        
+        
+        try{
+            FileReader fileReader = new FileReader(falseUrl);
+
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            StringBuilder stringBuilder = new StringBuilder(); 
+
+            String line;
+            
+            while ((line = bufferedReader.readLine()) != null) {
+
+                stringBuilder.append(line);
+
+            }
+            bufferedReader.close();
+
+            fileReader.close();
+
+            piezasJsonArray = new JSONArray(stringBuilder.toString());
+            
+        }catch (IOException | JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+    
+    private void readToListForReparaciones() throws FileNotFoundException, IOException{
+        /*si falla cambia esta direccion*/
+        String falseUrl = "C:\\Users\\Luis_\\OneDrive\\Escritorio\\MASTER\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\AUX_REPARACIONES.json";
+        
+        
+        try{
+            FileReader fileReader = new FileReader(falseUrl);
+
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            StringBuilder stringBuilder = new StringBuilder(); 
+
+            String line;
+            
+            while ((line = bufferedReader.readLine()) != null) {
+
+                stringBuilder.append(line);
+
+            }
+            bufferedReader.close();
+
+            fileReader.close();
+
+            reparacionesJSONArray = new JSONArray(stringBuilder.toString());
+            
+        }catch (IOException | JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+    }
+    
     public void deletData(JSONObject u) throws IOException{
            
         if(jsonArray.isEmpty()) {
@@ -323,7 +492,7 @@ public class File {
         writeToDisk();
     }
     
-    public void deletCliente(JSONObject u) throws IOException{
+    public JSONObject deletCliente(JSONObject u) throws IOException{
            
         if(clienteJsonArray.isEmpty()) {
             
@@ -332,19 +501,23 @@ public class File {
         
         JSONObject jsonAux;
         
+        Cliente aux = null;
+        
         for(int i = 0; i < clienteJsonArray.length(); i++) {
             
             jsonAux = clienteJsonArray.getJSONObject(i);
             
             if(u.getInt("Cliente ID") == jsonAux.getInt("Cliente ID")) {
                 
-                clienteJsonArray.remove(i);
+                aux = new Cliente(jsonAux);
                 
-                break;
+                clienteJsonArray.remove(i);
             }
         }
         
         writeToDiskClientes();
+        
+        return aux.getJson();
     }
     
     public void deletevehiculo(JSONObject u)throws IOException{
@@ -366,21 +539,79 @@ public class File {
         }
         writeToDiskVheiculos();
     }
+    
+    public void deletPieza(JSONObject u) throws IOException{
+           
+        if(piezasJsonArray.isEmpty()) {
+            
+            readToListForPiezas();
+        }
+        
+        JSONObject jsonAux;
+        
+        for(int i = 0; i < piezasJsonArray.length(); i++) {
+            
+            jsonAux = piezasJsonArray.getJSONObject(i);
+            
+            if(u.getInt("PiezaId") == jsonAux.getInt("PiezaId")) {
+                
+                piezasJsonArray.remove(i);
+                
+                break;
+            }
+        }
+        
+        writeToDiskPiezas();
+    }
+    
+    public void deletReparaciones(JSONObject u) throws IOException{
+           
+        if(reparacionesJSONArray.isEmpty()) {
+            
+            readToListForReparaciones();
+        }
+        
+        JSONObject jsonAux;
+        
+        for(int i = 0; i < reparacionesJSONArray.length(); i++) {
+            
+            jsonAux = reparacionesJSONArray.getJSONObject(i);
+            
+            if(u.getInt("id") == jsonAux.getInt("id")) {
+                
+                reparacionesJSONArray.remove(i);
+                
+                break;
+            }
+        }
+        
+        writeToDiskPiezas();
+    }
+    
     public void editDataV(JSONObject v)throws IOException{
         if(vehiculoJsonArray.isEmpty()) {
             readToListForVehiculos();
         }
-        for (int i = 1; i < vehiculoJsonArray.length(); i++){
+        for (int i = 0; i < vehiculoJsonArray.length(); i++){
+            
             JSONObject Obj = vehiculoJsonArray.getJSONObject(i);
-            if(v.getInt("IDVH") == Obj.getInt("IDVH")){
-                Obj.put("IDVH",v.getInt("IDVH"));
-                Obj.put("MATRICULA",v.get("MATRICULA"));
-                Obj.put("MODELO",v.get("MODELO"));
-                Obj.put("MARCA",v.get("MARCA"));
-                Obj.put("FECHA",v.get("FECHA"));
+            
+            if(v.getInt("id") == Obj.getInt("id")){
+            
+                Obj.put("Cliente Id",v.getInt("Cliente Id"));
+                
+                Obj.put("Matricula",v.get("Matricula"));
+                
+                Obj.put("Modelo",v.get("Modelo"));
+                
+                Obj.put("Marca",v.get("Marca"));
+                
+                Obj.put("Fecha",v.get("Fecha"));
+                
                 break;
             }
         }
+        
         writeToDiskVheiculos();
     }
     
@@ -446,6 +677,64 @@ public class File {
         writeToDiskClientes();
     }
     
+    public void editPieza(JSONObject p) throws IOException {
+        
+        if(piezasJsonArray.isEmpty()) {
+            
+            readToListForPiezas();
+        }
+        for (int i = 0; i < piezasJsonArray.length(); i++) {
+                
+                JSONObject obj = piezasJsonArray.getJSONObject(i);
+                
+                if(p.getInt("PiezaId") == obj.getInt("PiezaId")) {
+                       
+                    obj.put("Name", p.getString("Name"));
+
+                    obj.put("Type", p.getString("Type"));
+
+                    obj.put("ToCar", p.getString("ToCar"));
+
+                    obj.put("Cant", p.getInt("Cant"));
+                 
+                    break;
+                }
+            }
+        
+        writeToDiskPiezas();
+    }
+    
+    public void editReparaciones(JSONObject p) throws IOException {
+        
+        if(reparacionesJSONArray.isEmpty()) {
+            
+            readToListForReparaciones();
+        }
+        for (int i = 0; i < reparacionesJSONArray.length(); i++) {
+                
+                JSONObject obj = reparacionesJSONArray.getJSONObject(i);
+                
+                if(p.getInt("id") == obj.getInt("id")) {
+                       
+                    obj.put("Vehiculo", p.getJSONObject("Vehiculo"));
+
+                    obj.put("Pieza", p.getJSONObject("Pieza"));
+
+                    obj.put("Falla", p.getString("Falla"));
+
+                    obj.put("FechaEntrada", p.getString("FechaEntrada"));
+
+                    obj.put("FechaSalida", p.getString("FechaSalida"));
+
+                    obj.put("Cantidad", p.getInt("Cantidad"));
+                 
+                    break;
+                }
+            }
+        
+        writeToDiskReparaciones();
+    }
+    
     public boolean isValid(JSONObject u) throws IOException{
         
         if(jsonArray.isEmpty()) {
@@ -464,6 +753,7 @@ public class File {
         
         return false;
     }
+    
     public JSONObject searchUserByusername(JSONObject u) throws FileNotFoundException, IOException{
         if(jsonArray.isEmpty()) {
             readToList();

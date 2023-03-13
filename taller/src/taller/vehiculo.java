@@ -1,12 +1,5 @@
-
 package taller;
-
 import org.json.JSONObject;
-
-/**
- *
- * @author jairm
- */
 public class vehiculo {
     private int IDvehiculo;
     private int clienteID;
@@ -26,21 +19,21 @@ public class vehiculo {
     }
     
     public vehiculo(JSONObject obj){
-        this.IDvehiculo = obj.getInt("ID");
-        this.clienteID = obj.getInt("cliente ID");
-        this.Marca = obj.optString("MARCA");
-        this.Modelo = obj.getString("MODELO");
-        this.Matricula = obj.getString("MATRICULA");
-        this.fecha = obj.getString("FECHA");
+        this.IDvehiculo = obj.getInt("id");
+        this.clienteID = obj.getInt("Cliente Id");
+        this.Marca = obj.optString("Marca");
+        this.Modelo = obj.getString("Modelo");
+        this.Matricula = obj.getString("Matricula");
+        this.fecha = obj.getString("Fecha");
     }
     
     public void setVehiculo(JSONObject obj){
-        this.IDvehiculo = obj.getInt("IDVH");
-        this.clienteID = obj.getInt("cliente ID");
-        this.Marca = obj.optString("MARCA");
-        this.Modelo = obj.getString("MODELO");
-        this.Matricula = obj.getString("MATRICULA");
-        this.fecha = obj.getString("FECHA");
+        this.IDvehiculo = obj.getInt("id");
+        this.clienteID = obj.getInt("cliente Id");
+        this.Marca = obj.optString("Marca");
+        this.Modelo = obj.getString("Modelo");
+        this.Matricula = obj.getString("Matricula");
+        this.fecha = obj.getString("Fecha");
     }
     
     public int getIDvehiculo() {
@@ -94,12 +87,12 @@ public class vehiculo {
     
     public JSONObject getJson() {
         JSONObject obj = new JSONObject();
-        obj.put("IDVH",this.getIDvehiculo());
-        obj.put("cliente ID", this.clienteID);
-        obj.put("MARCA", this.getMarca());
-        obj.put("MODELO", this.getModelo());
-        obj.put("MATRICULA", this.getMatricula());
-        obj.put("FECHA", this.getFecha());
+        obj.put("id",this.getIDvehiculo());
+        obj.put("Cliente Id", this.clienteID);
+        obj.put("Marca", this.getMarca());
+        obj.put("Modelo", this.getModelo());
+        obj.put("Matricula", this.getMatricula());
+        obj.put("Fecha", this.getFecha());
         return obj;
     }             
     

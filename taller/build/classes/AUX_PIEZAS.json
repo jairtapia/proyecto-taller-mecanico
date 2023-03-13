@@ -1,0 +1,23 @@
+[
+  {
+    "Type": "Mecanica",
+    "PiezaId": 1,
+    "ToCar": "Audi",
+    "Cant": 5,
+    "Name": "Motor"
+  },
+  {
+    "Type": "Electrica",
+    "PiezaId": 2,
+    "ToCar": "Tesla",
+    "Cant": 5,
+    "Name": "Faros"
+  },
+  {
+    "Type": "TermoElectrica",
+    "PiezaId": 3,
+    "ToCar": "TOYOTA",
+    "Cant": 3,
+    "Name": "Bomba"
+  }
+]
