@@ -64,5 +64,49 @@
     },
     "Falla": "Motot",
     "FechaSalida": "16/23/2023"
+  },
+  {
+    "FechaEntrada": "15/03/2023",
+    "Cantidad": 2,
+    "id": 4,
+    "Pieza": {
+      "Type": "e",
+      "PiezaId": 2,
+      "ToCar": "fh",
+      "Cant": 10,
+      "Name": "h"
+    },
+    "Vehiculo": {
+      "Fecha": "14/03/2023",
+      "Marca": "audi",
+      "Modelo": "2019",
+      "Matricula": "m45jal67",
+      "id": 3,
+      "Cliente Id": 1
+    },
+    "Falla": "df",
+    "FechaSalida": "09/04/2023"
+  },
+  {
+    "FechaEntrada": "00/00/0000",
+    "Cantidad": 5,
+    "id": 5,
+    "Pieza": {
+      "Type": "e",
+      "PiezaId": 2,
+      "ToCar": "fh",
+      "Cant": 10,
+      "Name": "h"
+    },
+    "Vehiculo": {
+      "Fecha": "12/03/2023",
+      "Marca": "TESLA",
+      "Modelo": "2010",
+      "Matricula": "67P09JJK",
+      "id": 1,
+      "Cliente Id": 1
+    },
+    "Falla": "ld",
+    "FechaSalida": "04/00/0002"
   }
 ]

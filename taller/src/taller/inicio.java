@@ -1,5 +1,6 @@
 package taller;
 
+import java.awt.BorderLayout;
 import static java.awt.image.ImageObserver.HEIGHT;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,6 +14,16 @@ import org.json.JSONObject;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class inicio extends javax.swing.JFrame {
 
@@ -43,8 +54,9 @@ public class inicio extends javax.swing.JFrame {
         
         
         setFechaToDay();
-        
+        customCursor();
         setOff();
+        UpdateGraphic();
     }
     
     private int auxId;
@@ -63,6 +75,7 @@ public class inicio extends javax.swing.JFrame {
     private final File myFileVehiculos = new File("AUX_VEHICULOS");
     private final File myFilePiezas = new File("AUX_PIEZAS");
     private final File myFileReparaciones = new File("AUX_REPARACIONES");
+    private DefaultCategoryDataset Datos = new DefaultCategoryDataset();
 
     private Header myHeader;// = new Header();
      
@@ -226,6 +239,8 @@ public class inicio extends javax.swing.JFrame {
         newPiezaBton = new javax.swing.JButton();
         BtnExit4 = new javax.swing.JButton();
         jPanel32 = new javax.swing.JPanel();
+        jPanel33 = new javax.swing.JPanel();
+        BtnUPdate = new javax.swing.JButton();
 
         jButton11.setText("jButton11");
 
@@ -541,6 +556,7 @@ public class inicio extends javax.swing.JFrame {
         BtnExit.setBackground(new java.awt.Color(220, 238, 242));
         BtnExit.setText("cerrar secion");
         BtnExit.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnExitActionPerformed(evt);
@@ -732,6 +748,7 @@ public class inicio extends javax.swing.JFrame {
         BtnExit1.setBackground(new java.awt.Color(220, 238, 242));
         BtnExit1.setText("cerrar secion");
         BtnExit1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnExit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnExit1ActionPerformed(evt);
@@ -956,6 +973,7 @@ public class inicio extends javax.swing.JFrame {
         BtnExit2.setBackground(new java.awt.Color(220, 238, 242));
         BtnExit2.setText("cerrar secion");
         BtnExit2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnExit2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnExit2ActionPerformed(evt);
@@ -1179,6 +1197,7 @@ public class inicio extends javax.swing.JFrame {
         BtnExit3.setBackground(new java.awt.Color(220, 238, 242));
         BtnExit3.setText("cerrar secion");
         BtnExit3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnExit3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnExit3ActionPerformed(evt);
@@ -1367,6 +1386,7 @@ public class inicio extends javax.swing.JFrame {
         BtnExit4.setBackground(new java.awt.Color(220, 238, 242));
         BtnExit4.setText("cerrar secion");
         BtnExit4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 102, 255), 1, true));
+        BtnExit4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnExit4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnExit4ActionPerformed(evt);
@@ -1378,15 +1398,45 @@ public class inicio extends javax.swing.JFrame {
 
         jPanel32.setBackground(new java.awt.Color(220, 238, 242));
 
+        javax.swing.GroupLayout jPanel33Layout = new javax.swing.GroupLayout(jPanel33);
+        jPanel33.setLayout(jPanel33Layout);
+        jPanel33Layout.setHorizontalGroup(
+            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 613, Short.MAX_VALUE)
+        );
+        jPanel33Layout.setVerticalGroup(
+            jPanel33Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 318, Short.MAX_VALUE)
+        );
+
+        BtnUPdate.setText("Actualizar");
+        BtnUPdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUPdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel32Layout = new javax.swing.GroupLayout(jPanel32);
         jPanel32.setLayout(jPanel32Layout);
         jPanel32Layout.setHorizontalGroup(
             jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 685, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel32Layout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+            .addGroup(jPanel32Layout.createSequentialGroup()
+                .addGap(305, 305, 305)
+                .addComponent(BtnUPdate)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel32Layout.setVerticalGroup(
             jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 392, Short.MAX_VALUE)
+            .addGroup(jPanel32Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BtnUPdate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("grafica", jPanel32);
@@ -1395,6 +1445,61 @@ public class inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void customCursor(){
+        String cursorimage = "C:\\Users\\jairm\\Desktop\\NewVersion\\proyecto-taller-mecanico\\taller\\src\\icons\\cursorRM.png";
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Image image = toolkit.getImage(cursorimage);
+        Point hotspot = new Point(0,0);
+        Cursor cursor = toolkit.createCustomCursor(image, hotspot, cursorimage);
+        setCursor(cursor);
+        
+        
+    }
+    
+    private void UpdateGraphic(){
+        try{
+            boolean b = true;
+            Datos.clear();
+            int i = 1;
+            JSONObject tempObj = new JSONObject(); 
+            while(i<=myHeader.getMaxIdPieza()){
+                b = true;
+                while(b){
+                    newPieza = new Pieza();
+                    newPieza.setPiezaId(i);
+                    tempObj = myFilePiezas.searchPiezaInFile(newPieza.getJson());
+                    if(tempObj != null){
+                        Datos.setValue(tempObj.getInt("Cant"),tempObj.getString("Type"),tempObj.getString("Name"));
+                        i++;
+                    }
+                    else
+                        b = false;
+                }
+                i++;  
+            }
+
+            
+            JFreeChart Grafico = ChartFactory.createBarChart3D("piezas","nombre","cantidad",Datos,PlotOrientation.VERTICAL,true,true,false);
+            ChartPanel Panel = new ChartPanel(Grafico);
+            Panel.setMouseWheelEnabled(true);
+            Panel.setPreferredSize(new Dimension(613, 318));
+            jPanel33.setLayout(new BorderLayout());
+            jPanel33.removeAll(); 
+            jPanel33.add(Panel,BorderLayout.NORTH);
+            jPanel33.revalidate();
+            pack();
+            jPanel33.repaint();
+            
+            
+        }catch (Exception ex) {
+
+                JOptionPane.showMessageDialog(this, ex, "ERROR", HEIGHT);
+            
+        }
+       
+    }
+    
     
     private void setFechaToDay() {
         
@@ -1618,7 +1723,18 @@ public class inicio extends javax.swing.JFrame {
               String aux = objeto.getString("Name");
               
               usuarioIDBox.addItem(aux);
+        }  
+    }
+    private void UpdateUsersIdBox() {
+        int itemCount = usuarioIDBox.getItemCount();
+        
+        for(int i = 0; i < itemCount-1; i++) {
+            if (usuarioIDBox.getSelectedItem() != null) {
+                usuarioIDBox.removeItemAt(0);
+            }
         }
+        setUsersIdBox(myHeader.getUsersName());
+        usuarioIDBox.removeItemAt(0);
     }
     
     private void setClientsIdBox(JSONArray myJson ) {
@@ -1631,6 +1747,20 @@ public class inicio extends javax.swing.JFrame {
               
               ClienteIDBox.addItem(aux);
         }
+          
+          
+    }
+    
+    private void UpdateClientsIdBox() {
+        int itemCount = ClienteIDBox.getItemCount();
+        
+        for(int i = 0; i < itemCount-1; i++) {
+            if (ClienteIDBox.getSelectedItem() != null) {
+                ClienteIDBox.removeItemAt(0);
+            }
+        }
+        setClientsIdBox(myHeader.getClientesId());
+        ClienteIDBox.removeItemAt(0);
     }
     
     private void setPiezasIdBox(JSONArray myJson ) {
@@ -1642,7 +1772,20 @@ public class inicio extends javax.swing.JFrame {
               String aux = objeto.getString("Name");
               
               reparacionesPiezasBox.addItem(aux);
+              
+        }    
+    }
+    
+    private void UpdatePiezasIdBox() {
+        int itemCount = reparacionesPiezasBox.getItemCount();
+        
+        for(int i = 0; i < itemCount-1; i++) {
+            if (reparacionesPiezasBox.getSelectedItem() != null) {
+                reparacionesPiezasBox.removeItemAt(0);
+            }
         }
+        setPiezasIdBox(myHeader.getPiezasId());
+        reparacionesPiezasBox.removeItemAt(0);
     }
     
     private void setAutoIdBox(JSONArray myJson ) {
@@ -1655,7 +1798,19 @@ public class inicio extends javax.swing.JFrame {
               
              reparacionesAutoBox.addItem(aux);
         }
+         
     }
+    private void UpdateAutoIdBox() {
+        int itemCount = reparacionesAutoBox.getItemCount();
+        
+        for(int i = 0; i < itemCount-1; i++) {
+            if (reparacionesAutoBox.getSelectedItem() != null) {
+                reparacionesAutoBox.removeItemAt(0);
+            }
+        }
+        setAutoIdBox(myHeader.getVehiculosid());
+        reparacionesAutoBox.removeItemAt(0);
+}
     
     private void writeBtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_writeBtonActionPerformed
         try {
@@ -1667,6 +1822,8 @@ public class inicio extends javax.swing.JFrame {
                 myHeader.toDisk();
 
                 setDefaults();
+                
+                UpdateUsersIdBox();
                 
                
            }else{
@@ -1760,6 +1917,8 @@ public class inicio extends javax.swing.JFrame {
                 myHeader.toDisk();
 
                 setDefaults(); 
+                
+                UpdateUsersIdBox();
             }
             else{
                 
@@ -1848,6 +2007,8 @@ public class inicio extends javax.swing.JFrame {
             myFile.editData(newUser.getJson());
 
             setDefaults();
+            
+            UpdateUsersIdBox();
             
         }catch (Exception ex) {
             
@@ -1941,7 +2102,7 @@ public class inicio extends javax.swing.JFrame {
         
         clienteIdField.setText(String.valueOf(auxClientId));
         
-        setClientsIdBox(myHeader.getClientesId());
+        
         
     }
     
@@ -2000,6 +2161,8 @@ public class inicio extends javax.swing.JFrame {
                 myFileClientes.writeToDiskClientes();
                 
                 myHeader.toDisk();
+                
+                UpdateClientsIdBox();
    
            }else{
                
@@ -2036,6 +2199,8 @@ public class inicio extends javax.swing.JFrame {
                 myFileClientes.editClient(newCliente.getJson());
                 
                 setDefaultCliente();
+                
+                UpdateClientsIdBox();
          
             }else {
                 
@@ -2071,6 +2236,9 @@ public class inicio extends javax.swing.JFrame {
                 auxClientId --;
                 
                 setDefaultCliente();
+                
+                
+                UpdateClientsIdBox();
                 
             }
             else{
@@ -2161,11 +2329,11 @@ public class inicio extends javax.swing.JFrame {
                 tempObj = myFileVehiculos.SearchVehiculo(newvehiculo.getJson());
                 
                 if(tempObj != null){
-                    IDvehiculoField.setText(String.valueOf(tempObj.getInt("IDVH")));
-                    MatriculaVField.setText(tempObj.getString("MATRICULA"));
-                    MarcaVFIeld.setText(tempObj.getString("MARCA"));
-                    ModeloVField.setText(tempObj.getString("MODELO"));
-                    FechaVField.setText(tempObj.getString("FECHA")); 
+                    IDvehiculoField.setText(String.valueOf(tempObj.getInt("id")));
+                    MatriculaVField.setText(tempObj.getString("Matricula"));
+                    MarcaVFIeld.setText(tempObj.getString("Marca"));
+                    ModeloVField.setText(tempObj.getString("Modelo"));
+                    FechaVField.setText(tempObj.getString("Fecha")); 
                     
                 }
                 
@@ -2192,6 +2360,8 @@ public class inicio extends javax.swing.JFrame {
                 myHeader.toDisk();
 
                 setDefaultVehiculo();
+                
+                UpdateAutoIdBox(); 
                 
            }
                    
@@ -2225,6 +2395,8 @@ public class inicio extends javax.swing.JFrame {
                 auxVehicleId--;
                 
                 setDefaultVehiculo();
+                
+                UpdateAutoIdBox(); 
             }
             else{
                 JOptionPane.showMessageDialog(this, "Falta el ID");
@@ -2256,6 +2428,8 @@ public class inicio extends javax.swing.JFrame {
                 myFileVehiculos.editDataV(newvehiculo.getJson());
                     
                     setDefaultVehiculo();
+                    
+                    UpdateAutoIdBox(); 
             }
             else{
                 JOptionPane.showMessageDialog(this, "Falta el ID");
@@ -2450,7 +2624,14 @@ public class inicio extends javax.swing.JFrame {
                 myFilePiezas.writeToDiskPiezas();
                 
                 myHeader.toDisk();
-           
+                
+                UpdateGraphic();
+                
+                UpdatePiezasIdBox();
+                
+                UpdatePiezasIdBox(); 
+                
+                
             
             } catch (Exception ex) {
 
@@ -2485,6 +2666,8 @@ public class inicio extends javax.swing.JFrame {
                 myFilePiezas.editPieza(newPieza.getJson());
                 
                 setDefaultPiezas();
+                
+                UpdateGraphic();
      
             }
             else{
@@ -2510,17 +2693,23 @@ public class inicio extends javax.swing.JFrame {
                 
                 newPieza = new Pieza();
                 
-                newPieza.setPiezaId(Integer.parseInt(piezasIdField.getText()));
+                JSONObject tempObj = new JSONObject(); 
+                
+                newPieza.setPiezaId(Integer.parseInt(searchPiezasField.getText()));
                 
                 myFilePiezas.deletPieza(newPieza.getJson());
                 
-                myHeader.deleatIdPieza(Integer.parseInt(piezasIdField.getText()));
+                myHeader.deleatIdPieza(Integer.parseInt(searchPiezasField.getText()));
                 
                 myHeader.setPiezas(--auxPiezaId);
                 
                 myHeader.toDisk();
              
                 setDefaultPiezas();
+                
+                UpdateGraphic();
+                
+                UpdatePiezasIdBox(); 
      
             }
             else{
@@ -2555,6 +2744,10 @@ public class inicio extends javax.swing.JFrame {
                 myFileReparaciones.writeToDiskReparaciones();
                 
                 myHeader.toDisk();
+                
+                UpdateGraphic();
+                
+                
                
             }
             else{
@@ -2635,6 +2828,8 @@ public class inicio extends javax.swing.JFrame {
             myFileReparaciones.editReparaciones(newReparacion.getJson());
             
             setDefaultReparacion();
+            
+            UpdateGraphic();
             
             }
             else{
@@ -2723,6 +2918,7 @@ public class inicio extends javax.swing.JFrame {
             
             setDefaultReparacion();
            
+            UpdateGraphic();
            
             }
             else{
@@ -2761,6 +2957,11 @@ public class inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         exit();
     }//GEN-LAST:event_BtnExit4ActionPerformed
+
+    private void BtnUPdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUPdateActionPerformed
+        // TODO add your handling code here:
+        UpdateGraphic();
+    }//GEN-LAST:event_BtnUPdateActionPerformed
     private void exit(){
         jTabbedPane1.setEnabledAt(0, true);
         jTabbedPane1.setSelectedIndex(0);
@@ -2778,9 +2979,7 @@ public class inicio extends javax.swing.JFrame {
         
         piezasTypeField.setText("");
         
-        reparacionesPiezasBox.removeAllItems();
-        
-        setPiezasIdBox(myHeader.getPiezasId());
+         
     }
     
     private void setDefaultVehiculo(){
@@ -2791,9 +2990,6 @@ public class inicio extends javax.swing.JFrame {
         ModeloVField.setText("");
         FechaVField.setText("");
         
-        reparacionesAutoBox.removeAllItems();
-        
-        setAutoIdBox(myHeader.getVehiculosid());
     }
     
     private void setDefaults() {
@@ -2818,9 +3014,7 @@ public class inicio extends javax.swing.JFrame {
         
         ban = false;
         
-        usuarioIDBox.removeAllItems();
         
-        setUsersIdBox(myHeader.getUsersName());
         
     }
     
@@ -2876,6 +3070,7 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton BtnSave;
     private javax.swing.JButton BtnSearch;
     private javax.swing.JButton BtnSearchVehiculos;
+    private javax.swing.JButton BtnUPdate;
     private javax.swing.JButton CancelarVehiculoBtn;
     private javax.swing.JComboBox<String> ClienteIDBox;
     private javax.swing.JButton EditarVehiculoBtn;
@@ -2965,6 +3160,7 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;

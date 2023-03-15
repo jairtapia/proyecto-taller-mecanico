@@ -14,5 +14,29 @@
     "Matricula": "83274hhh",
     "id": 2,
     "Cliente Id": 1
+  },
+  {
+    "Fecha": "14/03/2023",
+    "Marca": "audi",
+    "Modelo": "2019",
+    "Matricula": "m45jal67",
+    "id": 3,
+    "Cliente Id": 1
+  },
+  {
+    "Fecha": "15/03/2023",
+    "Marca": "sdjkf",
+    "Modelo": "fghk",
+    "Matricula": "iwufhs435",
+    "id": 4,
+    "Cliente Id": 2
+  },
+  {
+    "Fecha": "15/03/2023",
+    "Marca": "dfg",
+    "Modelo": "fghfg",
+    "Matricula": "sdf",
+    "id": 4,
+    "Cliente Id": 1
   }
 ]

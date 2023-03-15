@@ -236,6 +236,23 @@ public class Header {
         toDisk();
     }
     
+    public int getMaxIdPieza()throws IOException{
+        if(piezasId.isEmpty()){
+            String myJson = new String(Files.readAllBytes(Paths.get(url)), StandardCharsets.UTF_8);
+
+            JSONObject jsonObject = new JSONObject(myJson);
+        
+            piezasId = jsonObject.getJSONArray("Piezas");
+        }
+        int max = 0;
+        for (Object objeto : piezasId)  {
+            JSONObject jsonObject = (JSONObject) objeto;
+            if(max < jsonObject.getInt("id")) {
+                max =jsonObject.getInt("id");
+            }   
+        }
+        return max;
+    }
     public void deleatIdPieza(int id) throws IOException{
         if(piezasId.isEmpty()){
             String myJson = new String(Files.readAllBytes(Paths.get(url)), StandardCharsets.UTF_8);
@@ -253,7 +270,7 @@ public class Header {
             
             if(id == jsonObject.getInt("id")) {
             
-                vehiculosid.remove(i);
+                piezasId.remove(i);
                 
                 break;
             }   

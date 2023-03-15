@@ -1,23 +1,16 @@
 [
   {
-    "Type": "Mecanica",
+    "Type": "kjd",
     "PiezaId": 1,
-    "ToCar": "Audi",
-    "Cant": 5,
-    "Name": "Motor"
+    "ToCar": "m",
+    "Cant": 8,
+    "Name": "dk"
   },
   {
-    "Type": "Electrica",
-    "PiezaId": 2,
-    "ToCar": "Tesla",
-    "Cant": 5,
-    "Name": "Faros"
-  },
-  {
-    "Type": "TermoElectrica",
+    "Type": "2wl",
     "PiezaId": 3,
-    "ToCar": "TOYOTA",
+    "ToCar": "mds",
     "Cant": 3,
-    "Name": "Bomba"
+    "Name": "3klt"
   }
 ]
